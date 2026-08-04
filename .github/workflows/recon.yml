@@ -1,0 +1,83 @@
+name: Flow Event Recon
+
+on:
+  workflow_dispatch:
+    inputs:
+      akce:
+        description: "Co udělat"
+        type: choice
+        required: true
+        default: ukazka
+        options: [ukazka, discover, recon]
+      event_url:
+        description: "URL eventu — vyplň jen u akce 'recon'"
+        required: false
+        default: ""
+      attendees_csv:
+        description: "Cesta k CSV s účastníky, např. data/attendees.csv (nepovinné)"
+        required: false
+        default: ""
+      deep:
+        description: "Nechat Claude dohledat firmy přes web search (stojí tokeny)"
+        type: boolean
+        default: false
+  schedule:
+    - cron: "0 5 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e .
+
+      - name: Spustit
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EVENTBRITE_TOKEN: ${{ secrets.EVENTBRITE_TOKEN }}
+        run: |
+          AKCE="${{ inputs.akce }}"
+          [ -z "$AKCE" ] && AKCE="discover"
+
+          case "$AKCE" in
+            ukazka)
+              rm -f data/recon-demo.sqlite
+              recon discover --mock --from fixtures/demo_events.json --docs docs
+              recon recon --mock --fixture fixtures/sample_event.html \
+                --attendees data/attendees_example.csv --docs docs
+              ;;
+            discover)
+              recon discover --sources luma eventbrite --from data/manual_events.json \
+                || recon discover --sources luma
+              ;;
+            recon)
+              if [ -z "${{ inputs.event_url }}" ]; then
+                echo "::error::U akce 'recon' musíš vyplnit event_url."; exit 1
+              fi
+              ARGS="recon --url '${{ inputs.event_url }}'"
+              [ -n "${{ inputs.attendees_csv }}" ] && ARGS="$ARGS --attendees '${{ inputs.attendees_csv }}'"
+              [ "${{ inputs.deep }}" = "true" ] && ARGS="$ARGS --deep"
+              eval recon $ARGS
+              ;;
+          esac
+
+      - name: Publikovat web
+        run: |
+          git config user.name  "recon-bot"
+          git config user.email "recon-bot@users.noreply.github.com"
+          git add docs/ data/recon.sqlite 2>/dev/null || git add docs/
+          git diff --staged --quiet && echo "beze zmen" || git commit -m "${{ inputs.akce }}"
+          git push
+
+      - name: Odkaz na web
+        run: |
+          {
+            echo "### Hotovo"
+            echo ""
+            echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          } >> $GITHUB_STEP_SUMMARY
