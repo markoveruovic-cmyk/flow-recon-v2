@@ -1,0 +1,183 @@
+# ==========================================================
+# ICP definice + scoring rubrika
+# Tohle je hlavni soubor, ktery budes ladit. Kod nesahas.
+# ==========================================================
+
+company: Etnetera Flow
+
+# --- Nase ICP segmenty -----------------------------------
+icps:
+  - id: bfsi
+    label: "BFSI (banky, pojistovny, fintech)"
+    weight: 1.0
+    keywords: [bank, banking, fintech, insurance, forsikring, pension, payments,
+               capital, invest, credit, lending, wealth, neobank, sparekasse]
+    # realne dánské BFSI firmy - projdi, jestli sedi na vas ICP
+    known_companies: [Danske Bank, Nordea, Nykredit, Jyske Bank, Spar Nord, Lunar,
+                      Pleo, Tryg, Topdanmark, Saxo Bank, Sydbank]
+
+  - id: retail
+    label: "Retail"
+    weight: 1.0
+    keywords: [retail, grocery, store, chain, fmcg, supermarket, dagligvare,
+               omnichannel, pos, loyalty]
+    # realne dánské retail firmy - projdi, jestli sedi na vas ICP
+    known_companies: [Salling Group, Coop, Matas, Bilka, JYSK]
+
+  - id: ecommerce
+    label: "E-commerce"
+    weight: 1.0
+    keywords: [e-commerce, ecommerce, webshop, marketplace, d2c, dtc,
+               online retail, shopify, checkout, fulfilment]
+    # realne e-commerce firmy pusobici v DK - projdi, jestli sedi na vas ICP
+    known_companies: [Boozt, Pandora, Trendhim, Nemlig]
+
+# --- Bodovaci rubrika (soucet max = 100) ------------------
+# Deterministicka cast. Claude ji NEPREPISUJE, jen ji doplni
+# o "angle" vetu a smi upravit +/- podle `llm_adjust_max`.
+rubric:
+  icp_match:            # 0-40
+    exact_company: 40   # firma je v known_companies
+    strong_keyword: 32  # 2+ keyword hitu v obor/popisu firmy
+    weak_keyword: 20    # 1 keyword hit
+    adjacent: 10        # consulting/tech dodavatel do naseho ICP
+    none: 0
+
+  seniority:            # 0-25
+    c_level: 25         # CEO, CTO, CDO, CIO, CPO, Chief ...
+    vp: 22              # VP, SVP, EVP
+    head_director: 20   # Head of, Director
+    lead_manager: 12    # Lead, Manager, Principal
+    ic: 5               # Specialist, Engineer, Consultant
+    unknown: 8
+
+  function_fit:         # 0-15 - resi ten clovek nase temata?
+    core: 15            # digital, product, technology, data, CX, innovation, e-com
+    adjacent: 8         # marketing, operations, strategy, transformation
+    off_topic: 0        # HR, legal, finance, facility  (POZOR: "off" by YAML precetl jako false)
+
+  company_size:         # 0-10
+    enterprise: 10      # 1000+
+    mid: 7              # 200-999
+    small: 3            # <200
+    unknown: 5
+
+  event_role:           # 0-10 - jak snadno se k nemu dostanu
+    keynote: 10
+    speaker: 9
+    panelist: 8
+    moderator: 7
+    sponsor_contact: 6
+    organizer: 5
+    attendee: 3
+
+# Key account z UC2 dostane bonus (score se pak orizne na 100)
+key_account_bonus: 10
+
+# O kolik smi Claude posunout deterministicke skore (musi zduvodnit)
+llm_adjust_max: 10
+
+# --- Rubrika pro EVENTY (UC1) ----------------------------
+# Stejna logika jako u lidi, jina osa. Soucet max = 100.
+event_rubric:
+  icp_match:            # 0-35  OBOR eventu vs nase ICP (retail/BFSI/e-com)
+    strong: 35          # 3+ signalu
+    good: 26
+    weak: 13
+    none: 0
+
+  service_match:        # 0-20  OBLAST VYVOJE, kterou delame (mobile/design/AI/web)
+    strong: 20          # 2+ signalu
+    weak: 12
+    none: 0
+
+  keyword_match:        # 0-15  nase temata v nazvu/popisu
+    per_hit: 5          # strop 15
+
+  location:             # 0-12
+    copenhagen: 12
+    aarhus: 11
+    odense: 10
+    denmark_other: 8
+    online: 6
+    abroad: 0
+
+  format:               # 0-8  kde realne potkas decision makery
+    conference: 8
+    summit: 8
+    delegation: 7
+    demo_day: 6
+    meetup: 5
+    workshop: 4
+    webinar: 2
+    unknown: 4
+
+  organizer:            # 0-10
+    known_relevant: 10  # organizer_watchlist nize
+    unknown: 4
+
+# Oblasti vyvoje, ktere delame (druha osa vedle ICP oboru)
+service_areas:
+  - id: mobile
+    keywords: [mobile app, mobile development, ios, android, react native, flutter,
+               app store, aso, app store optimization, multiplatform, cross-platform]
+  - id: design
+    keywords: [ux, ui, design system, product design, usability, accessibility,
+               user research, service design]
+  - id: ai
+    keywords: [ai agent, ai assistant, llm, genai, generative ai, machine learning,
+               automation, copilot, chatbot]
+  - id: web
+    keywords: [web platform, frontend, headless, cms, composable, checkout,
+               conversion, personalization]
+
+# Organizatori, jejichz eventy stoji za pozornost (dava +10 bodu).
+# TOHLE JE MUJ ODHAD, NE VASE ZNALOST - projdi a uprav.
+# Vsechno nize jsou realne existujici organizace, ale jestli jsou pro vas
+# relevantni, vim posoudit jen ty. Co nesedi, smaz.
+organizer_watchlist:
+  - Copenhagen Fintech      # PoC ho uz pouziva jako zdroj
+  - TechBBQ                 # overit relevanci
+  - Dansk Erhverv           # overit relevanci
+
+# Temata, ktera nas zajimaji (UC1 keyword match)
+watch_keywords:
+  - fintech
+  - retail tech
+  - e-commerce
+  - digital banking
+  - open banking
+  - payments
+  - mobile app
+  - app store optimization
+  - multiplatform
+  - ux
+  - ui
+  - design system
+  - ai agent
+  - ai assistant
+  - customer experience
+  - personalization
+  - loyalty
+
+# --- Prahy pro sekce ve vystupu --------------------------
+thresholds:
+  must_meet: 80     # lide: "NAJDI TYHLE"
+  worth_talk: 50    # lide: "STOJI ZA POKEC"
+  event_top: 80     # eventy: "NENECH SI UJIT"
+  event_maybe: 50   # eventy: "STOJI ZA ZVAZENI"
+  # pod 50 = "ZBYTEK" (jen v plnem MD reportu, ne ve Slacku)
+
+# --- Vylouceni -------------------------------------------
+exclude:
+  titles: [student, intern, praktikant, job seeker, unemployed, freelance recruiter]
+  companies: []   # napr. konkurence, kterou nechces v reportu
+
+# --- Kontext pro Claude (pouziva se v promptech) ----------
+# !!! DOPLN NEZ TO POJEDE OSTRE !!!
+# Tenhle text jde primo do promptu, ze kterych Claude generuje "angle" vety.
+# Kdyz sem napises referenci, kterou jste nedelali, agent ji bude nabizet
+# obchodnikovi jako tema k rozhovoru. Piš jen to, co je pravda.
+positioning: >
+  TODO: doplnit. Kdo jsme, co delame, jake mame reference,
+  jake decision makery hledame.

@@ -1,0 +1,8 @@
+name,title,company,source,notes
+UKAZKA Jedna,Head of Digital Channels,Danske Bank,swapcard,vsechna jmena v tomto souboru jsou smyslena
+UKAZKA Dva,VP Product,Nordea,swapcard,slouzi jen jako ukazka formatu sloupcu
+UKAZKA Tri,Product Lead,Lunar,swapcard,
+UKAZKA Ctyri,Partner,BlackFin Capital Partners,swapcard,VC
+UKAZKA Pet,HR Business Partner,Deloitte,swapcard,
+UKAZKA Sest,CTO,Salling Group,brella,
+UKAZKA Sedm,Student,Aarhus University,swapcard,ma se vyfiltrovat pryc

@@ -1,0 +1,454 @@
+{
+  "name": "UKAZKA — smyslena fintech konference",
+  "date": "2099-09-18",
+  "location": "Copenhagen, DK",
+  "url": "file://fixtures/sample_event.html",
+  "summary": "SMYSLENY EVENT pro test bez API klice. Open banking, platby a AI ve financnich sluzbach.",
+  "event_uid": null,
+  "people": [
+    {
+      "name": "UKAZKA Osoba Jedna",
+      "title": "Chief Digital Officer",
+      "company": "Salling Group",
+      "event_role": "keynote",
+      "session": "Retail meets embedded finance",
+      "source": "website",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Osoba+Jedna+Salling+Group",
+      "linkedin_url": null,
+      "field_origin": {
+        "name": "confirmed",
+        "title": "confirmed",
+        "company": "confirmed",
+        "session": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 95,
+      "score_breakdown": {
+        "icp_match": 40,
+        "seniority": 25,
+        "function_fit": 15,
+        "company_size": 5,
+        "event_role": 10
+      },
+      "icp_id": "retail",
+      "angle": "(mock režim — angle generuje až Claude API)",
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Osoba Dva",
+      "title": "Head of Digital Channels",
+      "company": "Danske Bank",
+      "event_role": "speaker",
+      "session": "Open banking in practice",
+      "source": "website",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Osoba+Dva+Danske+Bank",
+      "linkedin_url": null,
+      "field_origin": {
+        "name": "confirmed",
+        "title": "confirmed",
+        "company": "confirmed",
+        "session": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 99,
+      "score_breakdown": {
+        "icp_match": 40,
+        "seniority": 20,
+        "function_fit": 15,
+        "company_size": 5,
+        "event_role": 9,
+        "key_account_bonus": 10
+      },
+      "icp_id": "bfsi",
+      "angle": "(mock režim — angle generuje až Claude API)",
+      "is_key_account": true,
+      "key_account_owner": "",
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Osoba Tri",
+      "title": "VP Product",
+      "company": "Nordea",
+      "event_role": "panelist",
+      "session": "AI in customer experience",
+      "source": "website",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Osoba+Tri+Nordea",
+      "linkedin_url": null,
+      "field_origin": {
+        "name": "confirmed",
+        "title": "confirmed",
+        "company": "confirmed",
+        "session": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 100,
+      "score_breakdown": {
+        "icp_match": 40,
+        "seniority": 22,
+        "function_fit": 15,
+        "company_size": 5,
+        "event_role": 8,
+        "key_account_bonus": 10
+      },
+      "icp_id": "bfsi",
+      "angle": "(mock režim — angle generuje až Claude API)",
+      "is_key_account": true,
+      "key_account_owner": "",
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Osoba Ctyri",
+      "title": "Product Lead",
+      "company": "Lunar",
+      "event_role": "speaker",
+      "session": "Scaling mobile",
+      "source": "website",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Osoba+Ctyri+Lunar",
+      "linkedin_url": null,
+      "field_origin": {
+        "name": "confirmed",
+        "title": "confirmed",
+        "company": "confirmed",
+        "session": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 81,
+      "score_breakdown": {
+        "icp_match": 40,
+        "seniority": 12,
+        "function_fit": 15,
+        "company_size": 5,
+        "event_role": 9
+      },
+      "icp_id": "bfsi",
+      "angle": "(mock režim — angle generuje až Claude API)",
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Osoba Pet",
+      "title": "Partner",
+      "company": "Smyslena VC",
+      "event_role": "panelist",
+      "session": "Where fintech capital goes next",
+      "source": "website",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Osoba+Pet+Smyslena+VC",
+      "linkedin_url": null,
+      "field_origin": {
+        "name": "confirmed",
+        "title": "confirmed",
+        "company": "confirmed",
+        "session": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 33,
+      "score_breakdown": {
+        "icp_match": 0,
+        "seniority": 12,
+        "function_fit": 8,
+        "company_size": 5,
+        "event_role": 8
+      },
+      "icp_id": null,
+      "angle": null,
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Osoba Sest",
+      "title": "HR Business Partner",
+      "company": "Smyslene Consulting",
+      "event_role": "moderator",
+      "session": "Talent in fintech",
+      "source": "website",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Osoba+Sest+Smyslene+Consulting",
+      "linkedin_url": null,
+      "field_origin": {
+        "name": "confirmed",
+        "title": "confirmed",
+        "company": "confirmed",
+        "session": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 24,
+      "score_breakdown": {
+        "icp_match": 0,
+        "seniority": 12,
+        "function_fit": 0,
+        "company_size": 5,
+        "event_role": 7
+      },
+      "icp_id": null,
+      "angle": null,
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Jedna",
+      "title": "Head of Digital Channels",
+      "company": "Danske Bank",
+      "event_role": "attendee",
+      "session": null,
+      "source": "attendee_list",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Jedna+Danske+Bank",
+      "linkedin_url": null,
+      "field_origin": {
+        "title": "confirmed",
+        "company": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 93,
+      "score_breakdown": {
+        "icp_match": 40,
+        "seniority": 20,
+        "function_fit": 15,
+        "company_size": 5,
+        "event_role": 3,
+        "key_account_bonus": 10
+      },
+      "icp_id": "bfsi",
+      "angle": "(mock režim — angle generuje až Claude API)",
+      "is_key_account": true,
+      "key_account_owner": "",
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Dva",
+      "title": "VP Product",
+      "company": "Nordea",
+      "event_role": "attendee",
+      "session": null,
+      "source": "attendee_list",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Dva+Nordea",
+      "linkedin_url": null,
+      "field_origin": {
+        "title": "confirmed",
+        "company": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 95,
+      "score_breakdown": {
+        "icp_match": 40,
+        "seniority": 22,
+        "function_fit": 15,
+        "company_size": 5,
+        "event_role": 3,
+        "key_account_bonus": 10
+      },
+      "icp_id": "bfsi",
+      "angle": "(mock režim — angle generuje až Claude API)",
+      "is_key_account": true,
+      "key_account_owner": "",
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Tri",
+      "title": "Product Lead",
+      "company": "Lunar",
+      "event_role": "attendee",
+      "session": null,
+      "source": "attendee_list",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Tri+Lunar",
+      "linkedin_url": null,
+      "field_origin": {
+        "title": "confirmed",
+        "company": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 75,
+      "score_breakdown": {
+        "icp_match": 40,
+        "seniority": 12,
+        "function_fit": 15,
+        "company_size": 5,
+        "event_role": 3
+      },
+      "icp_id": "bfsi",
+      "angle": "(mock režim — angle generuje až Claude API)",
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Ctyri",
+      "title": "Partner",
+      "company": "BlackFin Capital Partners",
+      "event_role": "attendee",
+      "session": null,
+      "source": "attendee_list",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Ctyri+BlackFin+Capital+Partners",
+      "linkedin_url": null,
+      "field_origin": {
+        "title": "confirmed",
+        "company": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 48,
+      "score_breakdown": {
+        "icp_match": 20,
+        "seniority": 12,
+        "function_fit": 8,
+        "company_size": 5,
+        "event_role": 3
+      },
+      "icp_id": "bfsi",
+      "angle": null,
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Pet",
+      "title": "HR Business Partner",
+      "company": "Deloitte",
+      "event_role": "attendee",
+      "session": null,
+      "source": "attendee_list",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Pet+Deloitte",
+      "linkedin_url": null,
+      "field_origin": {
+        "title": "confirmed",
+        "company": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 20,
+      "score_breakdown": {
+        "icp_match": 0,
+        "seniority": 12,
+        "function_fit": 0,
+        "company_size": 5,
+        "event_role": 3
+      },
+      "icp_id": null,
+      "angle": null,
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Sest",
+      "title": "CTO",
+      "company": "Salling Group",
+      "event_role": "attendee",
+      "session": null,
+      "source": "attendee_list",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Sest+Salling+Group",
+      "linkedin_url": null,
+      "field_origin": {
+        "title": "confirmed",
+        "company": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 81,
+      "score_breakdown": {
+        "icp_match": 40,
+        "seniority": 25,
+        "function_fit": 8,
+        "company_size": 5,
+        "event_role": 3
+      },
+      "icp_id": "retail",
+      "angle": "(mock režim — angle generuje až Claude API)",
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": null
+    },
+    {
+      "name": "UKAZKA Sedm",
+      "title": "Student",
+      "company": "Aarhus University",
+      "event_role": "attendee",
+      "session": null,
+      "source": "attendee_list",
+      "linkedin_search_url": "https://www.linkedin.com/search/results/people/?keywords=UKAZKA+Sedm+Aarhus+University",
+      "linkedin_url": null,
+      "field_origin": {
+        "title": "confirmed",
+        "company": "confirmed",
+        "linkedin": "guessed"
+      },
+      "score": 0,
+      "score_breakdown": {},
+      "icp_id": null,
+      "angle": null,
+      "is_key_account": false,
+      "key_account_owner": null,
+      "excluded_reason": "vyloucena role: student"
+    }
+  ],
+  "companies": [
+    {
+      "name": "Danske Bank",
+      "domain": null,
+      "industry": "banking",
+      "size": null,
+      "role_at_event": "partner",
+      "icp_id": "bfsi",
+      "is_key_account": true,
+      "key_account_owner": "",
+      "field_origin": {
+        "industry": "confirmed"
+      }
+    },
+    {
+      "name": "Smyslena Instituce",
+      "domain": null,
+      "industry": "public fund",
+      "size": null,
+      "role_at_event": "sponsor",
+      "icp_id": null,
+      "is_key_account": false,
+      "key_account_owner": null,
+      "field_origin": {
+        "industry": "confirmed"
+      }
+    },
+    {
+      "name": "Smyslene Consulting",
+      "domain": null,
+      "industry": "consulting",
+      "size": null,
+      "role_at_event": "sponsor",
+      "icp_id": null,
+      "is_key_account": false,
+      "key_account_owner": null,
+      "field_origin": {
+        "industry": "confirmed"
+      }
+    }
+  ],
+  "side_events": [
+    {
+      "name": "Smysleny Investor Dinner",
+      "when": "17.9. vecer",
+      "host": "Smyslena Instituce",
+      "access": "invite-only",
+      "url": null,
+      "recommended": false
+    },
+    {
+      "name": "Smysleny Pre-Event",
+      "when": "18.9. 08:30",
+      "host": null,
+      "access": "open",
+      "url": null,
+      "recommended": false
+    },
+    {
+      "name": "Smyslena Afterparty",
+      "when": "18.9. 20:00",
+      "host": null,
+      "access": "open",
+      "url": null,
+      "recommended": false
+    }
+  ],
+  "warnings": [
+    "Pridano 7 ucastniku z attendee listu."
+  ]
+}

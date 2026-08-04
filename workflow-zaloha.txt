@@ -1,0 +1,106 @@
+# ZALOHA WORKFLOW
+#
+# Tenhle soubor potrebujes JEN kdyz jsi nahraval soubory pretazenim
+# v prohlizeci a v repu ti chybi slozka .github
+#
+# Co delat:
+#   1. V repu klikni Add file -> Create new file
+#   2. Do policka s nazvem napis presne:  .github/workflows/recon.yml
+#      (lomitka automaticky vytvori slozky)
+#   3. Zkopiruj VSECHNO pod carou a vloz to
+#   4. Commit changes
+#   5. Tenhle soubor workflow-zaloha.txt pak muzes smazat
+#
+# ------------------------------------------------------------------
+name: Flow Event Recon
+
+# JEDEN workflow pro vsechno. V Actions vyberes z rozbalovaciho menu, co chces.
+#
+#   ukazka    = vygeneruje ukazkovy web se smyslenymi daty (nepotrebuje API klic)
+#   discover  = najde nove eventy a oskoruje je            (potrebuje API klic)
+#   recon     = detailni recon jednoho eventu              (potrebuje API klic + URL)
+
+on:
+  workflow_dispatch:
+    inputs:
+      akce:
+        description: "Co udělat"
+        type: choice
+        required: true
+        default: ukazka
+        options: [ukazka, discover, recon]
+      event_url:
+        description: "URL eventu — vyplň jen u akce 'recon'"
+        required: false
+        default: ""
+      attendees_csv:
+        description: "Cesta k CSV s účastníky v repu, např. data/attendees.csv (nepovinné)"
+        required: false
+        default: ""
+      deep:
+        description: "Nechat Claude dohledat firmy přes web search (stojí tokeny)"
+        type: boolean
+        default: false
+  schedule:
+    - cron: "0 5 * * 1"      # pondeli 07:00 CEST -> discover
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e .
+
+      - name: Spustit
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EVENTBRITE_TOKEN: ${{ secrets.EVENTBRITE_TOKEN }}
+        run: |
+          AKCE="${{ inputs.akce }}"
+          [ -z "$AKCE" ] && AKCE="discover"     # spousteni pres cron
+
+          case "$AKCE" in
+            ukazka)
+              rm -f data/recon-demo.sqlite
+              recon discover --mock --from fixtures/demo_events.json --docs docs
+              recon recon --mock --fixture fixtures/sample_event.html \
+                --attendees data/attendees_example.csv --docs docs
+              ;;
+            discover)
+              recon discover --sources luma eventbrite --from data/manual_events.json \
+                || recon discover --sources luma
+              ;;
+            recon)
+              if [ -z "${{ inputs.event_url }}" ]; then
+                echo "::error::U akce 'recon' musíš vyplnit event_url."; exit 1
+              fi
+              ARGS="recon --url '${{ inputs.event_url }}'"
+              [ -n "${{ inputs.attendees_csv }}" ] && ARGS="$ARGS --attendees '${{ inputs.attendees_csv }}'"
+              [ "${{ inputs.deep }}" = "true" ] && ARGS="$ARGS --deep"
+              eval recon $ARGS
+              ;;
+          esac
+
+      - name: Publikovat web
+        run: |
+          git config user.name  "recon-bot"
+          git config user.email "recon-bot@users.noreply.github.com"
+          git add docs/ data/recon.sqlite 2>/dev/null || git add docs/
+          git diff --staged --quiet && echo "beze změn" || git commit -m "${{ inputs.akce }}"
+          git push
+
+      - name: Odkaz na web
+        run: |
+          {
+            echo "### Hotovo"
+            echo ""
+            echo "Web je na:"
+            echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+            echo ""
+            echo "Když to hodí 404, zapni Settings → Pages → main / \`/docs\`."
+          } >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flow Event Recon — jak to funguje</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#FFFFFF; --bg-soft:#F7F8F9; --bg-hover:#F0FAF4;
+  --border:#E5E7EB; --border-soft:#F0F1F3;
+  --text:#0A0A0A; --text-muted:#6B7280; --text-dim:#9CA3AF;
+  --accent:#3DBE7A; --accent-hover:#34A86A; --accent-soft:#E8F7EF; --accent-tint:#F3FBF6;
+  --score-high:#3DBE7A; --score-mid:#0A0A0A; --score-low:#9CA3AF;
+  --amber:#F59E0B; --amber-soft:#FEF3C7; --amber-text:#78350F;
+  --red:#DC2626; --red-soft:#FEE2E2;
+  --violet:#8B5CF6;
+  --radius-pill:999px; --radius-card:16px;
+  --highlight:#FEF3C7;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.container{max-width:1240px;margin:0 auto;padding:40px 40px 120px}
+
+/* ── topbar ─────────────────────────────── */
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:32px;margin-bottom:40px;border-bottom:1px solid var(--border-soft);
+  gap:24px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px;font-weight:600;text-decoration:none}
+.logo-mark{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center}
+.logo-mark span{font-weight:800;font-size:26px;color:var(--text)}
+.logo-title{display:flex;flex-direction:column;line-height:1.15}
+.logo-title .product{color:var(--text);font-weight:700;font-size:16px;letter-spacing:-.015em}
+.logo-title .by{color:var(--text-muted);font-weight:500;font-size:11px;margin-top:2px}
+.logo-title .by .flow{color:var(--accent);font-weight:600}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tag{padding:6px 12px;background:var(--bg-soft);border-radius:var(--radius-pill);
+  font-size:12px;color:var(--text-muted);font-weight:500}
+.tag strong{color:var(--text);font-weight:600}
+.tag.live{background:var(--accent-soft);color:var(--accent-hover);font-weight:600}
+.tag.mock{background:var(--amber-soft);color:var(--amber-text);font-weight:600}
+
+/* ── hero ───────────────────────────────── */
+h1{font-family:'Montserrat',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:700;
+  line-height:1.05;letter-spacing:-.025em;color:var(--accent);margin:0 0 20px;max-width:18ch}
+h1 .black{color:var(--text)}
+.subtitle{max-width:660px;font-size:17px;color:var(--text-muted);line-height:1.6;margin:0}
+.crumb{font-size:13px;font-weight:600;color:var(--text-muted);margin:0 0 14px;
+  display:flex;gap:8px;align-items:center}
+.crumb a{color:var(--accent);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+
+/* ── tabs ───────────────────────────────── */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin:36px 0 28px;
+  overflow-x:auto}
+.tab{padding:14px 22px;background:none;border:none;border-bottom:2px solid transparent;
+  color:var(--text-muted);font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:-1px;white-space:nowrap;text-decoration:none}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--text);border-bottom-color:var(--accent)}
+.tab .count{font-size:11px;font-weight:700;padding:2px 8px;background:var(--bg-soft);
+  border-radius:var(--radius-pill);color:var(--text-muted)}
+.tab.active .count{background:var(--accent-soft);color:var(--accent)}
+
+/* ── stats ──────────────────────────────── */
+.stats{display:flex;gap:44px;padding:0 0 20px;margin-bottom:24px;
+  border-bottom:1px solid var(--border-soft);flex-wrap:wrap}
+.stat-item{display:flex;flex-direction:column}
+.stat-num{font-size:30px;font-weight:700;color:var(--text);letter-spacing:-.03em;line-height:1}
+.stat-num.accent{color:var(--accent)}
+.stat-num.amber{color:var(--amber)}
+.stat-num.red{color:var(--red)}
+.stat-label{font-size:11px;color:var(--text-muted);font-weight:500;text-transform:uppercase;
+  letter-spacing:.06em;margin-top:6px}
+
+/* ── controls ───────────────────────────── */
+.filter-group{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.select-wrap{position:relative;display:inline-flex}
+.select-wrap::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;
+  border-right:2px solid var(--text-muted);border-bottom:2px solid var(--text-muted);
+  transform:translateY(-70%) rotate(45deg);pointer-events:none}
+select,input[type=search]{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;
+  padding:10px 34px 10px 16px;border:1px solid var(--border);background:var(--bg);
+  color:var(--text);border-radius:var(--radius-pill);appearance:none;cursor:pointer}
+input[type=search]{padding:10px 18px;min-width:260px;cursor:text}
+input[type=search]::placeholder{color:var(--text-dim)}
+select:focus-visible,input:focus-visible,.btn:focus-visible,.pill:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--bg);
+  border:1px solid var(--border);color:var(--text-muted);font-family:'Montserrat',sans-serif;
+  font-size:13px;font-weight:500;cursor:pointer;transition:all .15s ease;
+  border-radius:var(--radius-pill)}
+.pill:hover{border-color:var(--text);color:var(--text)}
+.pill.active{background:var(--text);border-color:var(--text);color:var(--bg);font-weight:600}
+.btn{padding:10px 18px;background:var(--bg);border:1px solid var(--border);color:var(--text);
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;cursor:pointer;
+  transition:all .15s ease;border-radius:var(--radius-pill);display:inline-flex;
+  align-items:center;gap:8px;text-decoration:none}
+.btn:hover{background:var(--bg-soft);border-color:var(--text)}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:#fff}
+.btn-sm{padding:7px 14px;font-size:12px}
+.spacer{flex:1}
+
+/* ── badges & chips ─────────────────────── */
+.badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--radius-pill);
+  letter-spacing:.04em;text-transform:uppercase;display:inline-block}
+.badge-format{background:var(--text);color:var(--bg)}
+.badge-topic{background:var(--accent-soft);color:var(--accent-hover)}
+.badge-new{background:var(--amber);color:#fff}
+.badge-key{background:var(--red);color:#fff}
+.badge-manual{background:var(--violet);color:#fff}
+.chip-company{font-size:11px;font-weight:600;padding:4px 10px;background:var(--accent-soft);
+  color:var(--accent-hover);border:1px solid var(--accent);border-radius:var(--radius-pill);
+  display:inline-block}
+.chip-speaker{font-size:11px;font-weight:500;padding:4px 10px;background:#fff;
+  border:1px solid #999;color:#333;border-radius:var(--radius-pill);display:inline-block}
+.chip-src{font-size:10px;font-weight:600;padding:3px 9px;border-radius:var(--radius-pill);
+  border:1px solid var(--border);color:var(--text-muted);background:var(--bg-soft)}
+.chip-src.high{border-color:var(--accent);color:var(--accent-hover);background:var(--accent-soft)}
+.chip-src.low{border-color:var(--amber);color:var(--amber-text);background:var(--amber-soft)}
+
+/* ── section headers ────────────────────── */
+.section-header{display:flex;align-items:baseline;justify-content:space-between;
+  padding-bottom:16px;margin:44px 0 0;border-bottom:1px solid var(--border);gap:16px}
+.section-title{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--text);display:flex;align-items:center;gap:10px;margin:0}
+.section-title .marker{display:inline-block;width:8px;height:8px;background:var(--accent);
+  border-radius:50%}
+.section-title.muted{color:var(--text-muted)}
+.section-title.muted .marker{background:var(--text-dim)}
+.section-count{font-size:12px;color:var(--text-muted);font-weight:500}
+.section-note{font-size:13px;color:var(--text-muted);font-weight:500}
+
+/* ── row (event i clovek) ───────────────── */
+.row{display:grid;grid-template-columns:96px 1fr auto;gap:28px;padding:26px 0;
+  border-bottom:1px solid var(--border-soft);position:relative;
+  transition:background .2s ease,padding .2s ease}
+.row:hover{background:var(--accent-tint);padding-left:20px;padding-right:20px}
+.row::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;
+  background:var(--accent);border-radius:0 3px 3px 0;transform:scaleY(0);
+  transform-origin:center;transition:transform .25s ease}
+.row:hover::before{transform:scaleY(1)}
+.row-lead{padding-top:4px}
+.row-lead .num{display:block;font-size:34px;font-weight:800;letter-spacing:-.04em;
+  line-height:1;color:var(--score-mid)}
+.row-lead .num.high{color:var(--accent)}
+.row-lead .num.low{color:var(--score-low)}
+.row-lead .lbl{display:block;font-size:10px;color:var(--text-muted);letter-spacing:.08em;
+  text-transform:uppercase;font-weight:700;margin-top:6px}
+.row-lead .day{display:block;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.row-lead .mon{display:block;font-size:12px;font-weight:500;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.row-lead .relative{display:block;margin-top:6px;font-size:10px;color:var(--accent);
+  font-weight:700;letter-spacing:.06em}
+.row-lead .relative.soon{color:var(--red)}
+.row-main{min-width:0}
+.row-badges{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;align-items:center}
+.row-title{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--text);
+  text-decoration:none;line-height:1.25;display:inline-block;margin-bottom:8px;
+  transition:color .15s ease}
+a.row-title:hover{color:var(--accent)}
+.row-title .arrow{margin-left:4px;font-size:16px;color:var(--text-muted)}
+a.row-title:hover .arrow{color:var(--accent)}
+.row-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:13px;
+  color:var(--text-muted);font-weight:500;margin-bottom:12px}
+.row-meta .sep{color:var(--text-dim)}
+.row-meta .free{color:var(--accent);background:var(--accent-soft);padding:3px 10px;
+  border-radius:var(--radius-pill);font-weight:600;font-size:12px}
+.row-desc{color:var(--text-muted);font-size:14px;line-height:1.55;margin-bottom:12px;
+  max-width:760px}
+.row-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}
+.row-side{display:flex;flex-direction:column;gap:8px;align-items:flex-end;justify-content:center}
+
+/* ── angle box ──────────────────────────── */
+.angle{background:var(--accent-soft);border:1px solid var(--accent);
+  border-radius:var(--radius-card);padding:12px 16px;margin:0 0 12px;max-width:760px}
+.angle b{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent-hover);font-weight:800;margin-bottom:4px}
+.angle span{font-size:14.5px;color:var(--text);font-weight:500}
+
+/* ── why panel ──────────────────────────── */
+.why{display:none;margin:12px 0 0;background:var(--bg-soft);border:1px solid var(--border);
+  border-radius:var(--radius-card);padding:16px 18px;max-width:620px}
+.why[data-open="1"]{display:block}
+.why table{width:100%;border-collapse:collapse;font-size:13px}
+.why td{padding:5px 0;vertical-align:middle}
+.why td:first-child{width:46%;color:var(--text-muted);font-weight:500}
+.why td:last-child{width:48px;text-align:right;font-weight:700}
+.bar{display:block;height:6px;background:var(--border);border-radius:var(--radius-pill);
+  overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:var(--radius-pill)}
+.why .neg i{background:var(--red)}
+.why .foot{font-size:12px;color:var(--text-dim);margin:10px 0 0;font-weight:500}
+
+/* ── hero card ──────────────────────────── */
+.hero-card{background:linear-gradient(135deg,var(--accent-soft),var(--bg-soft));
+  border:1px solid var(--accent);border-radius:var(--radius-card);padding:28px;
+  margin-bottom:8px;display:grid;grid-template-columns:1fr auto;gap:28px;
+  position:relative;overflow:hidden}
+.hero-card::before{content:"★ TOP TENTO TÝDEN";position:absolute;top:16px;left:28px;
+  font-size:10px;letter-spacing:.15em;font-weight:800;color:var(--accent);background:var(--bg);
+  padding:4px 10px;border-radius:var(--radius-pill);border:1px solid var(--accent)}
+.hero-main{padding-top:36px;min-width:0}
+.hero-main .row-title{font-size:28px}
+.hero-score{display:flex;flex-direction:column;align-items:flex-end;justify-content:center}
+.hero-score .num{font-size:72px;font-weight:800;color:var(--accent);line-height:1;
+  letter-spacing:-.05em}
+.hero-score .lbl{font-size:10px;color:var(--text-muted);letter-spacing:.1em;
+  text-transform:uppercase;margin-top:6px;font-weight:700}
+
+/* ── alert / callout ────────────────────── */
+.callout{border-radius:var(--radius-card);padding:16px 20px;margin-bottom:10px;
+  display:flex;gap:14px;align-items:flex-start;font-size:14px}
+.callout.red{background:var(--red-soft);border:1px solid var(--red);color:#7F1D1D}
+.callout.amber{background:var(--amber-soft);border:1px solid var(--amber);color:var(--amber-text)}
+.callout.soft{background:var(--bg-soft);border:1px solid var(--border);color:var(--text-muted)}
+.callout b{font-weight:800}
+
+/* ── watchlist card ─────────────────────── */
+.wl{border:1px solid var(--border);border-radius:var(--radius-card);margin-bottom:14px;
+  overflow:hidden}
+.wl>header{display:flex;align-items:baseline;gap:12px;padding:16px 22px;
+  background:var(--bg-soft);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.wl>header h3{font-size:17px;font-weight:700;margin:0;letter-spacing:-.015em}
+.wl>header .meta{font-size:12px;color:var(--text-muted);font-weight:500;margin-left:auto}
+.wl ul{list-style:none;margin:0;padding:0}
+.wl li{padding:13px 22px;border-top:1px solid var(--border-soft);display:flex;gap:12px;
+  flex-wrap:wrap;align-items:center;font-size:14px}
+.wl li:first-child{border-top:none}
+.wl li a{font-weight:600;text-decoration:none}
+.wl li a:hover{color:var(--accent)}
+.wl li time{margin-left:auto;font-size:12px;color:var(--text-muted);font-weight:500}
+.wl .empty-line{color:var(--text-dim);font-weight:500}
+
+/* ── prose (jak to funguje) ─────────────── */
+.prose{max-width:760px}
+.prose h2{font-size:22px;font-weight:700;letter-spacing:-.02em;margin:40px 0 12px}
+.prose h3{font-size:15px;font-weight:700;margin:26px 0 8px}
+.prose p,.prose li{font-size:15px;color:var(--text-muted);line-height:1.65}
+.prose strong{color:var(--text);font-weight:600}
+.prose code{background:var(--bg-soft);padding:2px 7px;border-radius:6px;font-size:13px;
+  font-family:ui-monospace,Menlo,monospace;color:var(--text)}
+.prose table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.prose th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--text-muted);padding:8px 10px;border-bottom:1px solid var(--border)}
+.prose td{padding:10px;border-bottom:1px solid var(--border-soft);color:var(--text-muted)}
+.prose td:first-child{color:var(--text);font-weight:600}
+.flow{display:grid;gap:10px;margin:20px 0}
+.flow-step{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start;
+  padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius-card)}
+.flow-step .n{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);
+  color:var(--accent-hover);font-weight:800;font-size:14px;display:flex;
+  align-items:center;justify-content:center}
+.flow-step h4{margin:4px 0 4px;font-size:15px;font-weight:700}
+.flow-step p{margin:0;font-size:14px;color:var(--text-muted)}
+
+.demo-banner{background:var(--red);color:#fff;padding:14px 20px;
+  border-radius:var(--radius-card);margin:0 0 24px;font-weight:600;font-size:14.5px;
+  display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.demo-banner b{font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:12px;
+  background:#fff;color:var(--red);padding:3px 10px;border-radius:var(--radius-pill)}
+.empty-state{padding:44px;text-align:center;color:var(--text-muted);font-weight:500;
+  border:1px dashed var(--border);border-radius:var(--radius-card)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--border-soft);
+  font-size:12px;color:var(--text-dim);font-weight:500;display:flex;gap:8px 20px;
+  flex-wrap:wrap}
+
+@media (max-width:820px){
+  .container{padding:28px 20px 80px}
+  .row{grid-template-columns:1fr;gap:12px;padding:22px 0}
+  .row:hover{padding-left:12px;padding-right:12px}
+  .row-lead{display:flex;gap:10px;align-items:baseline;padding-top:0}
+  .row-lead .num,.row-lead .day{font-size:22px}
+  .row-lead .lbl,.row-lead .mon,.row-lead .relative{margin-top:0}
+  .row-title{font-size:18px}
+  .row-side{flex-direction:row;align-items:flex-start}
+  .hero-card{grid-template-columns:1fr}
+  .hero-score{align-items:flex-start}
+  .stats{gap:20px}
+  .stat-num{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .container{padding:0}
+  .tabs,.filter-group,.row-actions,.topbar-right,.btn{display:none}
+  .row:hover{background:none;padding-left:0;padding-right:0}
+  .row{break-inside:avoid;border-bottom:1px solid #ddd}
+  .why{display:block!important}
+  h1{font-size:28px;color:#000}
+}
+</style></head>
+<body><div class="container"><div class="topbar">
+  <a class="logo" href="index.html">
+    <span class="logo-mark"><span>&amp;</span></span>
+    <span class="logo-title"><span class="product">Flow Event Recon</span>
+      <span class="by">by etnetera <span class="flow">flow</span></span></span>
+  </a>
+  <div class="topbar-right"><span class="tag mock">MOCK — bez API klíče</span></div>
+</div>
+<h1>Jak to <span class="black">funguje.</span></h1>
+<p class="subtitle">Co nástroj dělá, odkud bere data, čemu se dá věřit
+a co je potřeba ověřit ručně.</p>
+<nav class="tabs"><a class="tab" href="index.html">Eventy</a><a class="tab" href="watchlist.html">Key accounts</a><a class="tab active" href="jak-to-funguje.html">Jak to funguje</a></nav>
+
+<div class="demo-banner"><b>Ukázková data</b><span>Tyhle eventy a lidé <strong>neexistují</strong>. Jde o testovací data pro běh bez API klíče. Ostrá data se generují do <code>docs/</code>, tohle je <code>demo/</code>.</span></div><div class="callout amber"><b>Nedodělaná konfigurace</b><span><ul style="margin:4px 0 0;padding-left:18px"><li>config/icp.yaml → positioning není vyplněné. Claude z něj generuje angle věty, takže budou obecné nebo nepřesné.</li><li>V key_accounts.csv není u žádné firmy vyplněný sloupec owner. Je nepovinný — slouží k tomu, aby alert věděl, komu ho poslat.</li></ul></span></div>
+<div class="prose">
+<h2>Tři kroky, jeden nástroj</h2>
+<div class="flow">
+  <div class="flow-step"><div class="n">1</div><div>
+    <h4>Discover — najdi eventy</h4>
+    <p>Projde zdroje (Luma, Eventbrite, ruční seznam), oskóruje každý event 0–100
+    podle našich ICP oborů a oblastí, které děláme. Claude doplní shrnutí.</p></div></div>
+  <div class="flow-step"><div class="n">2</div><div>
+    <h4>Watch — hlídej key accounts</h4>
+    <p>Prohledá nalezené eventy proti seznamu sledovaných firem. Když se firma objeví
+    jako pořadatel, partner nebo speaker, založí nález. Stejný nález se neohlásí dvakrát.</p></div></div>
+  <div class="flow-step"><div class="n">3</div><div>
+    <h4>Recon — připrav mě na event</h4>
+    <p>K vybranému eventu stáhne web, Claude z něj vytáhne speakery, sponzory a side eventy.
+    Každý člověk dostane prioritu 0–100 a jednu větu, o čem s ním mluvit.</p></div></div>
+</div>
+
+<h2>Čemu věřit a čemu ne</h2>
+<p>U každého kontaktu je štítek s tím, jak spolehlivá ta informace je.
+Nástroj to neskrývá — radši přizná odhad, než aby tvářil jistotu.</p>
+<table>
+  <tr><th>Štítek</th><th>Znamená</th><th>Spolehlivost</th></tr>
+  <tr><td>ověřeno</td><td>Stálo to černé na bílém na webu eventu nebo v tvém exportu z app.</td>
+      <td>Vysoká</td></tr>
+  <tr><td>částečně odvozeno</td><td>Claude to dohledal nebo odvodil z kontextu.</td>
+      <td>Střední — namátkou ověř</td></tr>
+  <tr><td>odhad, ověř</td><td>Nejlepší odhad. Typicky LinkedIn: dostaneš vyhledávací
+      odkaz, ne potvrzený profil.</td><td>Nízká</td></tr>
+</table>
+
+<h3>Co víme spolehlivě</h3>
+<p><strong>Speakeři, sponzoři a program</strong> — je to na webu eventu, veřejné.
+<strong>Účastníci</strong>, které sám vyexportuješ z event app. <strong>Termín, místo,
+pořadatel.</strong></p>
+
+<h3>Co je odhad</h3>
+<p><strong>Velikost a obor firmy</strong> — Claude si to dohledá, ale u malých
+dánských firem se plete. <strong>Skóre</strong> — je to naše rubrika, ne objektivní
+pravda. <strong>Angle věta</strong> — návrh, ne scénář.</p>
+
+<h3>Co nevíme vůbec</h3>
+<p><strong>Kdo se reálně zaregistroval</strong>, pokud to organizátor nezveřejní.
+Veřejné seznamy účastníků prakticky neexistují — proto se export z app dodává ručně.
+<strong>Konkrétní LinkedIn profil</strong> — scraping je proti podmínkám LinkedInu,
+takže dostaneš vyhledávací odkaz.</p>
+
+<h2>Jak z toho vytáhnout co nejvíc</h2>
+<table>
+  <tr><th>Krok</th><th>Co to přidá</th></tr>
+  <tr><td>Export z event app</td><td>Největší jednotlivý přínos. Web eventu ukáže
+      speakery, app ukáže, kdo tam reálně bude. Bývá to 10× víc lidí.</td></tr>
+  <tr><td><code>--deep</code></td><td>Claude si během běhu googlí a dohledá obor,
+      velikost a sídlo firem. Stojí tokeny, ale zpřesní skóre.</td></tr>
+  <tr><td>Doplnit key accounts</td><td>Čím delší seznam sledovaných firem,
+      tím víc nálezů. Stačí název a doména.</td></tr>
+  <tr><td>Ladit <code>config/icp.yaml</code></td><td>Klíčová slova a váhy.
+      Po pár reálných eventech se skóre výrazně zpřesní.</td></tr>
+  <tr><td>Přidat zdroje eventů</td><td>Každý zdroj = jeden soubor
+      v <code>src/recon/sources/</code>.</td></tr>
+</table>
+
+<h2>Kde je Claude a kde není</h2>
+<p>Skóre <strong>nedává AI</strong>. Dává ho pevná tabulka v <code>config/icp.yaml</code> —
+proto je stejné mezi běhy a proto u každého čísla vidíš rozpad bodů. Claude dělá čtyři věci,
+které tabulka neumí:</p>
+<table>
+  <tr><th>Úloha</th><th>Proč AI</th></tr>
+  <tr><td>Extrakce z webu eventu</td><td>Každá konference má jiné HTML. Bez AI bychom
+      psali parser na každou zvlášť.</td></tr>
+  <tr><td>Shrnutí eventů</td><td>Aby se nemusel číst celý popis.</td></tr>
+  <tr><td>Angle věta</td><td>Spojí session, roli a naše reference do jedné věty.</td></tr>
+  <tr><td>Dohledání firem (<code>--deep</code>)</td><td>Claude umí web search přímo
+      v API — nepotřebujeme vlastní scrapery.</td></tr>
+</table>
+<p>Claude smí posunout skóre jen o ±10 bodů a musí to zdůvodnit.
+Zbytek je rubrika.</p>
+
+<h2>Aktuální nastavení</h2>
+<table>
+  <tr><th>Položka</th><th>Hodnota</th></tr>
+  <tr><td>Režim</td><td>mock — bez API klíče, data jsou ukázková</td></tr>
+  <tr><td>ICP obory</td><td>BFSI (banky, pojistovny, fintech), Retail, E-commerce</td></tr>
+  <tr><td>Oblasti, které děláme</td><td>mobile, design, ai, web</td></tr>
+  <tr><td>Sledovaná klíčová slova</td><td>17</td></tr>
+  <tr><td>Práh „nenech si ujít"</td><td>80</td></tr>
+  <tr><td>Práh „najdi tyhle" (lidé)</td><td>80</td></tr>
+  <tr><td>Eventů v databázi</td><td>9</td></tr>
+  <tr><td>Key account nálezů</td><td>4</td></tr>
+</table>
+
+<h2>Osobní údaje</h2>
+<p>Zpracovávají se jména, pozice a zaměstnavatelé z veřejných zdrojů na základě
+oprávněného zájmu. Exporty z event app obsahují osobní údaje a <strong>necommitují se
+do repozitáře</strong>. Retention a evidenci je potřeba potvrdit interně, než to pojede ostře.</p>
+</div>
+<footer><span>Aktualizováno 04.08.2026 16:40</span></footer></div>
+
+</body></html>

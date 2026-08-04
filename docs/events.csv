@@ -1,0 +1,10 @@
+score,date,name,city,organizer,format,price,topic,key_accounts,has_recon,url,summary
+77,2099-10-02,UKAZKA 4 — E-commerce webinar,Online,,webinar,free,general,,,https://example.invalid/ukazka-4,"UKAZKA 4 — E-commerce webinar — SMYSLENY EVENT. Checkout conversion, personalizace a UX pro webshopy."
+74,2099-09-18,UKAZKA 1 — Fintech konference,Copenhagen,Smyslený pořadatel A,summit,paid,general,Danske Bank,,https://example.invalid/ukazka-1,"UKAZKA 1 — Fintech konference — SMYSLENY EVENT. Open banking, payments a digital banking. V popisu je "
+69,2099-09-11,UKAZKA 3 — Mobile meetup,Copenhagen,Smyslený pořadatel C,meetup,free,general,,,https://example.invalid/ukazka-3,"UKAZKA 3 — Mobile meetup — SMYSLENY EVENT. Mobile app development, iOS a Android, app store optim"
+64,2099-09-24,UKAZKA 2 — Retail tech konference,Aarhus,Smyslený pořadatel B,conference,paid,general,,,https://example.invalid/ukazka-2,"UKAZKA 2 — Retail tech konference — SMYSLENY EVENT. AI v customer experience pro retailove retezce, loyalt"
+54,2099-09-30,UKAZKA 5 — Startup summit,Copenhagen,Smyslený pořadatel D,conference,paid,general,,,https://example.invalid/ukazka-5,"UKAZKA 5 — Startup summit — SMYSLENY EVENT. Investori, korporace a zakladatele. AI agents track."
+49,2099-10-14,UKAZKA 8 — UX konference,Copenhagen,Smyslený pořadatel E,conference,paid,general,,,https://example.invalid/ukazka-8,"UKAZKA 8 — UX konference — SMYSLENY EVENT. Service design, accessibility a user research."
+47,2099-09-15,UKAZKA 6 — Bankovni tech open house,Copenhagen,Nordea,meetup,free,general,Nordea,,https://example.invalid/ukazka-6,"UKAZKA 6 — Bankovni tech open house — SMYSLENY EVENT. Hosted by Nordea. Slouzi k ukazce toho, jak se detekuj"
+42,2099-09-18,UKAZKA — smyslena fintech konference,"Copenhagen, DK",,,,,,yes,file://fixtures/sample_event.html,"SMYSLENY EVENT pro test bez API klice. Open banking, platby a AI ve financnich sluzbach."
+9,2099-09-20,UKAZKA 7 — Event mimo nas region,Berlin,,meetup,paid,general,,,https://example.invalid/ukazka-7,"UKAZKA 7 — Event mimo nas region — SMYSLENY EVENT. Ma nizke skore, protoze je mimo Dansko a mimo nase obo"
