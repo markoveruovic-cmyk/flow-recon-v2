@@ -149,8 +149,26 @@ poznámky) přeneseme sem. To je rozhodnutí, ne technická překážka.
 | Zdroj | Stav | Poznámka |
 |---|---|---|
 | `manual` | hotovo | JSON/CSV. Nejspolehlivější, nezávisí na cizím HTML. |
-| `luma` | skeleton | Parsuje JSON-LD z veřejných kalendářů. Nemá stabilní API. |
-| `eventbrite` | skeleton | Veřejné search API zrušili 2020. Jde jen přes organizer endpointy s tokenem. |
+| `luma` | přepsáno podle reálných stránek | Doména je `luma.com`, ne `lu.ma`. Server-rendered, jde číst. Datum ale ve výpisu není — bere se z JSON-LD nebo z detailu (`fetch_details=True`). |
+| `eventbrite` | přepsáno podle reálných stránek | Veřejné výpisy `/d/denmark--copenhagen/...` jdou číst **bez tokenu**. Token je potřeba jen na sledování konkrétních pořadatelů. |
+
+Ověřeno ručně 4. 8. 2026, ale **kód proti nim ještě neběžel**. První věc po nasazení:
+
+```bash
+recon sources
+```
+
+Vypíše, kolik eventů který zdroj vrátil, u kolika je datum a popis a kolik z nich
+prošlo přes práh skóre. Zdroje se rozbíjejí tiše — vrátí prázdno a vypadá to,
+že se nic nekoná.
+
+### Co čekat od kvality
+
+Obecný kalendář Luma pro Kodaň je z větší části společenský (běžecké skupiny,
+party, kvízy). Eventbrite pro Kodaň je plný placených kurzů, webinářů typu
+„40X your business" a občas i akcí z USA. **Filtr je scoring**, ne zdroj —
+rubrika v `icp.yaml` tyhle věci odstřelí sama nízkým skóre. Proto se nefiltruje
+při sběru.
 | Copenhagen Fintech | chybí | PoC ho už používá — přenést. |
 | LinkedIn Events | nebude | Scraping proti ToS, technicky nespolehlivé. |
 

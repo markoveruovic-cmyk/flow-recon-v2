@@ -165,3 +165,41 @@ def test_no_invented_events_in_shipped_config():
         text = f.read_text(encoding="utf-8")
         assert "Nordic Fintech Summit" not in text, f"smyšlený event v {f.name}"
         assert "Jan Novak" not in text, f"smyšlené jméno v {f.name}"
+
+
+# ---------------------------------------------------------- JS weby
+def test_detects_js_rendered_page():
+    """Vzorek odpovida tomu, co realne vraci techbbq.dk/speakers/."""
+    from recon.fetch import looks_js_rendered
+    techbbq = "Speakers 2026\nSpeakers\nEvent Room Speakers\nInvestor Speakers\nLoading…"
+    assert looks_js_rendered(techbbq, html_len=80_000)
+
+    normal = "Speakers\n" + "\n".join(f"Jane Doe {i} — CTO, Firma {i}" for i in range(40))
+    assert not looks_js_rendered(normal, html_len=80_000)
+
+
+def test_detects_empty_react_shell():
+    from recon.fetch import looks_js_rendered
+    assert looks_js_rendered("Menu Home About", html_len=200_000)
+    assert not looks_js_rendered("Menu Home About", html_len=8_000)
+
+
+def test_full_speaker_page_is_not_flagged():
+    """Regrese: stranka se 40 speakery ma malo textu ve velkem HTML (fotky),
+    ale prohlizec spoustet netreba."""
+    from recon.fetch import looks_js_rendered
+    full = "Speakers\n" + "\n".join(f"Jane Doe {i} — CTO, Firma {i}" for i in range(40))
+    assert not looks_js_rendered(full, html_len=80_000)
+
+
+def test_browser_missing_gives_actionable_error():
+    """Kdyz Playwright chybi, musi to rict, co nainstalovat."""
+    import sys
+    from unittest.mock import patch
+    from recon.fetch import BrowserUnavailable, fetch_html_browser
+    with patch.dict(sys.modules, {"playwright.sync_api": None, "playwright": None}):
+        try:
+            fetch_html_browser("https://example.invalid")
+            assert False, "melo vyhodit BrowserUnavailable"
+        except BrowserUnavailable as exc:
+            assert "playwright install" in str(exc)

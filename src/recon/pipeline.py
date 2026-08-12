@@ -17,6 +17,7 @@ def run(
     fixture: Path | None = None,
     crawl_subpages: bool = True,
     deep: bool = False,
+    browser: str = "auto",
 ) -> tuple[EventRecon, dict]:
     icp_cfg = config.load_icp()
     accounts = config.load_key_accounts()
@@ -24,10 +25,12 @@ def run(
 
     # 1) web eventu -> text
     from .fetch import gather
-    text = gather(url, crawl_subpages=crawl_subpages, fixture=fixture)
+    text, fetch_notes = gather(url, crawl_subpages=crawl_subpages,
+                               fixture=fixture, browser=browser)
 
     # 2) text -> struktura (Claude)
     recon = extract.extract_event(text, url, claude)
+    recon.warnings.extend(fetch_notes)
 
     # 3) attendee list z event appky (dodany rucne)
     if attendees_csv:

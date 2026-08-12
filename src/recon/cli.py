@@ -157,7 +157,8 @@ def cmd_recon(args) -> int:
     url = args.url or f"file://{args.fixture}"
     recon, icp_cfg = run_recon(
         url, mock=args.mock, attendees_csv=args.attendees,
-        fixture=args.fixture, crawl_subpages=not args.no_subpages, deep=args.deep)
+        fixture=args.fixture, crawl_subpages=not args.no_subpages, deep=args.deep,
+        browser=args.browser)
 
     warn_config(icp_cfg, config.load_key_accounts())
 
@@ -199,6 +200,104 @@ def cmd_recon(args) -> int:
     print(f"Recon: {docs / filename}")
     if args.open:
         webbrowser.open((docs / filename).resolve().as_uri())
+    return 0
+
+
+def _dump_raw(url: str, outdir: Path) -> str | None:
+    """Ulozi syrove HTML, aby slo poslat na opravu parseru.
+
+    Duvod: parsery pro Lumu a Eventbrite jsou napsane podle toho, jak ty
+    stranky vypadaji v prohlizeci - ne podle skutecneho HTML. Kdyz nic
+    nevrati, tenhle soubor je jedina vec, kterou je potreba k oprave.
+    """
+    import re as _re
+    import httpx
+    try:
+        r = httpx.get(url, headers={"User-Agent": "Mozilla/5.0 (compatible; FlowReconBot/0.1)"},
+                      timeout=25.0, follow_redirects=True)
+        r.raise_for_status()
+    except Exception as exc:
+        print(f"    nepodařilo se stáhnout: {exc}")
+        return None
+
+    outdir.mkdir(parents=True, exist_ok=True)
+    name = _re.sub(r"[^a-z0-9]+", "-", url.lower()).strip("-")[:70] + ".html"
+    path = outdir / name
+    path.write_text(r.text, encoding="utf-8")
+
+    has_ldjson = 'application/ld+json' in r.text
+    n_events = r.text.count('"@type": "Event"') + r.text.count('"@type":"Event"')
+    print(f"    uloženo: {path.name}  ({len(r.text) // 1024} kB)")
+    print(f"    JSON-LD na stránce: {'ANO' if has_ldjson else 'NE'}"
+          f"{f', schema.org Event × {n_events}' if n_events else ''}")
+    return str(path)
+
+
+def cmd_sources(args) -> int:
+    """Diagnostika zdroju. Rekne, co ktery zdroj REALNE vraci.
+
+    Existuje proto, ze zdroje se rozbijeji tise - kdyz se zmeni cizi web,
+    vratí se prazdny seznam a vypada to, ze se zadne eventy nekonaji.
+    """
+    icp_cfg = config.load_icp()
+    which = args.only or list(sources.REGISTRY)
+    total_ok = 0
+
+    if args.dump:
+        from .sources import eventbrite as _eb
+        from .sources import luma as _lu
+        print("=== STAHUJI SYROVÉ HTML pro diagnostiku ===")
+        outdir = config.DATA_DIR / "raw"
+        targets = []
+        if "luma" in which:
+            targets += _lu.DEFAULT_CALENDARS[:2]
+        if "eventbrite" in which:
+            targets += _eb.DEFAULT_BROWSE[:2]
+        for url in targets:
+            print(f"  {url}")
+            _dump_raw(url, outdir)
+        print(f"\nSoubory jsou v {outdir}")
+        print("Když níže vyjde 0 eventů, pošli je — podle nich se parser opraví.\n")
+
+    for name in which:
+        if name == "manual":
+            continue
+        print(f"\n=== {name} " + "=" * (50 - len(name)))
+        try:
+            found = sources.collect(name)
+        except Exception as exc:
+            print(f"  SELHALO: {type(exc).__name__}: {exc}")
+            continue
+
+        if not found:
+            print("  0 eventů — zdroj nic nevrátil.")
+            print("  Buď se změnil cizí web, nebo tam opravdu nic není.")
+            continue
+
+        for ev in found:
+            score.score_event(ev, icp_cfg)
+        found.sort(key=lambda e: -e.score)
+
+        s_date = len([e for e in found if e.date])
+        s_desc = len([e for e in found if e.description])
+        good = [e for e in found if e.score >= icp_cfg["thresholds"]["event_maybe"]]
+        total_ok += len(found)
+
+        print(f"  {len(found)} eventů · datum u {s_date} · popis u {s_desc}")
+        print(f"  nad prahem {icp_cfg['thresholds']['event_maybe']}: {len(good)}"
+              f"  ({round(100 * len(good) / len(found))}% použitelných)")
+        print("  nejlepší:")
+        for e in found[:5]:
+            print(f"    {e.score:3d}  {(e.date or '?????'):10s} {e.name[:52]}")
+        if len(found) > 5:
+            print("  nejhorší:")
+            for e in found[-2:]:
+                print(f"    {e.score:3d}  {(e.date or '?????'):10s} {e.name[:52]}")
+
+    print(f"\nCelkem {total_ok} eventů ze všech zdrojů.")
+    if not total_ok:
+        print("Žádný zdroj nic nevrátil — zkontroluj připojení nebo jestli"
+              " se necizí weby nezměnily.")
     return 0
 
 
@@ -244,11 +343,21 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--attendees", type=Path)
     r.add_argument("--mock", action="store_true")
     r.add_argument("--no-subpages", action="store_true")
+    r.add_argument("--browser", choices=["auto", "on", "off"], default="auto",
+                   help="Prohlížeč pro weby v JavaScriptu. auto = zkusit bez něj, "
+                        "a když přijde prázdno, zopakovat s ním")
     r.add_argument("--deep", action="store_true",
                    help="Claude si dohledá firmy přes webové vyhledávání (stojí tokeny)")
     r.add_argument("--open", action="store_true")
     add_docs(r)
     r.set_defaults(func=cmd_recon)
+
+    src = sub.add_parser("sources", help="Diagnostika — co který zdroj reálně vrací")
+    src.add_argument("--only", nargs="*", choices=list(sources.REGISTRY),
+                     help="Otestovat jen vybrané zdroje")
+    src.add_argument("--dump", action="store_true",
+                     help="Uložit syrové HTML do data/raw/ (na opravu parseru)")
+    src.set_defaults(func=cmd_sources, mock=False)
 
     s = sub.add_parser("site", help="Jen přegenerovat web z databáze")
     add_docs(s)
