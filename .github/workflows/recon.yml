@@ -1,5 +1,11 @@
 name: Flow Event Recon
 
+# JEDEN workflow pro vsechno. V Actions vyberes z rozbalovaciho menu, co chces.
+#
+#   ukazka    = vygeneruje ukazkovy web se smyslenymi daty (nepotrebuje API klic)
+#   discover  = najde nove eventy a oskoruje je            (potrebuje API klic)
+#   recon     = detailni recon jednoho eventu              (potrebuje API klic + URL)
+
 on:
   workflow_dispatch:
     inputs:
@@ -14,7 +20,7 @@ on:
         required: false
         default: ""
       attendees_csv:
-        description: "Cesta k CSV s účastníky, např. data/attendees.csv (nepovinné)"
+        description: "Cesta k CSV s účastníky v repu, např. data/attendees.csv (nepovinné)"
         required: false
         default: ""
       deep:
@@ -22,7 +28,7 @@ on:
         type: boolean
         default: false
   schedule:
-    - cron: "0 5 * * 1"
+    - cron: "0 5 * * 1"      # pondeli 07:00 CEST -> discover
 
 permissions:
   contents: write
@@ -34,7 +40,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install -e .
+      - run: pip install -e ".[browser]"
+      - name: Nainstalovat prohlížeč (pro weby v JavaScriptu)
+        run: playwright install --with-deps chromium
+
+      - name: Diagnostika zdrojů
+        if: inputs.akce == 'discover' || github.event_name == 'schedule'
+        continue-on-error: true          # nesmi shodit beh, je to jen informace
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EVENTBRITE_TOKEN: ${{ secrets.EVENTBRITE_TOKEN }}
+        run: recon sources --dump
 
       - name: Spustit
         env:
@@ -42,7 +58,7 @@ jobs:
           EVENTBRITE_TOKEN: ${{ secrets.EVENTBRITE_TOKEN }}
         run: |
           AKCE="${{ inputs.akce }}"
-          [ -z "$AKCE" ] && AKCE="discover"
+          [ -z "$AKCE" ] && AKCE="discover"     # spousteni pres cron
 
           case "$AKCE" in
             ukazka)
@@ -52,8 +68,7 @@ jobs:
                 --attendees data/attendees_example.csv --docs docs
               ;;
             discover)
-              recon discover --sources luma eventbrite --from data/manual_events.json \
-                || recon discover --sources luma
+              recon discover --sources luma eventbrite --from data/manual_events.json
               ;;
             recon)
               if [ -z "${{ inputs.event_url }}" ]; then
@@ -71,13 +86,25 @@ jobs:
           git config user.name  "recon-bot"
           git config user.email "recon-bot@users.noreply.github.com"
           git add docs/ data/recon.sqlite 2>/dev/null || git add docs/
-          git diff --staged --quiet && echo "beze zmen" || git commit -m "${{ inputs.akce }}"
+          git diff --staged --quiet && echo "beze změn" || git commit -m "${{ inputs.akce }}"
           git push
+
+      - name: Uložit stažené HTML (na opravu parserů)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-html-${{ github.run_number }}
+          path: data/raw/
+          if-no-files-found: ignore
+          retention-days: 14
 
       - name: Odkaz na web
         run: |
           {
             echo "### Hotovo"
             echo ""
+            echo "Web je na:"
             echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+            echo ""
+            echo "Když to hodí 404, zapni Settings → Pages → main / \`/docs\`."
           } >> $GITHUB_STEP_SUMMARY
