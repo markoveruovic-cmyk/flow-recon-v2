@@ -1,29 +1,30 @@
 score,date,name,city,organizer,format,price,topic,key_accounts,has_recon,url,summary
-43,2026-08-26,TechBBQ 2026,Copenhagen,TechBBQ,conference,paid,general,,,https://techbbq.dk/techbbq2026/,"Severský startupový a inovační summit v Bella Center. Investoři, korporace, zakladatelé. Používá appku Brella umožňující export seznamu účastníků."
-38,2026-08-19,AI Founders Chat: Payments in the Agentic Age,København,AI Founders Network,,free,fintech,,,https://luma.com/afn-flkx,Diskuse AI Founders Network na téma platby ve věku agentního AI. Popis chybí.
-25,2026-08-14,build fridays berlin - work on your startup alongside others (bring laptop),Berlin,AI BEAVERS,,free,general,,,https://luma.com/k9jou28r,"Coworkingová akce pro startupy pořádaná AI BEAVERS v Berlíně, práce na vlastním projektu s vlastním laptopem. Popis chybí."
-25,2026-08-14,10k€ SummerUP 2026 Pitchday - After One Week of Building and Selling.,Berlin,CODE Events,,free,general,,,https://luma.com/h9b4btym,"Pitch day s odměnou 10 000 € po týdnu budování a prodeje, pořádá CODE Events v Berlíně. Popis chybí."
-21,2026-08-19,Curious Neighbours: Makers Meetup,København,Curious Neighbours,,free,general,,,https://luma.com/hxx9nnpk,Meetup pro makery pořádaný komunitou Curious Neighbours v Kodani. Popis chybí.
-21,2026-08-20,Cursor Meetup Copenhagen,København,"Cursor Copenhagen, Denmark",,free,ai,,,https://luma.com/cursor-mhjy,Meetup komunity kolem AI coding nástroje Cursor v Kodani. Popis chybí.
-21,2026-08-25,Miro x Generalist World: Copenhagen Meetup,København,Miro for Consultancies & Agencies,,free,design,,,https://luma.com/alcbr9jt,Meetup Miro a Generalist World zaměřený na konzultanty a agentury v Kodani. Popis chybí.
-20,2026-08-12,BAR NIGHT & POOL by Dear World,København,Dear World,,free,general,,,https://luma.com/s4l34pka,Barový networkingový večer pořádaný komunitou Dear World v Kodani. Popis akce chybí.
-20,2026-08-16,Slow Burn Social Vol.V,København,Maddie Maganas,,free,general,,,https://luma.com/o5hso3lq,"Networkingová akce Slow Burn Social, páté vydání, v Kodani. Popis chybí."
-20,2026-08-17,Cyberlab: Hacking for beginners,København,SOFTER Lab,,,general,,,https://luma.com/titp0kdp,"Workshop pro začátečníky zaměřený na hacking, pořádá SOFTER Lab v Kodani. Popis chybí."
-20,2026-08-18,RUN CLUB by Dear World,København,Dear World,,free,general,,,https://luma.com/7t8ircpz,Běžecký klub jako networkingová akce komunity Dear World v Kodani. Popis chybí.
-20,2026-08-19,🫰Money talk: What's getting funded beyond AI in 2026?,København,Even Founders,,free,ai,,,https://luma.com/bdof6gd1,"Diskuse Even Founders o tom, co kromě AI získá financování v roce 2026. Popis chybí."
-20,2026-08-19,Corti Hack for Health: Copenhagen,København,Corti,,free,ai,,,https://luma.com/corti-CPH-2026,Hackathon firmy Corti zaměřený na zdravotnické AI aplikace v Kodani. Popis chybí.
-20,2026-08-19,BAR NIGHT & GAMES by Dear World,København,Dear World,,free,general,,,https://luma.com/wo5d9g88,Barový večer s hrami pořádaný komunitou Dear World v Kodani. Popis chybí.
-20,2026-08-21,Founder Fridays,København,Antler Nordics,,free,general,,,https://luma.com/sq80mb2d,Pravidelný networking pro zakladatele pořádaný Antler Nordics v Kodani. Popis chybí.
-20,2026-08-22,Beats & Bouldering,København,CPH S.C.,,free,general,,,https://luma.com/xqn94vuv,"Sportovně-společenská akce spojující lezení a hudbu, pořádá CPH S.C. Popis chybí."
-20,2026-08-24,"Even Founders x Antler x Lovable: techno (BBQ), vibe code & great people",København,Even Founders,,free,ai,,,https://luma.com/x9ybn15i,"Networkingová akce Even Founders, Antler a Lovable spojující techno hudbu a vibe coding. Popis chybí."
-20,2026-08-24,VC x AI Founder Mixer,København,AI Founders Network,,free,ai,,,https://luma.com/vcn-ivql,"Mixer spojující investory a AI zakladatele, pořádá AI Founders Network v Kodani. Popis chybí."
-20,2026-08-24,✌️F*ck the Small Talk: Copenhagen #8,København,Epic Llama,,,general,,,https://luma.com/ftst8copenhagen,"Networkingová akce Epic Llama zaměřená proti small talku, osmé vydání v Kodani. Popis chybí."
-20,2026-08-25,Amplify Europe Breakfast Jam Session,København,Rockstart,,free,general,,,https://luma.com/5zkyom44,Ranní networkingová snídaně pořádaná Rockstart v rámci Amplify Europe. Popis chybí.
-20,2026-08-25,Code to Clinic: A Breakfast on Healthcare AI,København,Corti,,free,ai,,,https://luma.com/corti-3qnc,Snídaňová diskuse firmy Corti na téma AI ve zdravotnictví. Popis chybí.
-20,2026-08-25,Mesh Collective X Copenhagen,København,Mesh Collective,,free,general,,,https://luma.com/4twgh66i,Networkingová akce komunity Mesh Collective v Kodani. Popis chybí.
-20,2026-08-25,Copenhagen | Claude Conversation,København,Claude Community Events,,free,ai,,,https://luma.com/claude-lfem,Setkání komunity kolem AI modelu Claude v Kodani. Popis chybí.
-12,2026-09-14,Autonomy - Europe's defining Physical AI & Robotics conference,Malmö,Staer & The Drop,,,ai,,,https://autonomyconf.com,"Evropská konference zaměřená na fyzické AI a robotiku, pořádá Staer & The Drop v Malmö. Popis chybí."
-8,2026-08-14,Superlinked X Qwen Hackathon,London,Superlinked,,free,ai,,,https://luma.com/3ssiuf0l,Hackathon firmy Superlinked ve spolupráci s Qwen v Londýně. Popis chybí.
-8,2026-08-22,{Tech: Europe} x VEED Hackathon | The Summer Lock-In,London,{Tech: Europe},,free,ai,,,https://luma.com/london-summer-lock-in,Hackathon Tech: Europe a VEED v rámci série Summer Lock-In v Londýně. Popis chybí.
-8,2026-08-29,{Tech: Europe} x Cala Hackathon | The Summer Lock-In,Barcelona,{Tech: Europe},,free,ai,,,https://luma.com/barcelona-summer-lock-in,Hackathon Tech: Europe a Cala v rámci série Summer Lock-In v Barceloně. Popis chybí.
-8,2026-09-23,A fireside chat with Ashwin Sreenivas - Co-Founder & President at Decagon,Amsterdam,Whale,,free,ai,,,https://luma.com/wthztk44,"Fireside chat s Ashwinem Sreenivasem, spoluzakladatelem a prezidentem AI firmy Decagon, pořádá Whale v Amsterdamu. Popis chybí."
+72,2026-08-21,Founder Fridays,København,Antler Nordics,,free,,,,https://luma.com/sq80mb2d,
+72,2026-08-25,Mesh Collective X Copenhagen,København,Mesh Collective,,free,general,,,https://luma.com/4twgh66i,"Ctvrtletni setkani danskeho startup a VC prostredi v Kodani, networking s jidlem a napoji."
+64,2026-08-14,10k€ SummerUP 2026 Pitchday - After One Week of Building and Selling.,Berlin,CODE Events,,free,,,,https://luma.com/h9b4btym,
+63,2026-08-18,RUN CLUB by Dear World,København,Dear World,,free,,,,https://luma.com/7t8ircpz,
+63,2026-08-25,Code to Clinic: A Breakfast on Healthcare AI,København,Corti,,free,ai,,,https://luma.com/corti-3qnc,"Snidane s panelovou diskuzi o AI v psychiatricke peci, od modelu pres vyzkum az po nasazeni v klinikach."
+56,2026-08-29,{Tech: Europe} x Cala Hackathon | The Summer Lock-In,Barcelona,{Tech: Europe},,free,,,,https://luma.com/barcelona-summer-lock-in,
+55,2026-08-19,🫰Money talk: What's getting funded beyond AI in 2026?,København,Even Founders,,free,,Danske Bank,,https://luma.com/bdof6gd1,
+55,2026-09-14,Autonomy - Europe's defining Physical AI & Robotics conference,Malmö,Staer & The Drop,,,,,,https://autonomyconf.com,
+51,2026-08-19,Curious Neighbours: Makers Meetup,København,Curious Neighbours,,free,,,,https://luma.com/hxx9nnpk,
+51,2026-08-20,Cursor Meetup Copenhagen,København,"Cursor Copenhagen, Denmark",,free,,,,https://luma.com/cursor-mhjy,
+51,2026-08-22,{Tech: Europe} x VEED Hackathon | The Summer Lock-In,London,{Tech: Europe},,free,,,,https://luma.com/london-summer-lock-in,
+50,2026-08-24,"Even Founders x Antler x Lovable: techno (BBQ), vibe code & great people",København,Even Founders,,free,general,,,https://luma.com/x9ybn15i,"Warm-up akce pred Tech BBQ pro zakladatelky startupu, komunitni networking s tematem vibe coding a fundraisingu."
+50,2026-08-24,✌️F*ck the Small Talk: Copenhagen #8,København,Epic Llama,,,general,,,https://luma.com/ftst8copenhagen,"Socialni format setkavani cizich lidi pres hry a hluboke konverzace, bez byznysove agendy."
+50,2026-08-25,Amplify Europe Breakfast Jam Session,København,Rockstart,,free,general,,,https://luma.com/5zkyom44,"Snidane pro investory, zakladatele a lidry ekosystemu pred Tech BBQ Investor Day, tema konkurenceschopnost EU."
+46,2026-08-24,VC x AI Founder Mixer,København,AI Founders Network,,free,ai,,,https://luma.com/vcn-ivql,"Networkingovy vecer v Kodani pro AI zakladatele a investory pred Tech BBQ, prostor pro setkani s VC fondy."
+43,2026-08-26,TechBBQ 2026,Copenhagen,TechBBQ,conference,paid,,,,https://techbbq.dk/techbbq2026/,
+38,2026-08-14,Superlinked X Qwen Hackathon,London,Superlinked,,free,ai,,,https://luma.com/3ssiuf0l,"Uzavreny jednodenni hackathon v Londyne pro 25 vybranych builderu na modelech Qwen, poradany se Superlinked a Alibaba Cloud."
+38,2026-08-19,AI Founders Chat: Payments in the Agentic Age,København,AI Founders Network,,free,,,,https://luma.com/afn-flkx,
+38,2026-08-25,Miro x Generalist World: Copenhagen Meetup,København,Miro for Consultancies & Agencies,,free,design,,,https://luma.com/alcbr9jt,"Neformalni setkani v Kodani o facilitaci, moderni praci a designu workshopu, organizovane s Miro pro konzultanty a agentury."
+37,2026-08-12,BAR NIGHT & POOL by Dear World,København,Dear World,,free,,,,https://luma.com/s4l34pka,
+37,2026-08-17,Cyberlab: Hacking for beginners,København,SOFTER Lab,,,,,,https://luma.com/titp0kdp,
+37,2026-08-19,Corti Hack for Health: Copenhagen,København,Corti,,free,,,,https://luma.com/corti-CPH-2026,
+37,2026-08-19,BAR NIGHT & GAMES by Dear World,København,Dear World,,free,,,,https://luma.com/wo5d9g88,
+37,2026-08-25,Copenhagen | Claude Conversation,København,Claude Community Events,,free,ai,,,https://luma.com/claude-lfem,"Komunitni diskuze o dopadu AI na praci a spolecnost, bez produktovych prezentaci, format malych skupin."
+33,2026-08-22,Beats & Bouldering,København,CPH S.C.,,free,general,,,https://luma.com/xqn94vuv,"Neformalni boulderingovy vecer s DJ setem v Kodani, socialni networking bez tematickeho zamereni na byznys."
+30,2026-09-23,A fireside chat with Ashwin Sreenivas - Co-Founder & President at Decagon,Amsterdam,Whale,,free,,,,https://luma.com/wthztk44,
+26,2026-08-13,BRAIN Robotics MeetUp Berlin,Berlin,Startup,,free,ai,,,https://luma.com/q2h5rlym,"Prvni robotics meetup v Berline pro zakladatele, vyzkumniky a studenty se zajmem o physical AI."
+25,2026-08-14,build fridays berlin - work on your startup alongside others (bring laptop),Berlin,AI BEAVERS,,free,ai,,,https://luma.com/k9jou28r,"Otevrena pracovni session v Berline pro lidi stavejici startupy, prototypy a AI agenty, format prace vedle sebe."
+20,2026-08-16,Slow Burn Social Vol.V,København,Maddie Maganas,,free,,,,https://luma.com/o5hso3lq,

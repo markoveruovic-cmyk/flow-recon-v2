@@ -299,35 +299,35 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--border-soft);
     <span class="logo-title"><span class="product">Flow Event Recon</span>
       <span class="by">by etnetera <span class="flow">flow</span></span></span>
   </a>
-  <div class="topbar-right"><span class="tag"><strong>28</strong> eventů</span><span class="tag"><strong>28</strong> nových</span><span class="tag live">Claude API aktivní</span></div>
+  <div class="topbar-right"><span class="tag"><strong>29</strong> eventů</span><span class="tag"><strong>1</strong> nových</span><span class="tag live">Claude API aktivní</span></div>
 </div>
 <h1>Eventy, <span class="black">kam se vyplatí jít.</span></h1>
 <p class="subtitle">Automatický přehled tech a business eventů v Dánsku — filtrováno podle
 našich ICP, oskórováno podle relevance. U vybraných je připravený recon:
 koho tam potkat a co mu říct.</p>
-<nav class="tabs"><a class="tab active" href="index.html">Eventy<span class="count">28</span></a><a class="tab" href="watchlist.html">Key accounts<span class="count">0</span></a><a class="tab" href="jak-to-funguje.html">Jak to funguje</a></nav>
+<nav class="tabs"><a class="tab active" href="index.html">Eventy<span class="count">29</span></a><a class="tab" href="watchlist.html">Key accounts<span class="count">1</span></a><a class="tab" href="jak-to-funguje.html">Jak to funguje</a></nav>
 <div class="stats">
   <div class="stat-item"><span class="stat-num accent">0</span>
     <span class="stat-label">nenech si ujít</span></div>
-  <div class="stat-item"><span class="stat-num">0</span>
+  <div class="stat-item"><span class="stat-num">14</span>
     <span class="stat-label">stojí za zvážení</span></div>
-  <div class="stat-item"><span class="stat-num red">0</span>
+  <div class="stat-item"><span class="stat-num red">1</span>
     <span class="stat-label">s key accountem</span></div>
   <div class="stat-item"><span class="stat-num">0</span>
     <span class="stat-label">s reconem</span></div>
-  <div class="stat-item"><span class="stat-num" id="shown">28</span>
+  <div class="stat-item"><span class="stat-num" id="shown">29</span>
     <span class="stat-label">zobrazeno</span></div>
 </div>
 <div class="filter-group">
   <input id="q" type="search" placeholder="Hledat název, téma, firmu…">
   <span class="select-wrap"><select id="f-topic">
-    <option value="">Všechna témata</option><option value="ai">ai</option><option value="design">design</option><option value="fintech">fintech</option><option value="general">general</option></select></span>
+    <option value="">Všechna témata</option><option value="ai">ai</option><option value="design">design</option><option value="general">general</option></select></span>
   <span class="select-wrap"><select id="f-city">
     <option value="">Všechna města</option><option value="Amsterdam">Amsterdam</option><option value="Barcelona">Barcelona</option><option value="Berlin">Berlin</option><option value="Copenhagen">Copenhagen</option><option value="København">København</option><option value="London">London</option><option value="Malmö">Malmö</option></select></span>
   <span class="select-wrap"><select id="f-format">
     <option value="">Všechny formáty</option><option value="conference">conference</option></select></span>
   <span class="select-wrap"><select id="f-org">
-    <option value="">Všichni pořadatelé</option><option value="AI BEAVERS">AI BEAVERS</option><option value="AI Founders Network">AI Founders Network</option><option value="Antler Nordics">Antler Nordics</option><option value="CODE Events">CODE Events</option><option value="CPH S.C.">CPH S.C.</option><option value="Claude Community Events">Claude Community Events</option><option value="Corti">Corti</option><option value="Curious Neighbours">Curious Neighbours</option><option value="Cursor Copenhagen, Denmark">Cursor Copenhagen, Denmark</option><option value="Dear World">Dear World</option><option value="Epic Llama">Epic Llama</option><option value="Even Founders">Even Founders</option><option value="Maddie Maganas">Maddie Maganas</option><option value="Mesh Collective">Mesh Collective</option><option value="Miro for Consultancies &amp; Agencies">Miro for Consultancies &amp; Agencies</option><option value="Rockstart">Rockstart</option><option value="SOFTER Lab">SOFTER Lab</option><option value="Staer &amp; The Drop">Staer &amp; The Drop</option><option value="Superlinked">Superlinked</option><option value="TechBBQ">TechBBQ</option><option value="Whale">Whale</option><option value="{Tech: Europe}">{Tech: Europe}</option></select></span>
+    <option value="">Všichni pořadatelé</option><option value="AI BEAVERS">AI BEAVERS</option><option value="AI Founders Network">AI Founders Network</option><option value="Antler Nordics">Antler Nordics</option><option value="CODE Events">CODE Events</option><option value="CPH S.C.">CPH S.C.</option><option value="Claude Community Events">Claude Community Events</option><option value="Corti">Corti</option><option value="Curious Neighbours">Curious Neighbours</option><option value="Cursor Copenhagen, Denmark">Cursor Copenhagen, Denmark</option><option value="Dear World">Dear World</option><option value="Epic Llama">Epic Llama</option><option value="Even Founders">Even Founders</option><option value="Maddie Maganas">Maddie Maganas</option><option value="Mesh Collective">Mesh Collective</option><option value="Miro for Consultancies &amp; Agencies">Miro for Consultancies &amp; Agencies</option><option value="Rockstart">Rockstart</option><option value="SOFTER Lab">SOFTER Lab</option><option value="Staer &amp; The Drop">Staer &amp; The Drop</option><option value="Startup">Startup</option><option value="Superlinked">Superlinked</option><option value="TechBBQ">TechBBQ</option><option value="Whale">Whale</option><option value="{Tech: Europe}">{Tech: Europe}</option></select></span>
   <span class="select-wrap"><select id="f-when"><option value="">Kdykoli</option>
     <option value="7">Do 7 dnů</option><option value="14">Do 14 dnů</option>
     <option value="30">Do 30 dnů</option><option value="90">Do 90 dnů</option></select></span>
@@ -342,121 +342,129 @@ koho tam potkat a co mu říct.</p>
   <a class="btn btn-sm" href="events.csv" download>Stáhnout CSV</a>
   <button class="btn btn-sm" type="button" onclick="window.print()">Tisk</button>
 </div>
-<div class="callout amber"><b>Nedodělaná konfigurace</b><span><ul style="margin:4px 0 0;padding-left:18px"><li>V key_accounts.csv není u žádné firmy vyplněný sloupec owner. Je nepovinný — slouží k tomu, aby alert věděl, komu ho poslat.</li></ul></span></div>
+<div class="callout amber"><b>Nedodělaná konfigurace</b><span><ul style="margin:4px 0 0;padding-left:18px"><li>V key_accounts.csv není u žádné firmy vyplněný sloupec owner. Je nepovinný — slouží k tomu, aby alert věděl, komu ho poslat.</li></ul></span></div><div class="hero-card">
+  <div class="hero-main">
+    <a class="row-title" href="https://luma.com/sq80mb2d" target="_blank" rel="noopener">Founder Fridays</a>
+    <div class="row-meta"><span>2026-08-21</span>
+      <span class="sep">·</span><span>København</span></div>
+    <p class="row-desc" style="margin:0"></p>
+  </div>
+  <div class="hero-score"><span class="num">72</span><span class="lbl">skóre</span></div>
+</div>
 <div class="empty-state" id="empty" style="display:none">Žádný event neodpovídá filtrům.</div>
 <div class="section-header"><h2 class="section-title"><span class="marker"></span>Všechny eventy</h2>
   <span class="section-count">seřazeno podle data</span></div>
-<article class="row" data-search="bar night &amp; pool by dear world barový networkingový večer pořádaný komunitou dear world v kodani. popis akce chybí. dear world københavn" data-topic="general"
+<article class="row" data-search="bar night &amp; pool by dear world dear world - the international week-breaker your favorite midweek excuse to leave the group chat and meet people in real life. context: we are often many more people than the rsvp as most traffic and updates happen on instagram. every wednesday, we bring together internationals and locals for an easy-going evening of conversations, drinks and unexpected connections. this week, we&#x27;re meeting at pool, right in the heart of copenhagen. whether you&#x27;re new in the city, have been here for years, came alone or with friends - you&#x27;ll fit right in. what to expect: • internationals &amp; locals • relaxed atmosphere • conversation starters &amp; games • new friendships and familiar faces • drinks, good vibes and no pressure for context: • most people come solo (and quickly stop being solo) • the average age is usually between 20-30 • our hosts will be there to welcome you, introduce you to others and help conversations get started naturally for a better feeling of the atmosphere, have a look at our instagram: @dearworldcph come after work. come after university. come as you are. let&#x27;s break the week together. dear world københavn" data-topic=""
   data-city="København" data-format="" data-org="Dear World"
-  data-score="20" data-date="2026-08-12" data-price="free"
+  data-score="37" data-date="2026-08-12" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">12</span><span class="mon">srp 26</span><span class="relative soon">DNES</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
+    <div class="row-badges"></div>
     <a class="row-title" href="https://luma.com/s4l34pka" target="_blank" rel="noopener">BAR NIGHT &amp; POOL by Dear World
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>København</span><span>Dear World</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Barový networkingový večer pořádaný komunitou Dear World v Kodani. Popis akce chybí.</p>
+    <p class="row-desc">DEAR WORLD - the international week-breaker your favorite midweek excuse to leave the group chat and meet people in real life. CONTEXT: we are often many more people than the RSVP as most tr</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we0" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we0" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we0" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num low">37</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="build fridays berlin - work on your startup alongside others (bring laptop) coworkingová akce pro startupy pořádaná ai beavers v berlíně, práce na vlastním projektu s vlastním laptopem. popis chybí. ai beavers berlin" data-topic="general"
+</article><article class="row" data-search="brain robotics meetup berlin prvni robotics meetup v berline pro zakladatele, vyzkumniky a studenty se zajmem o physical ai. this is brain, berlin&#x27;s robotics and innovation club. join us for our first robotics event in berlin! we&#x27;ll bring likeminded people in robotics together to connect, talk ideas, and have a relaxed evening. who will be joining? brain gethers a mixed crowd of start-up founders, researchers, students, and curious people wanting to start off in physical ai. https://brainberlin.com/de manifesto: berlin has world-class robotics talent, cutting-edge research, ambitious founders, and a rapidly growing startup ecosystem. but talent alone doesn&#x27;t build a global robotics hub. great ecosystems emerge when people connect, share knowledge, and help each other succeed. our mission is to bring together the people shaping physical ai in berlin. we connect founders, researchers, engineers, and operators to exchange ideas, build together, learn from one another, find co-founders, and accelerate the next generation of robotics companies. by breaking down silos and fostering meaningful relationships, we&#x27;re building the community that will make berlin a global leader in robotics. startup berlin" data-topic="ai"
+  data-city="Berlin" data-format="" data-org="Startup"
+  data-score="26" data-date="2026-08-13" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">13</span><span class="mon">srp 26</span><span class="relative soon">ZÍTRA</span></div>
+  <div class="row-main">
+    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
+    <a class="row-title" href="https://luma.com/q2h5rlym" target="_blank" rel="noopener">BRAIN Robotics MeetUp Berlin
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>Berlin</span><span>Startup</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Prvni robotics meetup v Berline pro zakladatele, vyzkumniky a studenty se zajmem o physical AI.</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we1" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we1" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:62%"></i></span></td><td>+5</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num low">26</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="10k€ summerup 2026 pitchday - after one week of building and selling. 🎤 pitchday — the grand finale of summerup 2026 after eight days of building, selling and pushing limits, it all comes down to this: pitchday on the delta stage. 100+ teams spent one week turning raw ideas into working products with real traction and first paying customers. only the top 10 made it through the pre-pitches. now they battle it out live. program 16:00 · open doors 16:30 · top 10 finale pitches 18:00 · break &amp; drinks (jury deliberates) 18:30 · winners ceremony 19:00 · mingling, drinks &amp; pizza 20:00 · afterparty on delta roof w/ pool each team pitches live, followed by q&amp;a from our jury. expect high energy, raw creativity and real numbers, not just visions. 💰 €10,000 in prize money 🥇 €5,000 · 🥈 €3,000 · 🥉 €2,000 jury ⭐️ florian heinemann — founding partner, project a ⭐️ neel popat — co-founder &amp; ceo, popcorn ⭐️ stefan peukert — co-founder, masterplan ⭐️ alena redeker — principal, auxxo female catalyst fund ⭐️ fabian wittleben — serial founder &amp; investor, mvp founders ⭐️ holger kujath — investor &amp; founder of knuddels ⭐️ julian teicke — co-founder @ the delta &amp; wefox investors in the room project a · cherry · redstone · caesar. · capnamic · lucid capital · ibb ventures · atlantic vc · adesso ventures · heal capital · xpress ventures · mvp founders · code capital · auxxo · the delta · baby vc · spacing — plus a range of angel investors if you invest early, this is the stage before the one you usually get to see: teams showing revenue that did not exist eight days earli code events berlin" data-topic=""
+  data-city="Berlin" data-format="" data-org="CODE Events"
+  data-score="64" data-date="2026-08-14" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">14</span><span class="mon">srp 26</span><span class="relative soon">ZA 2 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://luma.com/h9b4btym" target="_blank" rel="noopener">10k€ SummerUP 2026 Pitchday - After One Week of Building and Selling.
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>Berlin</span><span>CODE Events</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">🎤 Pitchday — The Grand Finale of SummerUP 2026 After eight days of building, selling and pushing limits, it all comes down to this: Pitchday on The Delta Stage. 100+ teams spent one week tur</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we2" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we2" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:74%"></i></span></td><td>+26</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+20</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:67%"></i></span></td><td>+10</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num ">64</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="superlinked x qwen hackathon uzavreny jednodenni hackathon v londyne pro 25 vybranych builderu na modelech qwen, poradany se superlinked a alibaba cloud. invite only. 25 seats. one day. we&#x27;re bringing 25 hand-picked builders into one room for a single day to build on qwen, end to end. every model call in the room runs qwen: superlinked&#x27;s inference engine (sie) serves the qwen catalog, and alibaba cloud model studio serves the frontier stack (qwen-max, qwen-vl, plus image and video generation). you&#x27;ll ship on both. this is a private event co-hosted by superlinked and the alibaba cloud qwen team. applicants will be hand-picked from the event waitlist, so bring your a-game! what you&#x27;ll build the main challenge: build anything real around model routing. every request flows through sie, and you can offload the heavy tasks to alibaba cloud when it makes sense (rewarded in judging). think routing dashboards, agents doing tool calls across both backends, whatever you can stand up in a day. two side tracks run alongside it: visual track: every team explains their build with a qwen-generated image or video. best one takes the track. social track: post publicly about what you&#x27;re building. most impressions by judging time wins. the day 09:00 intros and sponsor talks from superlinked and the qwen team 10:00 team formation 11:00 build (support desk staffed all day) 18:00 submissions close (hard cut) 18:00 judging across all three tracks 19:00 winners announced prizes: winner of 1: $1000 superlinked cloud credits + $300 cloud/model studio coupon + dji mic mini 2 winner of 2: $500 superlinked cloud credits + $200 cloud/model studio coupon + d superlinked london" data-topic="ai"
+  data-city="London" data-format="" data-org="Superlinked"
+  data-score="38" data-date="2026-08-14" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">14</span><span class="mon">srp 26</span><span class="relative soon">ZA 2 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"><span class="badge badge-topic">ai</span></div>
+    <a class="row-title" href="https://luma.com/3ssiuf0l" target="_blank" rel="noopener">Superlinked X Qwen Hackathon
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>London</span><span>Superlinked</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Uzavreny jednodenni hackathon v Londyne pro 25 vybranych builderu na modelech Qwen, poradany se Superlinked a Alibaba Cloud.</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we3" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we3" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num low">38</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="build fridays berlin - work on your startup alongside others (bring laptop) otevrena pracovni session v berline pro lidi stavejici startupy, prototypy a ai agenty, format prace vedle sebe. drop in whenever - recommend not to miss 7pm intros. register early as the space is limited what it is: an open work session for people building something real side projects, prototypes, products, startup work, agents, workflows, decks a room full of people who would rather ship than talk about shipping who comes: newcomers, engineers, product people, first-time builders and repeat founders, and anyone who&#x27;s curious in startup or ai what happens: open door from 4pm to 11pm come at the time that works for you 7pm intros so everyone knows who is in the room (30s each) work time, demos, feedback, and blocker-solving throughout the evening free. bring your laptop (and a charger!) and come ready to work on something. big thanks to futura house for hosting us! 📸 photos may be taken during the event and shared on our socials/community channels. let asami or felix know if you&#x27;d prefer not to be photographed! ai beavers berlin" data-topic="ai"
   data-city="Berlin" data-format="" data-org="AI BEAVERS"
   data-score="25" data-date="2026-08-14" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">14</span><span class="mon">srp 26</span><span class="relative soon">ZA 2 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
+    <div class="row-badges"><span class="badge badge-topic">ai</span></div>
     <a class="row-title" href="https://luma.com/k9jou28r" target="_blank" rel="noopener">build fridays berlin - work on your startup alongside others (bring laptop)
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>Berlin</span><span>AI BEAVERS</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Coworkingová akce pro startupy pořádaná AI BEAVERS v Berlíně, práce na vlastním projektu s vlastním laptopem. Popis chybí.</p>
+    <p class="row-desc">Otevrena pracovni session v Berline pro lidi stavejici startupy, prototypy a AI agenty, format prace vedle sebe.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we1" aria-expanded="false">Proč tohle číslo?</button>
+      <button class="btn btn-sm" type="button" data-why="we4" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we1" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we4" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
       <span class="num low">25</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="10k€ summerup 2026 pitchday - after one week of building and selling. pitch day s odměnou 10 000 € po týdnu budování a prodeje, pořádá code events v berlíně. popis chybí. code events berlin" data-topic="general"
-  data-city="Berlin" data-format="" data-org="CODE Events"
-  data-score="25" data-date="2026-08-14" data-price="free"
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">14</span><span class="mon">srp 26</span><span class="relative soon">ZA 2 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
-    <a class="row-title" href="https://luma.com/h9b4btym" target="_blank" rel="noopener">10k€ SummerUP 2026 Pitchday - After One Week of Building and Selling.
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>Berlin</span><span>CODE Events</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Pitch day s odměnou 10 000 € po týdnu budování a prodeje, pořádá CODE Events v Berlíně. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we2" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we2" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">25</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="superlinked x qwen hackathon hackathon firmy superlinked ve spolupráci s qwen v londýně. popis chybí. superlinked london" data-topic="ai"
-  data-city="London" data-format="" data-org="Superlinked"
-  data-score="8" data-date="2026-08-14" data-price="free"
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">14</span><span class="mon">srp 26</span><span class="relative soon">ZA 2 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://luma.com/3ssiuf0l" target="_blank" rel="noopener">Superlinked X Qwen Hackathon
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>London</span><span>Superlinked</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Hackathon firmy Superlinked ve spolupráci s Qwen v Londýně. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we3" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we3" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">8</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="slow burn social vol.v networkingová akce slow burn social, páté vydání, v kodani. popis chybí. maddie maganas københavn" data-topic="general"
+</article><article class="row" data-search="slow burn social vol.v let&#x27;s meet over breakfast to dig into our treasure-hunting romance book of the month, the summer of lost things by jenn bennett your ticket includes ✦ a drink ✦ sourdough bun with butter, cheese and homemade jam ✦ a soft-boiled egg ✦ yoghurt with homemade granola and compote ✦ our slow burn social book club kit can&#x27;t wait to dive into it with you! warmest, maddie maddie maganas københavn" data-topic=""
   data-city="København" data-format="" data-org="Maddie Maganas"
   data-score="20" data-date="2026-08-16" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">16</span><span class="mon">srp 26</span><span class="relative soon">ZA 4 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
+    <div class="row-badges"></div>
     <a class="row-title" href="https://luma.com/o5hso3lq" target="_blank" rel="noopener">Slow Burn Social Vol.V
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>København</span><span>Maddie Maganas</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Networkingová akce Slow Burn Social, páté vydání, v Kodani. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we4" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we4" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="cyberlab: hacking for beginners workshop pro začátečníky zaměřený na hacking, pořádá softer lab v kodani. popis chybí. softer lab københavn" data-topic="general"
-  data-city="København" data-format="" data-org="SOFTER Lab"
-  data-score="20" data-date="2026-08-17" data-price=""
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">17</span><span class="mon">srp 26</span><span class="relative soon">ZA 5 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
-    <a class="row-title" href="https://luma.com/titp0kdp" target="_blank" rel="noopener">Cyberlab: Hacking for beginners
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>SOFTER Lab</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Workshop pro začátečníky zaměřený na hacking, pořádá SOFTER Lab v Kodani. Popis chybí.</p>
+    <p class="row-desc">Let&#x27;s meet over breakfast to dig into our treasure-hunting romance book of the month, The Summer of Lost Things by Jenn Bennett Your ticket includes ✦ A drink ✦ Sourdough bun with butter, ch</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we5" aria-expanded="false">Proč tohle číslo?</button>
     </div>
@@ -466,448 +474,468 @@ koho tam potkat a co mu říct.</p>
     <div class="row-lead" style="text-align:right">
       <span class="num low">20</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="run club by dear world běžecký klub jako networkingová akce komunity dear world v kodani. popis chybí. dear world københavn" data-topic="general"
-  data-city="København" data-format="" data-org="Dear World"
-  data-score="20" data-date="2026-08-18" data-price="free"
+</article><article class="row" data-search="cyberlab: hacking for beginners ever wondered what ethical hacking actually is, or how cybersecurity works behind the scenes? this beginner-friendly workshop is an invitation to explore the world of cybersecurity through hands-on challenges in a relaxed, supportive environment. together with campfire security, we&#x27;ll learn the basics of ethical hacking, explore common security concepts, and solve interactive exercises using a browser-based learning platform. no previous experience is needed: just curiosity and a laptop. whether you&#x27;re completely new to cybersecurity or simply looking for a place to learn alongside others, this workshop is all about building confidence, asking questions, and discovering that security can be creative, collaborative, and fun. just bring your laptop! this workshop is supported by østerbro lokaludvalg. there will be two open hacker labs in september as well which this workshop gives access to. more info coming. softer lab københavn" data-topic=""
+  data-city="København" data-format="" data-org="SOFTER Lab"
+  data-score="37" data-date="2026-08-17" data-price=""
   data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">18</span><span class="mon">srp 26</span><span class="relative soon">ZA 6 DNÍ</span></div>
+  <div class="row-lead"><span class="day">17</span><span class="mon">srp 26</span><span class="relative soon">ZA 5 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
-    <a class="row-title" href="https://luma.com/7t8ircpz" target="_blank" rel="noopener">RUN CLUB by Dear World
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://luma.com/titp0kdp" target="_blank" rel="noopener">Cyberlab: Hacking for beginners
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Dear World</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Běžecký klub jako networkingová akce komunity Dear World v Kodani. Popis chybí.</p>
+    <div class="row-meta"><span>København</span><span>SOFTER Lab</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Ever wondered what ethical hacking actually is, or how cybersecurity works behind the scenes? This beginner-friendly workshop is an invitation to explore the world of cybersecurity through h</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we6" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we6" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we6" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num low">37</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="ai founders chat: payments in the agentic age diskuse ai founders network na téma platby ve věku agentního ai. popis chybí. ai founders network københavn" data-topic="fintech"
+</article><article class="row" data-search="run club by dear world dear world runs - run the city. meet the world. your favorite excuse to end the day differently. every two weeks, we bring together those who want to move, connect, and feel copenhagen in motion. whether you&#x27;re a regular runner or just curious to join, this is your moment. what to expect: • a friendly and welcoming atmosphere • locals &amp; internationals • a fun 5-6 km run through the city • a pace that works for most people • post-run coffee, drinks and conversations • familiar faces and new connections for context: • most people come solo (and quickly stop being solo) • you don&#x27;t need to be an experienced runner to join • our hosts will be there to welcome you, introduce you to others and make sure everyone feels included. • for routes, updates and running-related content between events, you can also follow our running community on cykom https://app.cykom.com/ljug/3usm9h75 we meet at nomad day bar inside 25hours hotel paper island. the venue can safely store your belongings while we are out. for a better feeling of the atmosphere, have a look at our instagram: @dearworldcph come for the run. stay for everything after. dear world københavn" data-topic=""
+  data-city="København" data-format="" data-org="Dear World"
+  data-score="63" data-date="2026-08-18" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">18</span><span class="mon">srp 26</span><span class="relative soon">ZA 6 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://luma.com/7t8ircpz" target="_blank" rel="noopener">RUN CLUB by Dear World
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>København</span><span>Dear World</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">DEAR WORLD RUNS - RUN THE CITY. MEET THE WORLD. your favorite excuse to end the day differently. every two weeks, we bring together those who want to move, connect, and feel Copenhagen in mo</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we7" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we7" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:74%"></i></span></td><td>+26</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num ">63</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="🫰money talk: what&#x27;s getting funded beyond ai in 2026? money talk: what&#x27;s getting funded beyond ai? - danske bank growth x even founders ai.ai.ai. that&#x27;s what every deck says these days. but where&#x27;s the money flowing beyond that? we&#x27;re sitting down with vcs to talk straight, so you walk away knowing what&#x27;s getting funded right now, what&#x27;s shifting behind the scenes, and what it takes to catch their attention. stine mølgaard - partner at alliance vc anne-marie christoffersen-deb - head of investments at unconventional ventures alexandra han bao nguyen - investor at eifo instead of taking notes, bring your questions. bring the thing you&#x27;ve been wondering if a vc would actually say yes to. 💸 wednesday, august 19th, 16:30-19:00 🏦 danske bank - bernstorffsgade 40, 1577 københavn v 💵 for women startup founders and investors we can&#x27;t wait to see you there! proudly supported by danske bank growth. *by signing up for the event, you agree to be contacted by even founders. *by entering the event premises, you consent to photography, audio recording, video recording, and its/their publication or reproduction to be used for promotional purposes on the website, social media, or any other purpose by even founders. even founders københavn danske bank" data-topic=""
+  data-city="København" data-format="" data-org="Even Founders"
+  data-score="55" data-date="2026-08-19" data-price="free"
+  data-ka="1" data-recon="0">
+  <div class="row-lead"><span class="day">19</span><span class="mon">srp 26</span><span class="relative soon">ZA 7 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"><span class="badge badge-key">Danske Bank</span></div>
+    <a class="row-title" href="https://luma.com/bdof6gd1" target="_blank" rel="noopener">🫰Money talk: What&#x27;s getting funded beyond AI in 2026?
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>København</span><span>Even Founders</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Money talk: What&#x27;s getting funded beyond AI? - Danske Bank Growth x Even Founders AI.AI.AI. That&#x27;s what every deck says these days. But where&#x27;s the money flowing beyond that? We&#x27;re sitting d</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we8" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we8" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+35</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num ">55</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="curious neighbours: makers meetup hello, it’s august, which usually means we&#x27;re all being forced to remember what it is we actually do for a living after weeks of doing very little of anything. before we fully disappear back behind our screens, we wanted to do the literal opposite. so for our next meetup, we’re heading to maker. founded back in 2015 as a hub for the nordic maker movement, maker has evolved from a standard makerspace into an open lab and community center for physical entrepreneurs, independent creatives, and anyone who prefers working with raw materials. if you have an interest in woodworking, metalwork, textile design, or digital fabrication—or if you&#x27;re just curious about how to get started—this one is very much for you. what to expect: 17:30 – tour of the space: a quick walkthrough of the wood and metal workshops, textile atelier, and digital fab lab, plus a short intro to what maker actually does. joining is entirely optional, so no pressure if you&#x27;d rather just drop in later. 18:00–20:00 – gathering &amp; drinks: the usual opportunity to grab a drink and hang out with other international (and internationally-minded) creatives. our kind hosts will have soft drinks, beer, and wine available for purchase throughout the evening. we’re crossing our fingers for skies sunny enough to sit outside, though if you’ve lived here long enough, you know hope is a fragile strategy in denmark, so if the weather turns on us, we’ll take it from there. if you’re an international working in a creative field, come curious neighbours københavn" data-topic=""
+  data-city="København" data-format="" data-org="Curious Neighbours"
+  data-score="51" data-date="2026-08-19" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">19</span><span class="mon">srp 26</span><span class="relative soon">ZA 7 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://luma.com/hxx9nnpk" target="_blank" rel="noopener">Curious Neighbours: Makers Meetup
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>København</span><span>Curious Neighbours</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Hello, It’s August, which usually means we&#x27;re all being forced to remember what it is we actually do for a living after weeks of doing very little of anything. Before we fully disappear back</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we9" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we9" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:62%"></i></span></td><td>+5</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num ">51</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="ai founders chat: payments in the agentic age come talk about how you wish payment solutions to work hand in hand with vibe coding, at the new shine.co event space in copenhagen. limited to 25 seats. coffee and croissants included. ai founders network københavn" data-topic=""
   data-city="København" data-format="" data-org="AI Founders Network"
   data-score="38" data-date="2026-08-19" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">19</span><span class="mon">srp 26</span><span class="relative soon">ZA 7 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">fintech</span></div>
+    <div class="row-badges"></div>
     <a class="row-title" href="https://luma.com/afn-flkx" target="_blank" rel="noopener">AI Founders Chat: Payments in the Agentic Age
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>København</span><span>AI Founders Network</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Diskuse AI Founders Network na téma platby ve věku agentního AI. Popis chybí.</p>
+    <p class="row-desc">Come talk about how YOU wish payment solutions to work hand in hand with vibe coding, at the new Shine.co event space in Copenhagen. Limited to 25 seats. Coffee and croissants included.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we7" aria-expanded="false">Proč tohle číslo?</button>
+      <button class="btn btn-sm" type="button" data-why="we10" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we7" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we10" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
       <span class="num low">38</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="curious neighbours: makers meetup meetup pro makery pořádaný komunitou curious neighbours v kodani. popis chybí. curious neighbours københavn" data-topic="general"
-  data-city="København" data-format="" data-org="Curious Neighbours"
-  data-score="21" data-date="2026-08-19" data-price="free"
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">19</span><span class="mon">srp 26</span><span class="relative soon">ZA 7 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
-    <a class="row-title" href="https://luma.com/hxx9nnpk" target="_blank" rel="noopener">Curious Neighbours: Makers Meetup
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Curious Neighbours</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Meetup pro makery pořádaný komunitou Curious Neighbours v Kodani. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we8" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we8" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:62%"></i></span></td><td>+5</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">21</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="🫰money talk: what&#x27;s getting funded beyond ai in 2026? diskuse even founders o tom, co kromě ai získá financování v roce 2026. popis chybí. even founders københavn" data-topic="ai"
-  data-city="København" data-format="" data-org="Even Founders"
-  data-score="20" data-date="2026-08-19" data-price="free"
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">19</span><span class="mon">srp 26</span><span class="relative soon">ZA 7 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://luma.com/bdof6gd1" target="_blank" rel="noopener">🫰Money talk: What&#x27;s getting funded beyond AI in 2026?
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Even Founders</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Diskuse Even Founders o tom, co kromě AI získá financování v roce 2026. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we9" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we9" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="corti hack for health: copenhagen hackathon firmy corti zaměřený na zdravotnické ai aplikace v kodani. popis chybí. corti københavn" data-topic="ai"
+</article><article class="row" data-search="corti hack for health: copenhagen join us at corti hq in copenhagen for our annual hackathon: hack for health pick a clinical problem worth solving. build a working app with corti. ship it by friday night. corti is hosting a two-day, in-person hackathon in copenhagen. it&#x27;s for developers, researchers, and healthcare builders who want to ship real clinical ai tools, not just demos. about the event you&#x27;ll get access to corti&#x27;s full api platform: clinical speech-to-text, text generation, agents, and medical coding. combine these tools however you want. build something a real care team could use on monday. you&#x27;ll have two days to build, with help from corti&#x27;s on-site engineering and product teams. we provide the infrastructure and mentorship, and there&#x27;s €4,500 in prizes to win. the days august 19, 6:00 pm. optional kickoff event. learn more about corti, meet our team, network, and form your team. august 20–21. build days. august 21. final submissions, presentations to judges, prizes, and celebration. on-site guidance teams get direct support throughout the event from two groups: corti engineers and product specialists. they&#x27;ll help you work with the clinical ai apis and turn your idea into something that actually works. clinical advisors. they&#x27;ll help you test whether your problem and your solution are worth taking further. who&#x27;s coming we&#x27;re bringing together people who care about healthcare. developers and researchers: engineers, ml practitioners, and clinical informatics teams who want to build on advanced cl corti københavn" data-topic=""
   data-city="København" data-format="" data-org="Corti"
-  data-score="20" data-date="2026-08-19" data-price="free"
+  data-score="37" data-date="2026-08-19" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">19</span><span class="mon">srp 26</span><span class="relative soon">ZA 7 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
+    <div class="row-badges"></div>
     <a class="row-title" href="https://luma.com/corti-CPH-2026" target="_blank" rel="noopener">Corti Hack for Health: Copenhagen
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>København</span><span>Corti</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Hackathon firmy Corti zaměřený na zdravotnické AI aplikace v Kodani. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we10" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we10" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="bar night &amp; games by dear world barový večer s hrami pořádaný komunitou dear world v kodani. popis chybí. dear world københavn" data-topic="general"
-  data-city="København" data-format="" data-org="Dear World"
-  data-score="20" data-date="2026-08-19" data-price="free"
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">19</span><span class="mon">srp 26</span><span class="relative soon">ZA 7 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
-    <a class="row-title" href="https://luma.com/wo5d9g88" target="_blank" rel="noopener">BAR NIGHT &amp; GAMES by Dear World
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Dear World</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Barový večer s hrami pořádaný komunitou Dear World v Kodani. Popis chybí.</p>
+    <p class="row-desc">Join us at Corti HQ in Copenhagen for our annual hackathon: Hack for Health Pick a clinical problem worth solving. Build a working app with Corti. Ship it by Friday night. Corti is hosting a</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we11" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we11" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we11" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num low">37</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="cursor meetup copenhagen meetup komunity kolem ai coding nástroje cursor v kodani. popis chybí. cursor copenhagen, denmark københavn" data-topic="ai"
-  data-city="København" data-format="" data-org="Cursor Copenhagen, Denmark"
-  data-score="21" data-date="2026-08-20" data-price="free"
+</article><article class="row" data-search="bar night &amp; games by dear world dear world - the international week-breaker your favorite midweek excuse to leave the group chat and meet people in real life. we are always many more people than the rsvp as most traffic and updates happen on instagram. every wednesday, we bring together internationals and locals for an easy-going evening of conversations, drinks and unexpected connections. this week, we&#x27;re meeting at bodega danza, in copenhagen&#x27;s meatpacking district. whether you&#x27;re new in the city, have been here for years, came alone or with friends - you&#x27;ll fit right in. what to expect: • internationals &amp; locals • relaxed atmosphere • conversation starters &amp; games • new friendships and familiar faces • drinks, good vibes and no pressure for context: • most people come solo (and quickly stop being solo) • the average age is usually between 20-30 • our hosts will be there to welcome you, introduce you to others and help conversations get started naturally for a better feeling of the atmosphere, have a look at our instagram: @dearworldcph come after work. come after university. come as you are. let&#x27;s break the week together. dear world københavn" data-topic=""
+  data-city="København" data-format="" data-org="Dear World"
+  data-score="37" data-date="2026-08-19" data-price="free"
   data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">20</span><span class="mon">srp 26</span><span class="relative">ZA 8 DNÍ</span></div>
+  <div class="row-lead"><span class="day">19</span><span class="mon">srp 26</span><span class="relative soon">ZA 7 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://luma.com/cursor-mhjy" target="_blank" rel="noopener">Cursor Meetup Copenhagen
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://luma.com/wo5d9g88" target="_blank" rel="noopener">BAR NIGHT &amp; GAMES by Dear World
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Cursor Copenhagen, Denmark</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Meetup komunity kolem AI coding nástroje Cursor v Kodani. Popis chybí.</p>
+    <div class="row-meta"><span>København</span><span>Dear World</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">DEAR WORLD - the international week-breaker your favorite midweek excuse to leave the group chat and meet people in real life. we are always many more people than the RSVP as most traffic an</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we12" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we12" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:62%"></i></span></td><td>+5</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we12" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">21</span><span class="lbl">skóre</span></div>
+      <span class="num low">37</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="founder fridays pravidelný networking pro zakladatele pořádaný antler nordics v kodani. popis chybí. antler nordics københavn" data-topic="general"
-  data-city="København" data-format="" data-org="Antler Nordics"
-  data-score="20" data-date="2026-08-21" data-price="free"
+</article><article class="row" data-search="cursor meetup copenhagen let’s get together for an evening about cursor, ai-coding, and how technology is changing the way we build software. this time, we’ll gather at vivino’s office by islands brygge for two talks, a live demo, food, drinks, and good conversations with fellow builders. space is limited. rsvp. agenda 17:00 — doors open 17:30 — how vivino sets up and ships be, web, ios, and android all at once using cursor — 25 min. mykyta suprunov, senior engineer at vivino, will share how vivino’s engineering team uses cursor to coordinate development and ship backend, web, ios, and android at the same time. 17:55 — bridging the comprehension gap — 25 min. johannes brandt nielsen, team lead for r&amp;d booking &amp; payment at trackman, will share how developers can use ai agents to move a critical payment system forward while maintaining a clear understanding of the codebase and the changes being made. 18:20 — cursor + raspberry pi: building an interactive projector — 10 min. allan yde, a copenhagen-based maker and designer with experience in distributed design and digital fabrication, will showcase how he has been using cursor for raspberry pi development, including a live demonstration of an interactive projector. 18:30 — food, drinks, and conversation 20:00 — bye, til next time 👋 i found public references connecting allan to distributed design and maker-oriented digital fabrication, including a published contribution on making distributed design work in practice. i’ve kept the description short and av cursor copenhagen, denmark københavn" data-topic=""
+  data-city="København" data-format="" data-org="Cursor Copenhagen, Denmark"
+  data-score="51" data-date="2026-08-20" data-price="free"
   data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">21</span><span class="mon">srp 26</span><span class="relative">ZA 9 DNÍ</span></div>
+  <div class="row-lead"><span class="day">20</span><span class="mon">srp 26</span><span class="relative">ZA 8 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
-    <a class="row-title" href="https://luma.com/sq80mb2d" target="_blank" rel="noopener">Founder Fridays
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://luma.com/cursor-mhjy" target="_blank" rel="noopener">Cursor Meetup Copenhagen
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Antler Nordics</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Pravidelný networking pro zakladatele pořádaný Antler Nordics v Kodani. Popis chybí.</p>
+    <div class="row-meta"><span>København</span><span>Cursor Copenhagen, Denmark</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Let’s get together for an evening about Cursor, AI-coding, and how technology is changing the way we build software. This time, we’ll gather at Vivino’s office by Islands Brygge for two talk</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we13" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we13" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we13" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+20</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:67%"></i></span></td><td>+10</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:62%"></i></span></td><td>+5</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num ">51</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="beats &amp; bouldering sportovně-společenská akce spojující lezení a hudbu, pořádá cph s.c. popis chybí. cph s.c. københavn" data-topic="general"
-  data-city="København" data-format="" data-org="CPH S.C."
-  data-score="20" data-date="2026-08-22" data-price="free"
+</article><article class="row" data-search="founder fridays founder fridays join us for the next founder fridays on august 21st - the event series by lunar and antler, a selective gathering bringing together builders, company leaders, and aspiring founders. hear honest lessons from founders who’ve done it before get inside the mind of an early-stage investor connect with fellow entrepreneurs over food &amp; drinks this time we’re featuring: christian jacobsen, founder of eupry christian is the co-founder and ceo of eupry, a copenhagen-based scale-up building temperature monitoring and compliance solutions for the life science and cold chain industry. founded in 2014, eupry has grown to 50+ countries, and has raised more than $26m across multiple funding rounds. christian shares lessons from building a hardware-software business in a highly regulated industry - and scaling it globally from denmark. investor deep dive: nicolaj højer nielsen &amp; bjarke klinge staun this time, we&#x27;re bringing together two of denmark&#x27;s most active angel investors for a conversation moderated by michael wiatr aagaard, partner at antler. nicolaj højer nielsen is a serial entrepreneur turned full-time business angel, with more than 30 investments to date - including the exit of penneo, which ipo&#x27;d on nasdaq. bjarke klinge staun went from founder to vc to super angel. after investing at creandum, he&#x27;s now an active angel behind companies like lovable, and sits on the board of pleo. together, michael will guide the conversation, drawing out the sharpest lessons on how antler nordics københavn" data-topic=""
+  data-city="København" data-format="" data-org="Antler Nordics"
+  data-score="72" data-date="2026-08-21" data-price="free"
   data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">22</span><span class="mon">srp 26</span><span class="relative">ZA 10 DNÍ</span></div>
+  <div class="row-lead"><span class="day">21</span><span class="mon">srp 26</span><span class="relative">ZA 9 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
-    <a class="row-title" href="https://luma.com/xqn94vuv" target="_blank" rel="noopener">Beats &amp; Bouldering
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://luma.com/sq80mb2d" target="_blank" rel="noopener">Founder Fridays
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>CPH S.C.</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Sportovně-společenská akce spojující lezení a hudbu, pořádá CPH S.C. Popis chybí.</p>
+    <div class="row-meta"><span>København</span><span>Antler Nordics</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Founder Fridays Join us for the next Founder Fridays on August 21st - the event series by Lunar and Antler, a selective gathering bringing together builders, company leaders, and aspiring fo</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we14" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we14" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we14" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+35</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num ">72</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="{tech: europe} x veed hackathon | the summer lock-in hackathon tech: europe a veed v rámci série summer lock-in v londýně. popis chybí. {tech: europe} london" data-topic="ai"
+</article><article class="row" data-search="{tech: europe} x veed hackathon | the summer lock-in {tech: europe} x veed hackathon | the summer lock-in everyone is doing the european summer, we are doing the opposite! we present to you : the european summer lock-in, for everyone who wants to use the summer to ship! limited to 80 participants – secure your spot now! on the day of the event, it is first come, first serve! having a ticket does not guarantee entry once we reach capacity. 📅 schedule saturday 09:30 - door’s open &amp; networking 10:00 - opening &amp; matchmaking 12:30 - lunch 19:00 - competition opt-in deadline &amp; dinner 20:00 - live demo&#x27;s 20:45 - award ceremony 🚀 why participate? collaborate with top ai talent and industry leaders build and showcase cutting-edge ai solutions gain mentorship from leading experts network with investors and potential partners 🤝 partners co-hosts veed - ai video creation, made for social technology partners openai - frontier multimodal ai models pioneer by fastino labs - models that train themselves fal - generative media platform for developers tavily - real-time search, extraction, research, and web crawling through a single, secure api h - computer-use agent lab &amp; deployment company. agents that operate software directly. more tba participants will receive free credits from all technology providers during the hackathon. 💬 join our community! connect with fellow innovators and stay in the loop. 👉 join our discord for all event updates and announcements. {tech: europe} london" data-topic=""
   data-city="London" data-format="" data-org="{Tech: Europe}"
-  data-score="8" data-date="2026-08-22" data-price="free"
+  data-score="51" data-date="2026-08-22" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">22</span><span class="mon">srp 26</span><span class="relative">ZA 10 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
+    <div class="row-badges"></div>
     <a class="row-title" href="https://luma.com/london-summer-lock-in" target="_blank" rel="noopener">{Tech: Europe} x VEED Hackathon | The Summer Lock-In
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>London</span><span>{Tech: Europe}</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Hackathon Tech: Europe a VEED v rámci série Summer Lock-In v Londýně. Popis chybí.</p>
+    <p class="row-desc">{Tech: Europe} x VEED Hackathon | The Summer Lock-In Everyone is doing the European summer, we are doing the opposite! We present to you : The European Summer Lock-In, for everyone who wants</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we15" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we15" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we15" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:74%"></i></span></td><td>+26</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">8</span><span class="lbl">skóre</span></div>
+      <span class="num ">51</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="even founders x antler x lovable: techno (bbq), vibe code &amp; great people networkingová akce even founders, antler a lovable spojující techno hudbu a vibe coding. popis chybí. even founders københavn" data-topic="ai"
-  data-city="København" data-format="" data-org="Even Founders"
-  data-score="20" data-date="2026-08-24" data-price="free"
+</article><article class="row" data-search="beats &amp; bouldering neformalni boulderingovy vecer s dj setem v kodani, socialni networking bez tematickeho zamereni na byznys. heyooo🏄‍♂️ join us for an evening of bouldering, good vibes, and great company. everyone is welcome whether you&#x27;re coming to climb, meet new people, or simply enjoy the evening. bring a friend or come alone and come spend your saturday night with us! when &amp; where: saturday, august 22nd - 18:30 to 22:30 boulders (sydhavn) what to expect: 🧗🏼bouldering for all levels 🕺dj set throughout the evening 🥤free drinks 🥄food available for purchase 🤝a welcoming community and nice atmosphere 🎟️ticket prices - “all tickets are bought on sight”: vibe ticket (only entrance) - 85kr early bird (entrance and shoes, available from 18:30 - 19:30) - 95kr standard (entrance and shoes) - 125kr boulders member - free entrance see you all on the wall🧗🏼 note: a photographer will be present during the event. photos may be used for promotional purposes. by attending, you consent to being photographed - if you prefer not to appear in photos, please let us know on the day and we will of course respect that. cph s.c. københavn" data-topic="general"
+  data-city="København" data-format="" data-org="CPH S.C."
+  data-score="33" data-date="2026-08-22" data-price="free"
   data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">24</span><span class="mon">srp 26</span><span class="relative">ZA 12 DNÍ</span></div>
+  <div class="row-lead"><span class="day">22</span><span class="mon">srp 26</span><span class="relative">ZA 10 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://luma.com/x9ybn15i" target="_blank" rel="noopener">Even Founders x Antler x Lovable: techno (BBQ), vibe code &amp; great people
+    <div class="row-badges"><span class="badge badge-topic">general</span></div>
+    <a class="row-title" href="https://luma.com/xqn94vuv" target="_blank" rel="noopener">Beats &amp; Bouldering
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Even Founders</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Networkingová akce Even Founders, Antler a Lovable spojující techno hudbu a vibe coding. Popis chybí.</p>
+    <div class="row-meta"><span>København</span><span>CPH S.C.</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Neformalni boulderingovy vecer s DJ setem v Kodani, socialni networking bez tematickeho zamereni na byznys.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we16" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we16" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we16" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num low">33</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="vc x ai founder mixer mixer spojující investory a ai zakladatele, pořádá ai founders network v kodani. popis chybí. ai founders network københavn" data-topic="ai"
-  data-city="København" data-format="" data-org="AI Founders Network"
-  data-score="20" data-date="2026-08-24" data-price="free"
+</article><article class="row" data-search="even founders x antler x lovable: techno (bbq), vibe code &amp; great people warm-up akce pred tech bbq pro zakladatelky startupu, komunitni networking s tematem vibe coding a fundraisingu. welcome to even founders! we are the leading incubator and community for female founders in the nordics, helping founders launch companies, connect with like-minded women, and support their fundraising efforts. this event is your warm-up for tech bbq week—the time of the year when copenhagen fills up with founders, investors, and 10,000+ people pretending they&#x27;re not jet-lagged. whether you&#x27;re an early-stage founder, a future one, or just someone with an idea that won&#x27;t leave you - this one&#x27;s for you. bring your laptop, your sparkliest fit, and building spirit with you, and we&#x27;ll handle the rest ✨ no coding experience required. agenda 16:00 — doors open 16:30 — welcome &amp; hackathon kick-off 19:00 — demos &amp; showcase 19:30 — winner announced 19:45 — rave mode 🔥 🖤 co-hosted with antler: antler is a global early-stage vc backing exceptional founders from the very beginning of their journey. antler was founded on the belief that people innovating is the key to building a better future. with offices in 27 cities - including copenhagen, new york, london, berlin, singapore, and sydney, they back founders from all backgrounds, often from the very beginning of their journey to launch and scale startups tackling global challenges. even founders københavn" data-topic="general"
+  data-city="København" data-format="" data-org="Even Founders"
+  data-score="50" data-date="2026-08-24" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">24</span><span class="mon">srp 26</span><span class="relative">ZA 12 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://luma.com/vcn-ivql" target="_blank" rel="noopener">VC x AI Founder Mixer
+    <div class="row-badges"><span class="badge badge-topic">general</span></div>
+    <a class="row-title" href="https://luma.com/x9ybn15i" target="_blank" rel="noopener">Even Founders x Antler x Lovable: techno (BBQ), vibe code &amp; great people
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>AI Founders Network</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Mixer spojující investory a AI zakladatele, pořádá AI Founders Network v Kodani. Popis chybí.</p>
+    <div class="row-meta"><span>København</span><span>Even Founders</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Warm-up akce pred Tech BBQ pro zakladatelky startupu, komunitni networking s tematem vibe coding a fundraisingu.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we17" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we17" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we17" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num ">50</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="✌️f*ck the small talk: copenhagen #8 networkingová akce epic llama zaměřená proti small talku, osmé vydání v kodani. popis chybí. epic llama københavn" data-topic="general"
+</article><article class="row" data-search="✌️f*ck the small talk: copenhagen #8 socialni format setkavani cizich lidi pres hry a hluboke konverzace, bez byznysove agendy. can&#x27;t make it/sold out? sign up here, and we&#x27;ll let you know about the next one! after traveling around the world from berlin to london to lisbon to malta to mexico city, we&#x27;re now in copenhagen for the first season! 😎 📦 what&#x27;s this about? f*ck the small talk is a one-of-a-kind social experience where strangers come together for an evening of meaningful, fun, and deep conversation. it’s also just a different &amp; cool way of meeting new people by getting out of your comfort zone and skipping the small talk! join us for an evening of games, talks, and connections with friends you haven’t met yet. join if you get annoyed after being asked what you do, where you are from, and how long you have been in copenhagen every single time you meet someone. if you feel that there are better questions in life then this is the place for you. 🙌 📓 how does it work? we start with a short &amp; sweet intro talk followed by a few light-hearted group games to warm up. after that, we split you up into small groups and start with the conversation rounds (with 3-4 people). we&#x27;ll have our awesome question cards that will guide the flow of the conversation. (you’ll never have to speak in public if you don’t want) you&#x27;ll be guided by an experienced host who&#x27;ll make sure everything goes smoothly. 🍭 (introverts, you&#x27;ll love it too ❤️) 🧧 what&#x27;s included? ⏰ 3 hours of facilitated and curated activities 👥 a space to meet new people in the least boring way possible 🍎 light snacks to keep the energy going (only if o epic llama københavn" data-topic="general"
   data-city="København" data-format="" data-org="Epic Llama"
-  data-score="20" data-date="2026-08-24" data-price=""
+  data-score="50" data-date="2026-08-24" data-price=""
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">24</span><span class="mon">srp 26</span><span class="relative">ZA 12 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
+    <div class="row-badges"><span class="badge badge-topic">general</span></div>
     <a class="row-title" href="https://luma.com/ftst8copenhagen" target="_blank" rel="noopener">✌️F*ck the Small Talk: Copenhagen #8
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>København</span><span>Epic Llama</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Networkingová akce Epic Llama zaměřená proti small talku, osmé vydání v Kodani. Popis chybí.</p>
+    <p class="row-desc">Socialni format setkavani cizich lidi pres hry a hluboke konverzace, bez byznysove agendy.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we18" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we18" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we18" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num ">50</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="miro x generalist world: copenhagen meetup meetup miro a generalist world zaměřený na konzultanty a agentury v kodani. popis chybí. miro for consultancies &amp; agencies københavn" data-topic="design"
-  data-city="København" data-format="" data-org="Miro for Consultancies &amp; Agencies"
-  data-score="21" data-date="2026-08-25" data-price="free"
+</article><article class="row" data-search="vc x ai founder mixer networkingovy vecer v kodani pro ai zakladatele a investory pred tech bbq, prostor pro setkani s vc fondy. join us at shine in copenhagen for the official vc x ai founder mixer ahead of techbbq. it will be an evening with food, drinks, and networking. meet other ai founders and get a chance to meet the vcs of copenhagen in-person. who will attend? 2nd time ai founders investors &amp; vcs looking to deploy capital or to meet new talent ai founders network københavn" data-topic="ai"
+  data-city="København" data-format="" data-org="AI Founders Network"
+  data-score="46" data-date="2026-08-24" data-price="free"
   data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">25</span><span class="mon">srp 26</span><span class="relative">ZA 13 DNÍ</span></div>
+  <div class="row-lead"><span class="day">24</span><span class="mon">srp 26</span><span class="relative">ZA 12 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">design</span></div>
-    <a class="row-title" href="https://luma.com/alcbr9jt" target="_blank" rel="noopener">Miro x Generalist World: Copenhagen Meetup
+    <div class="row-badges"><span class="badge badge-topic">ai</span></div>
+    <a class="row-title" href="https://luma.com/vcn-ivql" target="_blank" rel="noopener">VC x AI Founder Mixer
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Miro for Consultancies &amp; Agencies</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Meetup Miro a Generalist World zaměřený na konzultanty a agentury v Kodani. Popis chybí.</p>
+    <div class="row-meta"><span>København</span><span>AI Founders Network</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Networkingovy vecer v Kodani pro AI zakladatele a investory pred Tech BBQ, prostor pro setkani s VC fondy.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we19" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we19" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:62%"></i></span></td><td>+5</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we19" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:74%"></i></span></td><td>+26</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">21</span><span class="lbl">skóre</span></div>
+      <span class="num low">46</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="amplify europe breakfast jam session ranní networkingová snídaně pořádaná rockstart v rámci amplify europe. popis chybí. rockstart københavn" data-topic="general"
-  data-city="København" data-format="" data-org="Rockstart"
-  data-score="20" data-date="2026-08-25" data-price="free"
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">25</span><span class="mon">srp 26</span><span class="relative">ZA 13 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
-    <a class="row-title" href="https://luma.com/5zkyom44" target="_blank" rel="noopener">Amplify Europe Breakfast Jam Session
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Rockstart</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Ranní networkingová snídaně pořádaná Rockstart v rámci Amplify Europe. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we20" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we20" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="code to clinic: a breakfast on healthcare ai snídaňová diskuse firmy corti na téma ai ve zdravotnictví. popis chybí. corti københavn" data-topic="ai"
-  data-city="København" data-format="" data-org="Corti"
-  data-score="20" data-date="2026-08-25" data-price="free"
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">25</span><span class="mon">srp 26</span><span class="relative">ZA 13 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://luma.com/corti-3qnc" target="_blank" rel="noopener">Code to Clinic: A Breakfast on Healthcare AI
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Corti</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Snídaňová diskuse firmy Corti na téma AI ve zdravotnictví. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we21" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we21" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="mesh collective x copenhagen networkingová akce komunity mesh collective v kodani. popis chybí. mesh collective københavn" data-topic="general"
+</article><article class="row" data-search="mesh collective x copenhagen ctvrtletni setkani danskeho startup a vc prostredi v kodani, networking s jidlem a napoji. mesh collective hits copenhagen #3 europe must move faster and think bigger - and the nordics are positioned to lead. join us for this third edition of our quarterly gathering of the best of danish startup and venture + our international friends &amp; top vcs in town. this time, we cement our techbbq tradition of showing the best copenhagen has to offer - food &amp; culture. programme 13.00 │ welcome at arturel&#x27;s showroom 13.15 │ as per tradition: oysters, snacks and drinks by former michelin chef jonas harboe aka pinkoyster 13.30 │ intro w. anders mjåset &amp; aya fabricius, mesh 13.35 │ mesh hall of fame w. jeppe rindom, pleo 13.45 │ building unicorns panel w. james hawkins, founder of posthog, jacob lauritzen, cto of legora, and sander janca-jensen, founder of flatpay - moderated by geeta schmidt, seed capital 14.05 │ more network, drinks, and finger food everyone at this event is also invited to join mesh&#x27; official techbbq pre-party later in the evening. learn more and register here. connecting the people pushing the nordics forward last year we launched mesh collective - a network for exceptional nordic founders, investors, and international top-tier vcs. we connected more than 500 people through one-off events across the nordic capitals and in unique places like the lofoten islands and san francisco. one thing became clear: the demand for highly curated local events - where the international scene is invited in - goes far beyond once a year. that&#x27;s why we&#x27;ve teamed up with four key mesh collective københavn" data-topic="general"
   data-city="København" data-format="" data-org="Mesh Collective"
-  data-score="20" data-date="2026-08-25" data-price="free"
+  data-score="72" data-date="2026-08-25" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">25</span><span class="mon">srp 26</span><span class="relative">ZA 13 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">general</span></div>
+    <div class="row-badges"><span class="badge badge-topic">general</span></div>
     <a class="row-title" href="https://luma.com/4twgh66i" target="_blank" rel="noopener">Mesh Collective X Copenhagen
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>København</span><span>Mesh Collective</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Networkingová akce komunity Mesh Collective v Kodani. Popis chybí.</p>
+    <p class="row-desc">Ctvrtletni setkani danskeho startup a VC prostredi v Kodani, networking s jidlem a napoji.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we22" aria-expanded="false">Proč tohle číslo?</button>
+      <button class="btn btn-sm" type="button" data-why="we20" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we22" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we20" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+35</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num ">72</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="copenhagen | claude conversation setkání komunity kolem ai modelu claude v kodani. popis chybí. claude community events københavn" data-topic="ai"
-  data-city="København" data-format="" data-org="Claude Community Events"
-  data-score="20" data-date="2026-08-25" data-price="free"
+</article><article class="row" data-search="code to clinic: a breakfast on healthcare ai snidane s panelovou diskuzi o ai v psychiatricke peci, od modelu pres vyzkum az po nasazeni v klinikach. join us for a techbbq week breakfast exploring the full supply chain of healthcare ai in mental health - from the models powering it, to the research testing its limits, to the clinics deploying it in real care. over coffee and croissants, we&#x27;re bringing together a fireside chat spanning the whole stack: foundational model builders, clinical researchers, operators on the ground in clinics, and the teams deploying ai-native solutions directly into psychiatric care. together we&#x27;ll dig into the gap between what&#x27;s technically possible and what actually works in mental health - and why vertical, sovereign ai solutions matter here specifically, not just &quot;one model fits all.&quot; whether you&#x27;re building, researching, operating, or investing in the future of healthcare ai, this is a room worth being in during techbbq week. corti københavn" data-topic="ai"
+  data-city="København" data-format="" data-org="Corti"
+  data-score="63" data-date="2026-08-25" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">25</span><span class="mon">srp 26</span><span class="relative">ZA 13 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://luma.com/claude-lfem" target="_blank" rel="noopener">Copenhagen | Claude Conversation
+    <div class="row-badges"><span class="badge badge-topic">ai</span></div>
+    <a class="row-title" href="https://luma.com/corti-3qnc" target="_blank" rel="noopener">Code to Clinic: A Breakfast on Healthcare AI
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>København</span><span>Claude Community Events</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Setkání komunity kolem AI modelu Claude v Kodani. Popis chybí.</p>
+    <div class="row-meta"><span>København</span><span>Corti</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Snidane s panelovou diskuzi o AI v psychiatricke peci, od modelu pres vyzkum az po nasazeni v klinikach.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we23" aria-expanded="false">Proč tohle číslo?</button>
+      <button class="btn btn-sm" type="button" data-why="we21" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we23" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we21" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:74%"></i></span></td><td>+26</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">20</span><span class="lbl">skóre</span></div>
+      <span class="num ">63</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="techbbq 2026 severský startupový a inovační summit v bella center. investoři, korporace, zakladatelé. používá appku brella umožňující export seznamu účastníků. nordic startup and innovation summit v bella center. investori, korporace, zakladatele. pouziva event appku brella, takze jde vyexportovat seznam ucastniku pro uc3. techbbq copenhagen" data-topic="general"
+</article><article class="row" data-search="amplify europe breakfast jam session snidane pro investory, zakladatele a lidry ekosystemu pred tech bbq investor day, tema konkurenceschopnost eu. a european breakfast. a european conversation. before the doors open for techbbq investor day on august 25, we invite a select group of investors, founders and ecosystem leaders to begin the day at the amplify europe jam session. over a relaxed breakfast inspired by europe’s innovation hubs, we’ll explore how we can strengthen the competitiveness of a more sustainable and resilient european union. the table will reflect the diversity of europe itself: fresh french baguettes and croissants, dutch hagelslag, german breads and pretzels, swedish cinnamon buns, danish rye bread and pastries, alongside specialties from across the continent. but the real jam happens around the table. through informal networking and open discussion, we’ll exchange ideas on some of europe’s most important opportunities: how can we better align and strengthen europe’s energy grids and systems? how can europe build a world-leading food and bioeconomy? how do we create more sustainable and competitive industries? how can technology help us build more resilient societies? how should founders, investors and ecosystem leaders collaborate to turn these opportunities into european industrial champions? this is not a morning of presentations. it is a participatory conversation designed to connect perspectives, uncover opportunities and inspire collaboration across sectors, borders and investment stages. the best ideas often emerge when people sit down together, share a meal and start jamming. come for breakfas rockstart københavn" data-topic="general"
+  data-city="København" data-format="" data-org="Rockstart"
+  data-score="50" data-date="2026-08-25" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">25</span><span class="mon">srp 26</span><span class="relative">ZA 13 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"><span class="badge badge-topic">general</span></div>
+    <a class="row-title" href="https://luma.com/5zkyom44" target="_blank" rel="noopener">Amplify Europe Breakfast Jam Session
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>København</span><span>Rockstart</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Snidane pro investory, zakladatele a lidry ekosystemu pred Tech BBQ Investor Day, tema konkurenceschopnost EU.</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we22" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we22" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num ">50</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="miro x generalist world: copenhagen meetup neformalni setkani v kodani o facilitaci, moderni praci a designu workshopu, organizovane s miro pro konzultanty a agentury. hey copenhagen people 👋 join us for a casual evening with miro x generalist world! we’re bringing together people who design workshops, lead sessions, shape teams, build products, and generally do work that doesn’t fit neatly into one box. expect a conversation around facilitation, modern work, and the evolving skills people need to bring others together well - whether that’s in consulting, product, community, or beyond. this won’t be a formal networking event or a polished panel. think: a welcoming room, a few prompts or short sparks to get us going, and plenty of space for open conversation. whether you’re a facilitator, consultant, community builder, product person, or just curious, you’re very welcome. the loose plan arrive, grab a drink, settle in a short welcome from generalist world x miro a couple of spark talks to kick it off open conversation and mingling wrap up when the energy does! what to expect a relaxed, thoughtful crowd informal conversation over heavy structure some reflection on how facilitation is changing a chance to meet others doing squiggly, people-centered work more details on the agenda soon! see you there. miro for consultancies &amp; agencies københavn" data-topic="design"
+  data-city="København" data-format="" data-org="Miro for Consultancies &amp; Agencies"
+  data-score="38" data-date="2026-08-25" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">25</span><span class="mon">srp 26</span><span class="relative">ZA 13 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"><span class="badge badge-topic">design</span></div>
+    <a class="row-title" href="https://luma.com/alcbr9jt" target="_blank" rel="noopener">Miro x Generalist World: Copenhagen Meetup
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>København</span><span>Miro for Consultancies &amp; Agencies</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Neformalni setkani v Kodani o facilitaci, moderni praci a designu workshopu, organizovane s Miro pro konzultanty a agentury.</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we23" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we23" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:62%"></i></span></td><td>+5</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num low">38</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="copenhagen | claude conversation komunitni diskuze o dopadu ai na praci a spolecnost, bez produktovych prezentaci, format malych skupin. join a claude community event, organized by local enthusiasts for everyone who loves building with claude! an evening for people in copenhagen who want to talk honestly about what ai is doing to work, to families, and to the rules we all live under. this is not a tech event. no panels, no slides, no product pitches, no expertise required. around 40 people in small groups, two hours. before the event, we choose one of three questions to tackle: what does ai mean for my job? what is ai doing to me, my kids, my community? who decides the rules? you pick the one you care about. each group gets a short guide to keep the conversation moving, then we bring the room back together and share what came up. who should come anyone with a stake in this. developers and designers, yes. but also teachers, parents, students, nurses, public sector people, founders, and anyone managing a team through the change. if you&#x27;ve been carrying a question about ai and haven&#x27;t found a good answer, this is the room. why we&#x27;re doing it claude conversations are running in cities around the world this summer as part of anthropic&#x27;s claude community events. the idea is simple. ai shouldn&#x27;t only be shaped by the people building it. it should also be shaped by the communities it changes. copenhagen gets to add its answers. practical the event is free, but by invitation only. apply to get a seat at the table. light food and drinks provided. we run in english so everyone in the room can take part. space is limited  claude community events københavn" data-topic="ai"
+  data-city="København" data-format="" data-org="Claude Community Events"
+  data-score="37" data-date="2026-08-25" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">25</span><span class="mon">srp 26</span><span class="relative">ZA 13 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"><span class="badge badge-topic">ai</span></div>
+    <a class="row-title" href="https://luma.com/claude-lfem" target="_blank" rel="noopener">Copenhagen | Claude Conversation
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>København</span><span>Claude Community Events</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Komunitni diskuze o dopadu AI na praci a spolecnost, bez produktovych prezentaci, format malych skupin.</p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we24" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we24" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num low">37</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="techbbq 2026 nordic startup and innovation summit v bella center. investori, korporace, zakladatele. pouziva event appku brella, takze jde vyexportovat seznam ucastniku pro uc3. techbbq copenhagen" data-topic=""
   data-city="Copenhagen" data-format="conference" data-org="TechBBQ"
   data-score="43" data-date="2026-08-26" data-price="paid"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">26</span><span class="mon">srp 26</span><span class="relative">ZA 14 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-format">conference</span><span class="badge badge-topic">general</span></div>
+    <div class="row-badges"><span class="badge badge-format">conference</span></div>
     <a class="row-title" href="https://techbbq.dk/techbbq2026/" target="_blank" rel="noopener">TechBBQ 2026
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>Copenhagen</span><span>TechBBQ</span><span class="sep">·</span><span>manual</span></div>
-    <p class="row-desc">Severský startupový a inovační summit v Bella Center. Investoři, korporace, zakladatelé. Používá appku Brella umožňující export seznamu účastníků.</p>
+    <p class="row-desc">Nordic startup and innovation summit v Bella Center. Investori, korporace, zakladatele. Pouziva event appku Brella, takze jde vyexportovat seznam ucastniku pro UC3.</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we24" aria-expanded="false">Proč tohle číslo?</button>
+      <button class="btn btn-sm" type="button" data-why="we25" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we24" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+8</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+10</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we25" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:37%"></i></span></td><td>+13</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+12</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+8</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+10</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
       <span class="num low">43</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="{tech: europe} x cala hackathon | the summer lock-in hackathon tech: europe a cala v rámci série summer lock-in v barceloně. popis chybí. {tech: europe} barcelona" data-topic="ai"
+</article><article class="row" data-search="{tech: europe} x cala hackathon | the summer lock-in {tech: europe} x cala hackathon | the summer lock-in everyone is doing the european summer, we are doing the opposite! we present to you : the european summer lock-in, for everyone who wants to use the summer to ship! limited to 60 participants – secure your spot now! on the day of the event, it is first come, first serve! having a ticket does not guarantee entry once we reach capacity. 📅 schedule saturday 09:30 - door’s open &amp; networking 10:00 - opening &amp; matchmaking 12:30 - lunch 19:00 - competition opt-in deadline &amp; dinner 20:00 - live demo&#x27;s 20:45 - award ceremony 🚀 why participate? collaborate with top ai talent and industry leaders build and showcase cutting-edge ai solutions gain mentorship from leading experts network with investors and potential partners 🤝 partners co-hosts cala - the preferred data layer for agents technology partners openai - frontier multimodal ai models pioneer by fastino labs - models that train themselves fal - generative media platform for developers entire - developer platform for agent-human collaboration latitude - make your ai agents self-healing aikido - secure everything, compromise nothing more tba participants will receive free credits from all technology providers during the hackathon. 💬 join our community! connect with fellow innovators and stay in the loop. 👉 join our discord for all event updates and announcements. {tech: europe} barcelona" data-topic=""
   data-city="Barcelona" data-format="" data-org="{Tech: Europe}"
-  data-score="8" data-date="2026-08-29" data-price="free"
+  data-score="56" data-date="2026-08-29" data-price="free"
   data-ka="0" data-recon="0">
   <div class="row-lead"><span class="day">29</span><span class="mon">srp 26</span><span class="relative">ZA 17 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
+    <div class="row-badges"></div>
     <a class="row-title" href="https://luma.com/barcelona-summer-lock-in" target="_blank" rel="noopener">{Tech: Europe} x Cala Hackathon | The Summer Lock-In
       <span class="arrow">↗</span></a>
     <div class="row-meta"><span>Barcelona</span><span>{Tech: Europe}</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Hackathon Tech: Europe a Cala v rámci série Summer Lock-In v Barceloně. Popis chybí.</p>
-    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
-      <button class="btn btn-sm" type="button" data-why="we25" aria-expanded="false">Proč tohle číslo?</button>
-    </div>
-    <div class="why" id="we25" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
-  </div>
-  <div class="row-side">
-    <div class="row-lead" style="text-align:right">
-      <span class="num low">8</span><span class="lbl">skóre</span></div>
-  </div>
-</article><article class="row" data-search="autonomy - europe&#x27;s defining physical ai &amp; robotics conference evropská konference zaměřená na fyzické ai a robotiku, pořádá staer &amp; the drop v malmö. popis chybí. staer &amp; the drop malmö" data-topic="ai"
-  data-city="Malmö" data-format="" data-org="Staer &amp; The Drop"
-  data-score="12" data-date="2026-09-14" data-price=""
-  data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">14</span><span class="mon">zář 26</span><span class="relative">ZA 33 DNÍ</span></div>
-  <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://autonomyconf.com" target="_blank" rel="noopener">Autonomy - Europe&#x27;s defining Physical AI &amp; Robotics conference
-      <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>Malmö</span><span>Staer &amp; The Drop</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Evropská konference zaměřená na fyzické AI a robotiku, pořádá Staer &amp; The Drop v Malmö. Popis chybí.</p>
+    <p class="row-desc">{Tech: Europe} x Cala Hackathon | The Summer Lock-In Everyone is doing the European summer, we are doing the opposite! We present to you : The European Summer Lock-In, for everyone who wants</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we26" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we26" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+8</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we26" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:74%"></i></span></td><td>+26</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:67%"></i></span></td><td>+10</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">12</span><span class="lbl">skóre</span></div>
+      <span class="num ">56</span><span class="lbl">skóre</span></div>
   </div>
-</article><article class="row" data-search="a fireside chat with ashwin sreenivas - co-founder &amp; president at decagon fireside chat s ashwinem sreenivasem, spoluzakladatelem a prezidentem ai firmy decagon, pořádá whale v amsterdamu. popis chybí. whale amsterdam" data-topic="ai"
-  data-city="Amsterdam" data-format="" data-org="Whale"
-  data-score="8" data-date="2026-09-23" data-price="free"
+</article><article class="row" data-search="autonomy - europe&#x27;s defining physical ai &amp; robotics conference autonomy register for autonomy sept 14th malmö, sweden bringing together innovators, researchers, investors and industry in robotics and physical ai. register now why attend? for startups meet investors actively backing robotics and physical ai. find technical talent from europe&#x27;s leading research labs and universities. spend time with the industrial buyers who may become your next customer. for researchers meet the companies hiring deep technical talent. see how research is making its way into products and deployment. explore ideas with founders and investors building in the field. for investors find early stage investment opportunities among entrepreneurial researchers. meet top startups building in robotics and physical ai. hear directly from industrial buyers about where demand is emerging. for industry meet startups solving real automation problems. gain perspective on where capital is flowing across robotics and physical ai. find hires and top talent from researchers innovating in the field. where robotics meets the real world autonomy is a one-day conference at the intersection of robotics, physical ai, and industry — held in malmö on the day between the drop and eccv 2026, bringing two of europe&#x27;s most important tech communities together. robotics &amp; systems perception, manipulation, locomotion, and the full-stack challenges of deploying robots in unstructured environments. physical ai foundation models for robotics, world models, embodied ai, and the convergence of co staer &amp; the drop malmö" data-topic=""
+  data-city="Malmö" data-format="" data-org="Staer &amp; The Drop"
+  data-score="55" data-date="2026-09-14" data-price=""
   data-ka="0" data-recon="0">
-  <div class="row-lead"><span class="day">23</span><span class="mon">zář 26</span><span class="relative">ZA 42 DNÍ</span></div>
+  <div class="row-lead"><span class="day">14</span><span class="mon">zář 26</span><span class="relative">ZA 33 DNÍ</span></div>
   <div class="row-main">
-    <div class="row-badges"><span class="badge badge-new">nové</span><span class="badge badge-topic">ai</span></div>
-    <a class="row-title" href="https://luma.com/wthztk44" target="_blank" rel="noopener">A fireside chat with Ashwin Sreenivas - Co-Founder &amp; President at Decagon
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://autonomyconf.com" target="_blank" rel="noopener">Autonomy - Europe&#x27;s defining Physical AI &amp; Robotics conference
       <span class="arrow">↗</span></a>
-    <div class="row-meta"><span>Amsterdam</span><span>Whale</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
-    <p class="row-desc">Fireside chat s Ashwinem Sreenivasem, spoluzakladatelem a prezidentem AI firmy Decagon, pořádá Whale v Amsterdamu. Popis chybí.</p>
+    <div class="row-meta"><span>Malmö</span><span>Staer &amp; The Drop</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Autonomy Register for Autonomy Sept 14th Malmö, Sweden Bringing together innovators, researchers, investors and industry in robotics and physical AI. Register now Why attend? For Startups Me</p>
     <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
       <button class="btn btn-sm" type="button" data-why="we27" aria-expanded="false">Proč tohle číslo?</button>
     </div>
-    <div class="why" id="we27" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+    <div class="why" id="we27" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:74%"></i></span></td><td>+26</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:33%"></i></span></td><td>+5</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:100%"></i></span></td><td>+8</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">
-      <span class="num low">8</span><span class="lbl">skóre</span></div>
+      <span class="num ">55</span><span class="lbl">skóre</span></div>
+  </div>
+</article><article class="row" data-search="a fireside chat with ashwin sreenivas - co-founder &amp; president at decagon decagon is valued at $4.5 billion and has become one of the standout success stories in silicon valley - all in under two years. on september 23, ashwin sreenivas, co-founder &amp; president of decagon, joins whale for a fireside chat with bas (leading growth at duna). we&#x27;ll revisit the decisions that shaped decagon&#x27;s earliest days — and what it takes to build a company from 0 to 1. we&#x27;ll cover: traversing the idea maze winning the first customers building the team and the culture staying focused in a competitive market how to think about defensibility in ai agenda 17:00 – doors open 17:15 – fireside chat &amp; q&amp;a with ashwin 18:00–19:00 – drinks and bites about ashwin sreenivas [linkedin] co-founder and president of decagon, the conversational ai platform powering customer experiences at companies like avis budget group, block, and oura. earlier this year, decagon raised a $250 million series d round led by coatue and index, tripling its valuation to $4.5 billion in under 6 months. about whale 🐳 we bring the next generation of operators and founders together - through expert-led sessions, dinner and hackathons. whale amsterdam" data-topic=""
+  data-city="Amsterdam" data-format="" data-org="Whale"
+  data-score="30" data-date="2026-09-23" data-price="free"
+  data-ka="0" data-recon="0">
+  <div class="row-lead"><span class="day">23</span><span class="mon">zář 26</span><span class="relative">ZA 42 DNÍ</span></div>
+  <div class="row-main">
+    <div class="row-badges"></div>
+    <a class="row-title" href="https://luma.com/wthztk44" target="_blank" rel="noopener">A fireside chat with Ashwin Sreenivas - Co-Founder &amp; President at Decagon
+      <span class="arrow">↗</span></a>
+    <div class="row-meta"><span>Amsterdam</span><span>Whale</span><span class="free">zdarma</span><span class="sep">·</span><span>luma</span></div>
+    <p class="row-desc">Decagon is valued at $4.5 billion and has become one of the standout success stories in Silicon Valley - all in under two years. On September 23, Ashwin Sreenivas, Co-founder &amp; President of </p>
+    <div class="row-actions"><span class="btn btn-sm" style="opacity:.4">Recon zatím ne</span>
+      <button class="btn btn-sm" type="button" data-why="we28" aria-expanded="false">Proč tohle číslo?</button>
+    </div>
+    <div class="why" id="we28" data-open="0"><table><tr><td>obor sedí na naše ICP</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>děláme přesně tohle</td><td><span class="bar"><i style="width:60%"></i></span></td><td>+12</td></tr><tr><td>naše témata v popisu</td><td><span class="bar"><i style="width:67%"></i></span></td><td>+10</td></tr><tr><td>místo</td><td><span class="bar"><i style="width:0%"></i></span></td><td>+0</td></tr><tr><td>formát</td><td><span class="bar"><i style="width:50%"></i></span></td><td>+4</td></tr><tr><td>pořadatel</td><td><span class="bar"><i style="width:40%"></i></span></td><td>+4</td></tr></table><p class="foot">Body počítá pevná tabulka v config/icp.yaml, ne AI.</p></div>
+  </div>
+  <div class="row-side">
+    <div class="row-lead" style="text-align:right">
+      <span class="num low">30</span><span class="lbl">skóre</span></div>
   </div>
 </article>
-<footer><span>Aktualizováno 12.08.2026 13:14</span>
+<footer><span>Aktualizováno 12.08.2026 15:09</span>
   <span>Skóre 0–100 podle config/icp.yaml</span>
   <span>Zdroje: luma, manual</span></footer></div>
 <script>
