@@ -138,9 +138,40 @@ def _enrich_from_detail(ev: Event, timeout: float) -> None:
         ev.organizer = ev.organizer or d.organizer
         return
     soup = BeautifulSoup(html, "html.parser")
-    meta = soup.find("meta", attrs={"name": "description"})
-    if meta and meta.get("content"):
-        ev.description = ev.description or meta["content"][:1500]
+
+    if not ev.description:
+        ev.description = _detail_description(soup)
+    if not ev.date:
+        ev.date = _detail_date(soup)
+
+
+def _detail_description(soup) -> str | None:
+    """Popis: meta description, og:description, twitter:description a jako
+    posledni zaloha nejdelsi textovy blok na strance."""
+    for attrs in (
+        {"name": "description"},
+        {"property": "og:description"},
+        {"name": "twitter:description"},
+    ):
+        meta = soup.find("meta", attrs=attrs)
+        if meta and meta.get("content", "").strip():
+            return _clean(meta["content"])
+
+    longest = ""
+    for tag in soup.find_all(["p", "div", "section", "article"]):
+        text = tag.get_text(" ", strip=True)
+        if len(text) > len(longest):
+            longest = text
+    return _clean(longest) if longest else None
+
+
+def _detail_date(soup) -> str | None:
+    """Datum z <time datetime="...">. Bereme prvni parsovatelne."""
+    for t in soup.find_all("time"):
+        dt = (t.get("datetime") or "").strip()
+        if dt:
+            return dt[:10]
+    return None
 
 
 # ---------------------------------------------------------------- pomocne

@@ -38,6 +38,19 @@ def _e(v) -> str:
     return html.escape(str(v)) if v not in (None, "") else ""
 
 
+def _span(inner: str, cond, *, cls: str = "", style: str = "") -> str:
+    """Volitelny <span> - vraci '' kdyz cond je nepravdive.
+
+    Pomocnik existuje, aby se HTML s uvozovkami sestavovalo tady v tele
+    funkce, ne uvnitr {vyraz} f-stringu (tam Python <3.12 backslash nedovoli).
+    inner uz musi byt hotovy retezec (klidne po _e()).
+    """
+    if not cond:
+        return ""
+    attr = f' class="{cls}"' if cls else (f' style="{style}"' if style else "")
+    return f'<span{attr}>{inner}</span>'
+
+
 def _date_lead(iso: str | None) -> str:
     if not iso:
         return '<span class="mon">termín<br>neuveden</span>'
@@ -377,8 +390,8 @@ def html_report(recon, icp_cfg, mock=True):
     comp_rows = "".join(
         f'<li><a href="#">{_e(c.name)}</a>'
         f'<span class="chip-speaker">{_e(c.role_at_event) or "partner"}</span>'
-        f'{f"<span class=\"chip-company\">{_e(c.industry)}</span>" if c.industry else ""}'
-        f'{"<span class=\"badge badge-key\">key account</span>" if c.is_key_account else ""}'
+        f'{_span(_e(c.industry), c.industry, cls="chip-company")}'
+        f'{_span("key account", c.is_key_account, cls="badge badge-key")}'
         f'</li>' for c in recon.companies)
 
     side_rows = "".join(
@@ -390,7 +403,7 @@ def html_report(recon, icp_cfg, mock=True):
         f'<li><a href="{_e(s.url) or "#"}">{_e(s.name)}</a>'
         f'<span class="{"chip-company" if s.access == "open" else "chip-speaker"}">'
         f'{"otevřené" if s.access == "open" else ("jen na pozvánku" if s.access == "invite-only" else "neověřeno")}'
-        f'</span>{f"<span style=\"color:var(--text-muted);font-size:13px\">{_e(s.host)}</span>" if s.host else ""}'
+        f'</span>{_span(_e(s.host), s.host, style="color:var(--text-muted);font-size:13px")}'
         f'<time>{_e(s.when) or "—"}</time></li>'
         for s in recon.side_events)
 
@@ -454,7 +467,7 @@ def html_watchlist(alerts, accounts, mock=True):
             f'<li><span class="{"chip-company" if a.kind in ("speaker", "organizer") else "chip-speaker"}">'
             f'{KIND.get(a.kind, a.kind)}</span>'
             f'<a href="{_e(a.event_url) or "#"}" target="_blank" rel="noopener">{_e(a.event_name)}</a>'
-            f'{f"<span style=\"color:var(--text-muted);font-size:13px\">{_e(a.detail)}</span>" if a.detail else ""}'
+            f'{_span(_e(a.detail), a.detail, style="color:var(--text-muted);font-size:13px")}'
             f'<time>{_e(a.event_date) or "—"}</time></li>' for a in items
         ) or '<li><span class="empty-line">Zatím nikde nezachycena.</span></li>'
         blocks.append(f"""<div class="wl"><header>

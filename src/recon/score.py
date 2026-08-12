@@ -9,6 +9,7 @@ Diky tomu vzdy vidis, PROC ma nekdo 88 a ne 62, a muzes to ladit v YAMLu.
 from __future__ import annotations
 
 import re
+import sys
 
 from .llm import Claude
 from .models import EventRecon, Person
@@ -310,32 +311,45 @@ PRAVIDLA:
 SCHEMA: [{"uid": str, "summary": str, "topic": str}]"""
 
 
+SUMMARY_BATCH = 12  # jedno volani na 30 eventu s dlouhymi popisy pretece max_tokens
+
+
 def summarize_events(events: list, icp_cfg: dict, claude) -> list:
-    """Doplni AI shrnuti k eventum. Davkove - jedno volani na vsechny."""
+    """Doplni AI shrnuti k eventum. Davkove po SUMMARY_BATCH eventech - jedno
+    volani na vsechny by pri delsich popisech preteklo max_tokens a JSON by se
+    useknul. Selhani jedne davky nesmi shodit cely beh - jen vypis varovani."""
     todo = [e for e in events if not e.summary]
     if not todo:
         return events
 
-    listing = "\n\n".join(
-        f"uid: {e.uid}\nnazev: {e.name}\norganizator: {e.organizer or '?'}\n"
-        f"misto: {e.city or '?'}\npopis: {(e.description or '')[:600]}"
-        for e in todo
-    )
-    raw = claude.json_call(
-        EVENT_SUMMARY_SYSTEM,
-        f"NASE POZICE:\n{icp_cfg.get('positioning', '')}\n\nEVENTY:\n{listing}",
-        max_tokens=4000,
-        mock_response=[
-            {"uid": e.uid,
-             "summary": f"{e.name} — {(e.description or 'bez popisu')[:70]}",
-             "topic": e.topic or "general"}
-            for e in todo
-        ],
-    )
     by_uid = {e.uid: e for e in todo}
-    for item in raw or []:
-        e = by_uid.get(item.get("uid", ""))
-        if e:
-            e.summary = item.get("summary")
-            e.topic = item.get("topic") or e.topic
+    for start in range(0, len(todo), SUMMARY_BATCH):
+        batch = todo[start:start + SUMMARY_BATCH]
+        listing = "\n\n".join(
+            f"uid: {e.uid}\nnazev: {e.name}\norganizator: {e.organizer or '?'}\n"
+            f"misto: {e.city or '?'}\npopis: {(e.description or '')[:600]}"
+            for e in batch
+        )
+        try:
+            raw = claude.json_call(
+                EVENT_SUMMARY_SYSTEM,
+                f"NASE POZICE:\n{icp_cfg.get('positioning', '')}\n\nEVENTY:\n{listing}",
+                max_tokens=4000,
+                mock_response=[
+                    {"uid": e.uid,
+                     "summary": f"{e.name} — {(e.description or 'bez popisu')[:70]}",
+                     "topic": e.topic or "general"}
+                    for e in batch
+                ],
+            )
+        except Exception as exc:
+            print(f"  ! shrnuti davky {start // SUMMARY_BATCH + 1} selhalo: "
+                  f"{type(exc).__name__}: {exc}", file=sys.stderr)
+            continue
+
+        for item in raw or []:
+            e = by_uid.get(item.get("uid", ""))
+            if e:
+                e.summary = item.get("summary")
+                e.topic = item.get("topic") or e.topic
     return events

@@ -92,8 +92,15 @@ def cmd_discover(args) -> int:
     if args.source_file:
         collected += sources.collect("manual", path=args.source_file)
     for src in args.sources or []:
-        if src != "manual":
-            collected += sources.collect(src)
+        if src == "manual":
+            continue
+        try:
+            found = sources.collect(src)
+        except Exception as exc:
+            print(f"  ! zdroj {src} selhal: {type(exc).__name__}: {exc}", file=sys.stderr)
+            continue
+        print(f"  {src}: {len(found)} eventů")
+        collected += found
 
     if not collected:
         print("Žádné eventy. Zadej --from soubor.json nebo --sources luma", file=sys.stderr)
