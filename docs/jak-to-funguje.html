@@ -299,14 +299,14 @@ footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--border-soft);
     <span class="logo-title"><span class="product">Flow Event Recon</span>
       <span class="by">by etnetera <span class="flow">flow</span></span></span>
   </a>
-  <div class="topbar-right"><span class="tag mock">MOCK — bez API klíče</span></div>
+  <div class="topbar-right"><span class="tag live">Claude API aktivní</span></div>
 </div>
 <h1>Jak to <span class="black">funguje.</span></h1>
 <p class="subtitle">Co nástroj dělá, odkud bere data, čemu se dá věřit
 a co je potřeba ověřit ručně.</p>
 <nav class="tabs"><a class="tab" href="index.html">Eventy</a><a class="tab" href="watchlist.html">Key accounts</a><a class="tab active" href="jak-to-funguje.html">Jak to funguje</a></nav>
 
-<div class="demo-banner"><b>Ukázková data</b><span>Tyhle eventy a lidé <strong>neexistují</strong>. Jde o testovací data pro běh bez API klíče. Ostrá data se generují do <code>docs/</code>, tohle je <code>demo/</code>.</span></div><div class="callout amber"><b>Nedodělaná konfigurace</b><span><ul style="margin:4px 0 0;padding-left:18px"><li>config/icp.yaml → positioning není vyplněné. Claude z něj generuje angle věty, takže budou obecné nebo nepřesné.</li><li>V key_accounts.csv není u žádné firmy vyplněný sloupec owner. Je nepovinný — slouží k tomu, aby alert věděl, komu ho poslat.</li></ul></span></div>
+<div class="callout amber"><b>Nedodělaná konfigurace</b><span><ul style="margin:4px 0 0;padding-left:18px"><li>V key_accounts.csv není u žádné firmy vyplněný sloupec owner. Je nepovinný — slouží k tomu, aby alert věděl, komu ho poslat.</li></ul></span></div>
 <div class="prose">
 <h2>Tři kroky, jeden nástroj</h2>
 <div class="flow">
@@ -387,14 +387,14 @@ Zbytek je rubrika.</p>
 <h2>Aktuální nastavení</h2>
 <table>
   <tr><th>Položka</th><th>Hodnota</th></tr>
-  <tr><td>Režim</td><td>mock — bez API klíče, data jsou ukázková</td></tr>
+  <tr><td>Režim</td><td>Claude API aktivní</td></tr>
   <tr><td>ICP obory</td><td>BFSI (banky, pojistovny, fintech), Retail, E-commerce</td></tr>
   <tr><td>Oblasti, které děláme</td><td>mobile, design, ai, web</td></tr>
   <tr><td>Sledovaná klíčová slova</td><td>17</td></tr>
   <tr><td>Práh „nenech si ujít"</td><td>80</td></tr>
   <tr><td>Práh „najdi tyhle" (lidé)</td><td>80</td></tr>
-  <tr><td>Eventů v databázi</td><td>9</td></tr>
-  <tr><td>Key account nálezů</td><td>4</td></tr>
+  <tr><td>Eventů v databázi</td><td>28</td></tr>
+  <tr><td>Key account nálezů</td><td>0</td></tr>
 </table>
 
 <h2>Osobní údaje</h2>
@@ -402,6 +402,6 @@ Zbytek je rubrika.</p>
 oprávněného zájmu. Exporty z event app obsahují osobní údaje a <strong>necommitují se
 do repozitáře</strong>. Retention a evidenci je potřeba potvrdit interně, než to pojede ostře.</p>
 </div>
-<footer><span>Aktualizováno 04.08.2026 16:40</span></footer></div>
+<footer><span>Aktualizováno 12.08.2026 13:14</span></footer></div>
 
 </body></html>
