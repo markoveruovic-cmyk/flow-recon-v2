@@ -174,10 +174,20 @@ exclude:
   companies: []   # napr. konkurence, kterou nechces v reportu
 
 # --- Kontext pro Claude (pouziva se v promptech) ----------
-# !!! DOPLN NEZ TO POJEDE OSTRE !!!
 # Tenhle text jde primo do promptu, ze kterych Claude generuje "angle" vety.
 # Kdyz sem napises referenci, kterou jste nedelali, agent ji bude nabizet
-# obchodnikovi jako tema k rozhovoru. Piš jen to, co je pravda.
+# obchodnikovi jako tema k rozhovoru. Pis jen to, co je pravda a co smi ven -
+# tenhle soubor je ve verejnem repozitari.
 positioning: >
-  TODO: doplnit. Kdo jsme, co delame, jake mame reference,
-  jake decision makery hledame.
+  Etnetera Flow je ceska produktova firma. Delame zakazkovy vyvoj nativnich
+  mobilnich aplikaci, B2B i B2C e-commerce platforem, samoobsluznych
+  klientskych portalu a implementaci design systemu.
+  Verejne reference: vernostni mobilni aplikace pro drogerie Rossmann,
+  klientske zony pro telekomunikacniho operatora O2, digitalni produkty
+  pro SKODA AUTO.
+  Na eventech hledame Head of Digital, CMO, Chief Sales Officer, CTO
+  a Product Ownery ve firmach, ktere narazily na technologicky strop
+  soucasne platformy, potrebuji zvednout uroven CX, nebo hledaji partnera
+  pro rychly launch nove aplikace.
+  Oproti poradcum z velke ctyrky a pretizenym internim tymum dodavame
+  odladeny kod a realne UX, ne strategicke prezentace.
