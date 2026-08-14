@@ -1,6 +1,27 @@
 company,domain,owner,tier,note
-Danske Bank,danskebank.com,,,
-Nordea,nordea.com,,,
-Nykredit,nykredit.dk,,,
-Jyske Bank,jyskebank.dk,,,
-Spar Nord,sparnord.dk,,,
+Danske Bank,danskebank.com,,A,retail bank + mobile
+Nordea,nordea.com,,A,retail bank + mobile
+Nykredit,nykredit.dk,,A,mortgage + self-service
+Jyske Bank,jyskebank.dk,,B,
+Spar Nord,sparnord.dk,,B,
+Sydbank,sydbank.dk,,B,
+Arbejdernes Landsbank,al-bank.dk,,B,
+Saxo Bank,home.saxo,,A,trading platform
+Lunar,lunar.app,,A,neobank app-first
+Pleo,pleo.io,,A,fintech app-first
+MobilePay,mobilepay.dk,,A,payments
+Tryg,tryg.dk,,A,insurance + self-service
+Topdanmark,topdanmark.dk,,A,insurance + app
+Alm. Brand,almbrand.dk,,B,insurance
+PFA,pfa.dk,,A,pension self-service portal
+Danica Pension,danica.dk,,B,pension (danicapension.dk redirects to danica.dk)
+Velliv,velliv.dk,,B,pension
+Salling Group,sallinggroup.com,,A,retail loyalty app
+Coop Danmark,coop.dk,,A,retail loyalty app
+Matas,matas.dk,,A,retail + e-commerce
+JYSK,jysk.com,,B,retail
+Normal,normalstores.com,,B,retail (normal.dk redirects to normalstores.com)
+Pandora,pandora.net,,A,DTC e-commerce
+Boozt,boozt.com,,A,e-commerce
+Nemlig,nemlig.com,,A,grocery e-commerce
+Trendhim,trendhim.dk,,B,e-commerce

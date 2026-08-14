@@ -14,6 +14,15 @@ def normalize(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", name).strip()
 
 
+def _token_contains(haystack: str, needle: str) -> bool:
+    """Je `needle` v `haystack` jako cele slovo/slova? (ne uvnitr delsiho slova)
+
+    Driv se hledalo pres raw podretezec, takze "Normal" se naslo v "Abnormal"
+    a kazdy z "Abnormal Security" byl oznacen jako key account Normal.
+    """
+    return re.search(rf"\b{re.escape(needle)}\b", haystack) is not None
+
+
 def match_company(candidate: str, accounts: list[dict], cutoff: float = 0.86) -> dict | None:
     cand = normalize(candidate)
     if not cand:
@@ -22,7 +31,8 @@ def match_company(candidate: str, accounts: list[dict], cutoff: float = 0.86) ->
         acc_norm = normalize(acc.get("company", ""))
         if not acc_norm:
             continue
-        if cand == acc_norm or acc_norm in cand or cand in acc_norm:
+        if (cand == acc_norm or _token_contains(cand, acc_norm)
+                or _token_contains(acc_norm, cand)):
             return acc
         if difflib.SequenceMatcher(None, cand, acc_norm).ratio() >= cutoff:
             return acc

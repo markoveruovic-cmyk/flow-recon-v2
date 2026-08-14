@@ -59,6 +59,22 @@ def test_fuzzy_company_match():
     assert key_accounts.match_company("Totally Unrelated ApS", accs) is None
 
 
+def test_fuzzy_match_handles_legal_suffixes_and_dots():
+    """Pravni pripony (A/S, ApS) a tvary s teckou ('Alm. Brand') musi sednout."""
+    accs = config.load_key_accounts()
+    assert key_accounts.match_company("Pleo ApS", accs)["company"] == "Pleo"
+    assert key_accounts.match_company("Alm. Brand A/S", accs)["company"] == "Alm. Brand"
+    assert key_accounts.match_company("Saxo Bank A/S", accs)["company"] == "Saxo Bank"
+    assert key_accounts.match_company("Coop Danmark A/S", accs)["company"] == "Coop Danmark"
+
+
+def test_fuzzy_match_no_substring_false_positive():
+    """Regrese: 'Normal' se nesmi najit uvnitr 'Abnormal'/'Normalise'."""
+    accs = config.load_key_accounts()
+    assert key_accounts.match_company("Abnormal Security A/S", accs) is None
+    assert key_accounts.match_company("Normalise Data ApS", accs) is None
+
+
 def test_html_report_renders():
     from recon import render_html
     r = EventRecon(name="Test Event", date="2026-06-18", location="Kodan")
