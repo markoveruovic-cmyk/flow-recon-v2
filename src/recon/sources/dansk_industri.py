@@ -20,6 +20,9 @@ OVERENO 14. 8. 2026 (kodem, ne rucne):
       odkaz  -> href karty (interni)
   - DI Digital eventy poznat podle URL /brancher/di-digital/... - jinak je
     seznam spolecny pro celou asociaci; scoring si nase temata vytahne sam.
+  - VYPIS NEMA POPISY, ale detail eventu ma solidni meta/og:description
+    (dansky). Proto fetch_details=True (jako u Lumy) - bez popisu nema
+    scoring v cem hledat klicova slova a vsechno spadne pod 50.
 """
 from __future__ import annotations
 
@@ -43,12 +46,37 @@ DK_MONTHS = {
 DK_DATE_RE = re.compile(r"(\d{1,2})\.?\s*([a-zæøå]{3})[a-zæøå.]*\s*(\d{4})", re.I)
 
 
-def collect(url: str | None = None, timeout: float = 20.0, **_) -> list[Event]:
+def collect(url: str | None = None, timeout: float = 20.0,
+            fetch_details: bool = False, **_) -> list[Event]:
+    """Posbira eventy z /arrangementer/.
+
+    fetch_details=True stahne i detail kazdeho eventu kvuli popisu (dansky
+    meta/og:description). Pomalejsi - jeden request na event - proto volitelne.
+    """
     try:
         html = _get(url or EVENTS_URL, timeout)
     except Exception:
         return []
-    return _parse(html)
+    events = _parse(html)
+    if fetch_details:
+        for ev in events:
+            if ev.url:
+                try:
+                    _enrich_from_detail(ev, timeout)
+                except Exception:
+                    pass
+    return events
+
+
+def _enrich_from_detail(ev: Event, timeout: float) -> None:
+    """Detail eventu ma popis v meta/og:description (na vypisu chybi)."""
+    soup = BeautifulSoup(_get(ev.url, timeout), "html.parser")
+    if not ev.description:
+        for attrs in ({"name": "description"}, {"property": "og:description"}):
+            m = soup.find("meta", attrs=attrs)
+            if m and (m.get("content") or "").strip():
+                ev.description = _clean(m["content"])
+                break
 
 
 def _get(url: str, timeout: float) -> str:
@@ -116,3 +144,7 @@ def _city(info: str) -> str | None:
 def _format(typ: str) -> str | None:
     return {"webinar": "webinar", "kursus": "workshop", "arrangement": "conference",
             "netværk": "meetup", "konference": "conference"}.get(typ)
+
+
+def _clean(text: str | None) -> str | None:
+    return re.sub(r"\s+", " ", text or "").strip()[:1500] or None

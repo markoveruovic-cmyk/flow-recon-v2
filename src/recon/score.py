@@ -246,13 +246,26 @@ def add_angles(recon: EventRecon, icp_cfg: dict, claude: Claude, top_n: int = 15
 
 
 # ================================================================ UC1: eventy
+# Poradi ROZHODUJE: DK mesta prvni, aby mela prednost (kdyz event zmini
+# Kodan i Stockholm, bereme Kodan). Az potom ostatni Nordics, pak online.
 CITY_MAP = {
+    # Dansko
     "copenhagen": "copenhagen", "københavn": "copenhagen", "kobenhavn": "copenhagen",
-    "kodan": "copenhagen", "kodaň": "copenhagen", "frederiksberg": "copenhagen",
+    "köpenhamn": "copenhagen", "kodan": "copenhagen", "kodaň": "copenhagen",
+    "frederiksberg": "copenhagen",
     "aarhus": "aarhus", "århus": "aarhus", "odense": "odense",
+    # Svedsko / Norsko / Finsko (vc. mistnich tvaru)
+    "malmo": "malmo", "malmö": "malmo",
+    "stockholm": "stockholm",
+    "oslo": "oslo",
+    "gothenburg": "gothenburg", "göteborg": "gothenburg", "goteborg": "gothenburg",
+    "helsinki": "helsinki", "helsingfors": "helsinki",
+    # online
     "online": "online", "virtual": "online", "remote": "online",
 }
 DK_HINT = re.compile(r"\b(denmark|danmark|dansk|dk)\b", re.I)
+# Zbytek Nordics podle zeme (kdyz nesedne konkretni mesto vyse).
+NORDICS_HINT = re.compile(r"\b(sweden|sverige|norway|norge|finland|suomi)\b", re.I)
 
 FORMAT_MAP = {
     "conference": "conference", "konference": "conference", "summit": "summit",
@@ -269,6 +282,8 @@ def _location_bucket(event) -> str:
             return bucket
     if DK_HINT.search(blob):
         return "denmark_other"
+    if NORDICS_HINT.search(blob):
+        return "nordics_other"
     return "abroad"
 
 

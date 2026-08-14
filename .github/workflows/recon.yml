@@ -69,7 +69,7 @@ jobs:
               ;;
             discover)
               recon discover \
-                --sources luma eventbrite copenhagen_fintech dansk_erhverv dansk_industri nordic_fintech \
+                --sources luma copenhagen_fintech dansk_erhverv dansk_industri nordic_fintech \
                 --from data/manual_events.json
               ;;
             recon)

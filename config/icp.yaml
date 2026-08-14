@@ -94,13 +94,19 @@ event_rubric:
   keyword_match:        # 0-15  nase temata v nazvu/popisu
     per_hit: 5          # strop 15
 
-  location:             # 0-12
+  location:             # 0-12  Nordics, s prioritou na Dansko
     copenhagen: 12
     aarhus: 11
     odense: 10
     denmark_other: 8
+    malmo: 7            # 35 min vlakem z Kodane, prakticky dojezdove
+    stockholm: 6
+    oslo: 6
+    gothenburg: 5
+    helsinki: 5
+    nordics_other: 4
     online: 6
-    abroad: 0
+    abroad: 0          # zbytek sveta (Berlin, Londyn, Barcelona)
 
   format:               # 0-8  kde realne potkas decision makery
     conference: 8

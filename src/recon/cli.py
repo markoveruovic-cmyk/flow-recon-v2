@@ -247,7 +247,7 @@ def cmd_sources(args) -> int:
     vratí se prazdny seznam a vypada to, ze se zadne eventy nekonaji.
     """
     icp_cfg = config.load_icp()
-    which = args.only or list(sources.REGISTRY)
+    which = args.only or list(sources.DEFAULT_SOURCES)
     total_ok = 0
 
     if args.dump:

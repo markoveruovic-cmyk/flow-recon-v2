@@ -26,9 +26,24 @@ REGISTRY = {
     "nordic_fintech": nordic_fintech.collect,
 }
 
-# Vychozi kwargs pro jednotlive zdroje. Bez fetch_details Luma nevraci
-# popisy eventu a vsechna skore spadnou pod 50.
-DEFAULTS = {"luma": {"fetch_details": True}}
+# Vychozi kwargs pro jednotlive zdroje. Bez fetch_details Luma ani DI
+# nevraci popisy eventu a vsechna skore spadnou pod 50.
+DEFAULTS = {
+    "luma": {"fetch_details": True},
+    "dansk_industri": {"fetch_details": True},
+}
+
+# Zdroje, ktere se pousti automaticky (discover, `recon sources` bez --only).
+# Eventbrite tu NENI schvalne: z CI ho blokuje IP (405) i pres prohlizec,
+# obsah jsou hlavne placene kurzy a API cesta chce ID organizatoru, ktere
+# nemame. Zustava v REGISTRY - jde spustit rucne pres --sources/--only.
+DEFAULT_SOURCES = [
+    "luma",
+    "copenhagen_fintech",
+    "dansk_erhverv",
+    "dansk_industri",
+    "nordic_fintech",
+]
 
 
 def collect(source: str, **kw):

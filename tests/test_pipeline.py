@@ -71,6 +71,25 @@ def test_running_club_scores_low():
     assert e.score < ICP["thresholds"]["worth_talk"]
 
 
+def test_nordics_location_ranking():
+    """Nordics dovnitr, ale s prioritou na Dansko: jinak stejny event skoruje
+    v Kodani vys nez ve Stockholmu, a Berlin (zbytek sveta) ma misto 0."""
+    def at(city):
+        e = ev(name="UKAZKA Fintech Summit", format="summit",
+               description="open banking, payments, digital banking", city=city)
+        score.score_event(e, ICP)
+        return e
+
+    cph, sto, ber = at("Copenhagen"), at("Stockholm"), at("Berlin")
+    assert cph.score > sto.score
+    assert score._location_bucket(sto) == "stockholm"
+    assert score._location_bucket(ber) == "abroad"
+    assert ber.score_breakdown["location"] == 0
+    # a kdyz zname jen zemi, spadne do nordics_other (ne abroad)
+    se = ev(name="Fintech Day", description="Event in Sweden about payments")
+    assert score._location_bucket(se) == "nordics_other"
+
+
 def test_manual_priority_overrides_computed_score():
     """Rucni priorita prebije vypocet a oznaci se jako rucni (ne spocitana)."""
     e = ev(name="TechBBQ 2026", city="Copenhagen", format="conference",
