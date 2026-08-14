@@ -7,7 +7,9 @@ staci ho hodit do .env a mock vypnout.
 from __future__ import annotations
 
 import json
+import random
 import re
+import time
 from typing import Any
 
 from . import config
@@ -15,6 +17,32 @@ from . import config
 
 class LLMError(RuntimeError):
     pass
+
+
+# Prechodne pretizeni (429 rate limit, 529 overloaded) nema stat vysledek.
+# Pauzy pred 1./2./3. opakovanim; posledni neuspech se propaguje jako dosud.
+RETRY_DELAYS = [2.0, 8.0, 20.0]
+
+
+def _is_overloaded(exc: Exception) -> bool:
+    """Je to 429/529, na ktere ma smysl zkusit znovu?"""
+    code = getattr(exc, "status_code", None)
+    if code in (429, 529):
+        return True
+    blob = f"{type(exc).__name__} {exc}".lower()
+    return any(s in blob for s in ("overloaded", "rate limit", "ratelimit", "429", "529"))
+
+
+def _call_with_retry(create_fn):
+    """Zavola create_fn(); na 429/529 zopakuje s exponencialnim backoffem."""
+    for i in range(len(RETRY_DELAYS) + 1):
+        try:
+            return create_fn()
+        except Exception as exc:
+            if i == len(RETRY_DELAYS) or not _is_overloaded(exc):
+                raise
+            delay = RETRY_DELAYS[i]
+            time.sleep(delay + random.uniform(0, delay * 0.25))   # + rozptyl
 
 
 class Claude:
@@ -32,6 +60,10 @@ class Claude:
 
             self._client = anthropic.Anthropic(api_key=key)
 
+    def _create(self, **kwargs):
+        """messages.create s retry na prechodne pretizeni API (429/529)."""
+        return _call_with_retry(lambda: self._client.messages.create(**kwargs))
+
     # ---------------------------------------------------------------
     def json_call(
         self,
@@ -47,7 +79,7 @@ class Claude:
                 raise LLMError("mock rezim: chybi mock_response")
             return mock_response
 
-        msg = self._client.messages.create(
+        msg = self._create(
             model=self.model,
             max_tokens=max_tokens,
             system=system,
@@ -78,7 +110,7 @@ class Claude:
                 raise LLMError("mock rezim: chybi mock_response")
             return mock_response
 
-        msg = self._client.messages.create(
+        msg = self._create(
             model=self.model,
             max_tokens=max_tokens,
             system=system,
