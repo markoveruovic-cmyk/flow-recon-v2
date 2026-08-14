@@ -41,6 +41,22 @@ def test_copenhagen_fintech_parses_card():
     assert e.source == "copenhagen_fintech"
 
 
+def test_copenhagen_fintech_detects_city_from_name():
+    """Mesto se bere z nazvu, na Kodan se pada jen jako fallback."""
+    def city_of(name):
+        html = f"""
+        <div class="w-dyn-item">
+          <div class="h2">March 18, 2026</div><img alt="{name}">
+          <a class="link-to-page" href="/events/x-{hash(name) & 0xffff}">Read more</a>
+        </div>"""
+        return copenhagen_fintech._parse(html)[0].city
+
+    assert city_of("Stockholm Fintech Week: Founders Breakfast") == "Stockholm"
+    assert city_of("Delegation to Singapore Fintech Festival") == "Singapore"
+    assert city_of("Slush 2026 Delegation") == "Helsinki"
+    assert city_of("Nordic Fintech Week 2026") == "Copenhagen"      # fallback
+
+
 def test_copenhagen_fintech_title_from_event_text_when_alt_empty():
     """Regrese: karty s prazdnym img[alt] driv dostaly osklivy nazev ze slugu
     URL (vc. query stringu). Nazev musi vzit z .event__text."""

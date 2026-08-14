@@ -41,6 +41,19 @@ MONTHS = {m: i for i, m in enumerate(
      "august", "september", "october", "november", "december"], start=1)}
 DATE_RE = re.compile(r"([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})")
 
+# Poradatel je z Kodane, ale cast akci jsou delegace/warm-upy jinde. Mesto
+# proto bereme z nazvu/popisu a na Kodan padame jen jako fallback - jinak by
+# Nordic scoring nefungovalo (vsechno by bylo "copenhagen"). Nordic mesta
+# nechavame, at je pozna score._location_bucket; mimo-Nordic padnou do abroad.
+_CITY_HINTS = [
+    "Stockholm", "Oslo", "Gothenburg", "Göteborg", "Helsinki", "Malmö", "Malmo",
+    "Aarhus", "Odense",
+    "Singapore", "London", "Berlin", "Barcelona", "Amsterdam", "Paris",
+    "New York", "Dubai", "Lisbon", "Madrid",
+]
+# nektere akce poznat podle jmena, ne mesta:
+_EVENT_CITY_HINTS = {"slush": "Helsinki"}   # Slush se kona v Helsinkach
+
 
 def collect(url: str | None = None, timeout: float = 20.0, **_) -> list[Event]:
     try:
@@ -93,17 +106,30 @@ def _parse(html: str) -> list[Event]:
         # poradatel: druhy .event__text je host ("Event hosted by: <host>")
         organizer = texts[1] if len(texts) > 1 else "Copenhagen Fintech"
         desc_el = card.select_one(".fs_accordion-1_paragraph-2")
+        desc = _clean(desc_el.get_text(" ", strip=True)) if desc_el else None
 
         out.append(Event(
             name=name,
             url=href,
             source="copenhagen_fintech",
             date=_iso_date(date_el.get_text(strip=True) if date_el else None),
-            city="Copenhagen",
+            city=_detect_city(f"{name} {desc or ''}"),
             organizer=organizer,
-            description=_clean(desc_el.get_text(" ", strip=True)) if desc_el else None,
+            description=desc,
         ))
     return out
+
+
+def _detect_city(text: str) -> str:
+    """Mesto z nazvu/popisu; Kodan jen jako fallback."""
+    low = text.lower()
+    for city in _CITY_HINTS:
+        if re.search(rf"\b{re.escape(city.lower())}\b", low):
+            return city
+    for hint, city in _EVENT_CITY_HINTS.items():
+        if hint in low:
+            return city
+    return "Copenhagen"
 
 
 def _clean(text: str | None) -> str | None:
