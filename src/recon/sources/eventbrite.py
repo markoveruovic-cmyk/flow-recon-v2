@@ -11,6 +11,14 @@ OVERENO 4. 8. 2026 (rucne, ne kodem):
   - Proto tady NEFILTRUJEME - od toho je scoring. Rubrika v icp.yaml
     kurzy a party odstreli sama (ma nizke skore).
 
+OVERENO 14. 8. 2026 k blokaci "405 Not Allowed":
+  - Z GitHub Actions (Azure datacentrove IP) vraci Eventbrite 405. NENI to
+    o User-Agentu - z bezne IP projde i "bot" UA. Blokuji IP/otisk klienta.
+  - Realisticke browser hlavicky (Chrome UA + Accept*) pomahaji jen castecne.
+  - Spolehlive to obejde az realny Chromium pres Playwright (spravny TLS
+    otisk). Proto: nejdriv httpx, a kdyz spadne, fallback na prohlizec.
+    Playwright uz v projektu je (extras [browser], v CI se instaluje).
+
 API cesta (organizers/<id>/events) je nechana jako volitelna pro pripad,
 ze byste chteli sledovat konkretniho poradatele. Potrebuje EVENTBRITE_TOKEN.
 """
@@ -25,7 +33,19 @@ from bs4 import BeautifulSoup
 
 from ..models import Event
 
-UA = "Mozilla/5.0 (compatible; FlowReconBot/0.1)"
+# Realisticke hlavicky - snizi sanci na 405/403 z bezne IP.
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
+BROWSE_HEADERS = {
+    "User-Agent": UA,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,"
+              "image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Upgrade-Insecure-Requests": "1",
+}
 API = "https://www.eventbriteapi.com/v3"
 
 # Verejne vypisy, ktere ma smysl prochazet
@@ -48,6 +68,8 @@ def collect(browse_urls: list[str] | None = None, organizer_ids: list[str] | Non
         try:
             html = _get(url, timeout)
         except Exception:
+            html = _get_browser(url, timeout)     # 405/403 blokace -> zkus prohlizec
+        if not html:
             continue
         for ev in _parse_browse(html, url):
             if ev.uid not in seen:
@@ -61,10 +83,19 @@ def collect(browse_urls: list[str] | None = None, organizer_ids: list[str] | Non
 
 
 def _get(url: str, timeout: float) -> str:
-    r = httpx.get(url, headers={"User-Agent": UA, "Accept-Language": "en"},
-                  timeout=timeout, follow_redirects=True)
+    r = httpx.get(url, headers=BROWSE_HEADERS, timeout=timeout, follow_redirects=True)
     r.raise_for_status()
     return r.text
+
+
+def _get_browser(url: str, timeout: float) -> str:
+    """Fallback pres realny Chromium, kdyz httpx narazi na 405/403 (viz docstring).
+    Kdyz Playwright chybi nebo selze, vrati prazdno - zdroj se tim jen preskoci."""
+    try:
+        from ..fetch import fetch_html_browser
+        return fetch_html_browser(url, timeout=timeout)
+    except Exception:
+        return ""
 
 
 def _parse_browse(html: str, origin: str) -> list[Event]:

@@ -40,6 +40,17 @@ def collect(path: Path | str | None = None, **_) -> list[Event]:
             name=r["name"],
             url=r.get("url") or "",
             source=r.get("source") or "manual",
+            priority=_priority(r.get("priority")),
             **{f: (r.get(f) or None) for f in FIELDS if f not in ("name", "url")},
         ))
     return out
+
+
+def _priority(val) -> int | None:
+    """Volitelna rucni priorita 0-100. Prazdno/nesmysl -> None (pocita se skore)."""
+    if val in (None, ""):
+        return None
+    try:
+        return max(0, min(100, int(float(val))))
+    except (TypeError, ValueError):
+        return None

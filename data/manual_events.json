@@ -7,6 +7,7 @@
     "organizer": "TechBBQ",
     "format": "conference",
     "price": "paid",
+    "priority": 90,
     "description": "Nordic startup and innovation summit v Bella Center. Investori, korporace, zakladatele. Pouziva event appku Brella, takze jde vyexportovat seznam ucastniku pro UC3.",
     "source": "manual"
   }

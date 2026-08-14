@@ -25,6 +25,7 @@ LABELS = {
     "organizer": "pořadatel",
     "key_account_bonus": "je to náš key account",
     "llm_adjust": "korekce od AI",
+    "manual_priority": "ruční priorita",
 }
 
 ORIGIN_LABEL = {
@@ -90,6 +91,7 @@ def _maxes(icp_cfg: dict) -> dict[str, int]:
     out["keyword_match"] = 15
     out["key_account_bonus"] = icp_cfg.get("key_account_bonus", 10)
     out["llm_adjust"] = icp_cfg.get("llm_adjust_max", 10)
+    out["manual_priority"] = 100
     return out
 
 
@@ -186,9 +188,12 @@ def html_event_list(events, icp_cfg, new_uids=None, mock=True, cfg_warnings=None
         num_cls = "high" if e.score >= top_t else ("low" if e.score < mid_t else "")
         search = " ".join(filter(None, [e.name, e.summary, e.description, e.organizer,
                                         e.city, " ".join(e.key_accounts)])).lower()
+        manual_score = "manual_priority" in (e.score_breakdown or {})
         badges = []
         if e.uid in new_uids:
             badges.append('<span class="badge badge-new">nové</span>')
+        if manual_score:
+            badges.append('<span class="badge badge-manual">ruční priorita</span>')
         if e.format:
             badges.append(f'<span class="badge badge-format">{_e(e.format)}</span>')
         if e.topic:
@@ -225,7 +230,9 @@ def html_event_list(events, icp_cfg, new_uids=None, mock=True, cfg_warnings=None
       <button class="btn btn-sm" type="button" data-why="{pid}" aria-expanded="false">Proč tohle číslo?</button>
     </div>
     {_why_panel(pid, e.score_breakdown, maxes,
-                "Body počítá pevná tabulka v config/icp.yaml, ne AI.")}
+                "Skóre je nastavené ručně (priority v data/manual_events.json), ne spočítané."
+                if manual_score
+                else "Body počítá pevná tabulka v config/icp.yaml, ne AI.")}
   </div>
   <div class="row-side">
     <div class="row-lead" style="text-align:right">

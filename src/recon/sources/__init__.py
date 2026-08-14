@@ -5,12 +5,25 @@ Pridani noveho zdroje = jeden soubor + zapis do REGISTRY.
 """
 from __future__ import annotations
 
-from . import eventbrite, luma, manual
+from . import (
+    copenhagen_fintech,
+    dansk_erhverv,
+    dansk_industri,
+    eventbrite,
+    luma,
+    manual,
+    nordic_fintech,
+)
 
 REGISTRY = {
     "manual": manual.collect,
     "luma": luma.collect,
     "eventbrite": eventbrite.collect,
+    # oborove zdroje, kde realne jsou nase ICP firmy (BFSI, retail, e-commerce)
+    "copenhagen_fintech": copenhagen_fintech.collect,
+    "dansk_erhverv": dansk_erhverv.collect,
+    "dansk_industri": dansk_industri.collect,
+    "nordic_fintech": nordic_fintech.collect,
 }
 
 # Vychozi kwargs pro jednotlive zdroje. Bez fetch_details Luma nevraci

@@ -27,6 +27,12 @@ class Event:
     topic: str | None = None         # fintech | retail | mobile | ai | general
     format: str | None = None        # meetup | conference | workshop | demo day
 
+    # Rucne nastavena priorita 0-100. Kdyz je vyplnena, prebije vypoctene
+    # skore - pro velke horizontalni konference (napr. TechBBQ), ktere nejsou
+    # tematicky relevantni, ale chodi tam decision makeri, coz rubrika z popisu
+    # nepozna. None = skore se pocita normalne z rubriky.
+    priority: int | None = None
+
     # doplni scoring
     score: int = 0
     score_breakdown: dict[str, int] = field(default_factory=dict)

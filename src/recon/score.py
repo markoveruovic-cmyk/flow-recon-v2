@@ -10,9 +10,40 @@ from __future__ import annotations
 
 import re
 import sys
+from functools import lru_cache
 
 from .llm import Claude
 from .models import EventRecon, Person
+
+
+# ---------------------------------------------------------------- keyword match
+# Klicova slova se MUSI hledat jako cela slova, ne podretezce. Driv se hledalo
+# pres `kw in text`, takze "ui" se naslo v "builders", "invest" v "investor",
+# "ai" v "chain" - a bezecky klub tak dostal skore 63. Regex \b<slovo>\b to resi.
+@lru_cache(maxsize=1024)
+def keyword_pattern(kw: str) -> re.Pattern:
+    """Zkompilovany regex `\\b<slovo>(?:s|es)?\\b` pro cele slovo.
+
+    Mezery a pomlcky ve viceslovnych vyrazech se nahradi `[\\s\\-]*`, aby
+    "e-commerce" naslo i "ecommerce" a "mobile app" i "mobile apps".
+    (?:s|es)? chyta jednoduche mnozne cislo. Cachovane pres lru_cache.
+    """
+    parts = [re.escape(p) for p in re.split(r"[\s\-]+", kw.strip().lower()) if p]
+    if not parts:
+        return re.compile(r"(?!x)x")          # nikdy nic nenajde
+    body = r"[\s\-]*".join(parts)
+    return re.compile(rf"\b{body}(?:s|es)?\b", re.I)
+
+
+def has_keyword(text: str, keyword: str) -> bool:
+    """Je `keyword` v `text` jako cele slovo?"""
+    return bool(keyword_pattern(keyword).search(text or ""))
+
+
+def count_keywords(text: str, keywords) -> int:
+    """Kolik ruznych keywordu se v textu vyskytuje jako cele slovo."""
+    t = text or ""
+    return sum(1 for kw in keywords if keyword_pattern(kw).search(t))
 
 C_LEVEL = re.compile(r"\b(ceo|cto|cio|cdo|cpo|coo|cfo|cmo|chief|founder|co-founder|owner|managing director)\b", re.I)
 VP = re.compile(r"\b(vp|vice president|svp|evp)\b", re.I)
@@ -34,12 +65,12 @@ def match_icp(person: Person, company_industry: str | None, icp_cfg: dict) -> tu
 
     for icp in icp_cfg["icps"]:
         for known in icp.get("known_companies", []):
-            if known.lower() in company and company:
+            if company and has_keyword(company, known):
                 return icp["id"], "exact_company"
 
     best: tuple[str | None, int] = (None, 0)
     for icp in icp_cfg["icps"]:
-        hits = sum(1 for kw in icp.get("keywords", []) if kw.lower() in haystack)
+        hits = count_keywords(haystack, icp.get("keywords", []))
         if hits > best[1]:
             best = (icp["id"], hits)
 
@@ -135,8 +166,8 @@ def tag_company_icp(recon: EventRecon, icp_cfg: dict) -> EventRecon:
     for c in recon.companies:
         haystack = f"{c.name} {c.industry or ''}".lower()
         for icp in icp_cfg["icps"]:
-            known = any(k.lower() in c.name.lower() for k in icp.get("known_companies", []))
-            kw = any(k.lower() in haystack for k in icp.get("keywords", []))
+            known = any(has_keyword(c.name, k) for k in icp.get("known_companies", []))
+            kw = any(has_keyword(haystack, k) for k in icp.get("keywords", []))
             if known or kw:
                 c.icp_id = icp["id"]
                 break
@@ -259,8 +290,8 @@ def score_event(event, icp_cfg: dict):
     # 1) ICP shoda - kolik ruznych signalu ukazuje na nas segment
     best_icp, best_hits = None, 0
     for icp in icp_cfg["icps"]:
-        hits = sum(1 for kw in icp.get("keywords", []) if kw.lower() in blob)
-        hits += sum(1 for c in icp.get("known_companies", []) if c.lower() in blob)
+        hits = count_keywords(blob, icp.get("keywords", []))
+        hits += count_keywords(blob, icp.get("known_companies", []))
         if hits > best_hits:
             best_icp, best_hits = icp["id"], hits
     icp_level = ("strong" if best_hits >= 3 else "good" if best_hits == 2
@@ -269,19 +300,19 @@ def score_event(event, icp_cfg: dict):
     # 2) oblast vyvoje, kterou delame (druha osa vedle oboru)
     svc_best, svc_hits = None, 0
     for area in icp_cfg.get("service_areas", []):
-        hits = sum(1 for kw in area.get("keywords", []) if kw.lower() in blob)
+        hits = count_keywords(blob, area.get("keywords", []))
         if hits > svc_hits:
             svc_best, svc_hits = area["id"], hits
     svc_level = "strong" if svc_hits >= 2 else "weak" if svc_hits == 1 else "none"
 
     # 3) nase temata
-    kw_hits = sum(1 for kw in icp_cfg.get("watch_keywords", []) if kw.lower() in blob)
+    kw_hits = count_keywords(blob, icp_cfg.get("watch_keywords", []))
     kw_points = min(15, kw_hits * rub["keyword_match"]["per_hit"])
 
     # 4) misto, 5) format, 6) organizator
     loc = _location_bucket(event)
     fmt = _format_bucket(event)
-    org_known = any(o.lower() in (event.organizer or "").lower()
+    org_known = any(has_keyword(event.organizer or "", o)
                     for o in icp_cfg.get("organizer_watchlist", []))
 
     bd = {
@@ -294,8 +325,15 @@ def score_event(event, icp_cfg: dict):
     }
     event.icp_id = best_icp
     event.service_id = svc_best
-    event.score_breakdown = bd
-    event.score = min(100, sum(bd.values()))
+    if event.priority is not None:
+        # Rucne nastavena priorita prebiji vypocet. UI to pozna podle klice
+        # "manual_priority" v rozpadu a oznaci skore jako rucni, ne spocitane.
+        pri = max(0, min(100, int(event.priority)))
+        event.score_breakdown = {"manual_priority": pri}
+        event.score = pri
+    else:
+        event.score_breakdown = bd
+        event.score = min(100, sum(bd.values()))
     return event
 
 

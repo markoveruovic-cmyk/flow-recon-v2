@@ -68,7 +68,9 @@ jobs:
                 --attendees data/attendees_example.csv --docs docs
               ;;
             discover)
-              recon discover --sources luma eventbrite --from data/manual_events.json
+              recon discover \
+                --sources luma eventbrite copenhagen_fintech dansk_erhverv dansk_industri nordic_fintech \
+                --from data/manual_events.json
               ;;
             recon)
               if [ -z "${{ inputs.event_url }}" ]; then

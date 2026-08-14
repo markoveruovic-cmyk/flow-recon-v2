@@ -47,6 +47,50 @@ def test_event_scoring_prefers_dk_icp_events():
     assert good.score >= ICP["thresholds"]["event_top"]
 
 
+def test_keywords_match_whole_words_only():
+    """Regrese: driv se hledalo pres podretezec (kw in text), takze 'ui' se
+    naslo v 'builders' a 'ai' v 'chain'. Ted se hleda cele slovo."""
+    assert not score.has_keyword("builders", "ui")
+    assert not score.has_keyword("chain", "ai")
+    assert not score.has_keyword("investor relations", "invest")
+    # ale skutecne cele slovo (i mnozne cislo a pomlcka/mezera) najit musi
+    assert score.has_keyword("great UX and UI work", "ui")
+    assert score.has_keyword("we build mobile apps", "mobile app")
+    assert score.has_keyword("headless ecommerce", "e-commerce")
+    assert score.count_keywords("payments and open banking", ["payments", "banking"]) == 2
+
+
+def test_running_club_scores_low():
+    """Regrese: 'RUN CLUB' dostal 63, protoze substringy 'ui' (builders),
+    'invest'/'credit' (incredible investors) davaly falesne icp/service hity.
+    S hledanim celych slov musi spadnout pod prah 'stoji za pokec'."""
+    e = ev(name="RUN CLUB by Dear World", city="Copenhagen", format="run club",
+           description="Morning run club for builders. Incredible investors "
+                       "and creatives welcome. Casual pace, coffee after.")
+    score.score_event(e, ICP)
+    assert e.score < ICP["thresholds"]["worth_talk"]
+
+
+def test_manual_priority_overrides_computed_score():
+    """Rucni priorita prebije vypocet a oznaci se jako rucni (ne spocitana)."""
+    e = ev(name="TechBBQ 2026", city="Copenhagen", format="conference",
+           description="startup innovation summit", priority=90)
+    score.score_event(e, ICP)
+    assert e.score == 90
+    assert e.score_breakdown == {"manual_priority": 90}
+
+
+def test_manual_source_parses_priority(tmp_path):
+    from recon.sources import manual
+    p = tmp_path / "m.json"
+    p.write_text('[{"name": "A", "url": "https://x.dk/a", "priority": 90},'
+                 ' {"name": "B", "url": "https://x.dk/b"}]', encoding="utf-8")
+    events = manual.collect(p)
+    by_name = {e.name: e for e in events}
+    assert by_name["A"].priority == 90
+    assert by_name["B"].priority is None
+
+
 def test_service_area_lifts_non_icp_event():
     """Mobile meetup nema oborove ICP, ale delame mobile - nesmi spadnout na nulu."""
     e = ev(name="UKAZKA Mobile meetup", city="Copenhagen", format="meetup",
