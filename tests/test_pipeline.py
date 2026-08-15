@@ -110,6 +110,39 @@ def test_manual_source_parses_priority(tmp_path):
     assert by_name["B"].priority is None
 
 
+def test_deep_enrich_survives_research_failure():
+    """Web search obcas vrati prazdno/nevalidni JSON - deep enrich to nesmi
+    shodit, recon uz ma lidi i skore."""
+    from recon import enrich
+    from recon.models import Company
+
+    class BoomClaude:
+        def research_call(self, *a, **k):
+            raise RuntimeError("web search vratil prazdno")
+
+    r = EventRecon(name="X")
+    r.people.append(Person(name="A", company="Danske Bank", event_role="speaker"))
+    r.companies.append(Company(name="Danske Bank"))
+    out = enrich.deep_enrich(r, BoomClaude())        # nesmi vyhodit vyjimku
+    assert out is r
+    assert any("selhala" in w for w in r.warnings)
+
+
+def test_add_angles_survives_llm_failure():
+    """Selhani generovani angle vet nesmi shodit recon."""
+    class BoomClaude:
+        def json_call(self, *a, **k):
+            raise RuntimeError("neparsovatelny JSON")
+
+    r = EventRecon(name="X", date="2026-06-01", location="Copenhagen")
+    p = Person(name="Jan", title="CEO", company="Danske Bank", event_role="keynote")
+    r.people.append(p)
+    score.score_person(p, r, ICP)                    # vysoke skore -> je v top
+    out = score.add_angles(r, ICP, BoomClaude())     # nesmi vyhodit vyjimku
+    assert out is r
+    assert p.angle is None
+
+
 def test_service_area_lifts_non_icp_event():
     """Mobile meetup nema oborove ICP, ale delame mobile - nesmi spadnout na nulu."""
     e = ev(name="UKAZKA Mobile meetup", city="Copenhagen", format="meetup",

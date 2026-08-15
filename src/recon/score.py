@@ -215,21 +215,28 @@ def add_angles(recon: EventRecon, icp_cfg: dict, claude: Claude, top_n: int = 15
         f"role: {p.event_role} | session: {p.session or '-'} | score: {p.score}"
         for p in top
     )
-    raw = claude.json_call(
-        ANGLE_SYSTEM.format(adjust_max=icp_cfg.get("llm_adjust_max", 10)),
-        ANGLE_USER.format(
-            positioning=icp_cfg.get("positioning", ""),
-            event=f"{recon.name} | {recon.date} | {recon.location}",
-            contacts=contacts,
-        ),
-        max_tokens=2000,
-        mock_response=[
-            {"name": p.name,
-             "angle": MOCK_ANGLES.get(p.name) or "(mock režim — angle generuje až Claude API)",
-             "adjust": 0, "adjust_reason": None}
-            for p in top
-        ],
-    )
+    # Angle vety jsou tresnicka na dortu - jejich selhani nesmi shodit recon,
+    # ktery uz ma lidi i skore. Pri chybe se recon vrati bez angle.
+    try:
+        raw = claude.json_call(
+            ANGLE_SYSTEM.format(adjust_max=icp_cfg.get("llm_adjust_max", 10)),
+            ANGLE_USER.format(
+                positioning=icp_cfg.get("positioning", ""),
+                event=f"{recon.name} | {recon.date} | {recon.location}",
+                contacts=contacts,
+            ),
+            max_tokens=2000,
+            mock_response=[
+                {"name": p.name,
+                 "angle": MOCK_ANGLES.get(p.name) or "(mock režim — angle generuje až Claude API)",
+                 "adjust": 0, "adjust_reason": None}
+                for p in top
+            ],
+        )
+    except Exception as exc:
+        print(f"  ! generovani angle vet selhalo: {type(exc).__name__}: {exc}",
+              file=sys.stderr)
+        return recon
 
     by_name = {p.name: p for p in recon.people}
     cap = icp_cfg.get("llm_adjust_max", 10)

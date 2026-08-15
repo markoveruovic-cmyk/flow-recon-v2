@@ -79,18 +79,27 @@ def deep_enrich(recon: EventRecon, claude: Claude, max_companies: int = 12) -> E
     if not names:
         return recon
 
-    raw = claude.research_call(
-        RESEARCH_SYSTEM,
-        "Dohledej kontext k temto firmam:\n" + "\n".join(f"- {n}" for n in names),
-        max_tokens=3000,
-        max_searches=min(8, len(names)),
-        mock_response=[
-            {"company": n, "industry": None, "size": None, "hq": None,
-             "domain": None, "confidence": "inferred",
-             "note": "mock režim — nic se nedohledávalo"}
-            for n in names
-        ],
-    )
+    # Web search obcas skonci bez textoveho bloku (utne se po hledani) nebo
+    # vrati neparsovatelny JSON. Deep enrich je volitelny - jeho selhani nesmi
+    # shodit cely recon, ktery uz ma lidi i skore. Degradujeme na offline data.
+    try:
+        raw = claude.research_call(
+            RESEARCH_SYSTEM,
+            "Dohledej kontext k temto firmam:\n" + "\n".join(f"- {n}" for n in names),
+            max_tokens=4096,
+            max_searches=min(8, len(names)),
+            mock_response=[
+                {"company": n, "industry": None, "size": None, "hq": None,
+                 "domain": None, "confidence": "inferred",
+                 "note": "mock režim — nic se nedohledávalo"}
+                for n in names
+            ],
+        )
+    except Exception as exc:
+        recon.warnings.append(
+            f"Hlubší rekognoskace přes web selhala ({type(exc).__name__}), "
+            "pokračuji bez ní.")
+        return recon
 
     by_name = {item.get("company", "").lower(): item for item in (raw or [])}
     recon.warnings.append(
