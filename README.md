@@ -14,8 +14,9 @@ Výstup je propojený statický web: seznam eventů → klik → recon.
 Design převzatý 1:1 z PoC (Montserrat, zelená `#3DBE7A`) — tokeny jsou v `src/recon/theme.py`,
 takže se to dá kdykoli slít do jednoho webu.
 
-**Stav:** funkční kostra. Celý řetěz běží end-to-end bez API klíče v `--mock` režimu.
-Až přijde Claude API klíč, hodíš ho do `.env` a mock vypneš.
+**Stav:** běží naostro. Všechny tři use casy proběhly na GitHub Actions s reálným
+Claude API klíčem — `discover` sbírá ze 6 zdrojů, `recon` našel 53 kontaktů na
+TechBBQ přes Playwright. Bez klíče jede celý řetěz v `--mock` režimu.
 
 > ### Žádná smyšlená data v ostrém provozu
 > Ukázková data v `fixtures/` jsou **smyšlená** — eventy ani lidé neexistují,
@@ -146,34 +147,33 @@ poznámky) přeneseme sem. To je rozhodnutí, ne technická překážka.
 
 ## Zdroje eventů
 
-| Zdroj | Stav | Poznámka |
-|---|---|---|
-| `manual` | hotovo | JSON/CSV. Nejspolehlivější, nezávisí na cizím HTML. |
-| `luma` | přepsáno podle reálných stránek | Doména je `luma.com`, ne `lu.ma`. Server-rendered, jde číst. Datum ale ve výpisu není — bere se z JSON-LD nebo z detailu (`fetch_details=True`). |
-| `eventbrite` | přepsáno podle reálných stránek | Veřejné výpisy `/d/denmark--copenhagen/...` jdou číst **bez tokenu**. Token je potřeba jen na sledování konkrétních pořadatelů. |
+Sedm adaptérů v `src/recon/sources/`. Kód proti nim **reálně běžel** (ověřeno
+`recon sources` + `discover` na GitHub Actions). Co který typicky vrací:
 
-Ověřeno ručně 4. 8. 2026, ale **kód proti nim ještě neběžel**. První věc po nasazení:
+| Zdroj | Kanál | Typicky vrací | Poznámka |
+|---|---|---|---|
+| `manual` | JSON/CSV | dle souboru | Nejspolehlivější, nezávisí na cizím HTML. Podporuje `priority` (ruční skóre 0–100, přebije rubriku — např. TechBBQ 90). |
+| `luma` | server-rendered HTML + JSON-LD | ~30 eventů, datum i popis u všech | `luma.com` (ne `lu.ma`). Popis až z detailu (`fetch_details=True`). Kodaňská scéna je hlavně startup/společenská — po scoringu skoro nic nad 50, a to je správně. |
+| `copenhagen_fintech` | server-rendered (Webflow) | 16 eventů, datum u všech, popis u ~15 | **Nejrelevantnější pro BFSI.** Město se bere z názvu (delegace do Singapuru/Stockholmu se pozná). |
+| `dansk_erhverv` | schema.org microdata | 15 eventů, datum + popis u všech | Nejlíp strukturovaný. Obsah jsou hlavně dánské kurzy — nízké ICP. |
+| `dansk_industri` | server-rendered HTML | ~53 eventů, popis u všech (`fetch_details`) | Vč. DI Digital. I s popisy skóruje nízko — pro naše ICP je to šum (stavebnictví, potraviny, HR). |
+| `nordic_fintech` | WordPress RSS | 10 článků o eventech | Ne přímo eventy — články z kategorie *fintech-events*, datum z `pubDate`. |
+| `eventbrite` | server-rendered HTML | **0 z CI** | **Mimo default** (`DEFAULT_SOURCES`). Z GitHub Actions ho blokuje IP (405 Not Allowed) i přes Playwright fallback; obsah jsou navíc hlavně placené kurzy a API cesta chce ID pořadatelů, které nemáme. Zůstává v `REGISTRY` — jde spustit ručně přes `--sources eventbrite`. |
+
+První věc po nasazení nebo když se něco zdá špatně:
 
 ```bash
-recon sources
+recon sources          # co který zdroj REÁLNĚ vrací (bez Eventbrite)
+recon sources --only eventbrite   # když ho chceš přece jen zkusit
 ```
 
-Vypíše, kolik eventů který zdroj vrátil, u kolika je datum a popis a kolik z nich
-prošlo přes práh skóre. Zdroje se rozbíjejí tiše — vrátí prázdno a vypadá to,
-že se nic nekoná.
+Vypíše počty eventů, kolik má datum/popis a kolik prošlo přes práh skóre.
+Zdroje se rozbíjejí tiše — vrátí prázdno a vypadá to, že se nic nekoná.
 
-### Co čekat od kvality
-
-Obecný kalendář Luma pro Kodaň je z větší části společenský (běžecké skupiny,
-party, kvízy). Eventbrite pro Kodaň je plný placených kurzů, webinářů typu
-„40X your business" a občas i akcí z USA. **Filtr je scoring**, ne zdroj —
-rubrika v `icp.yaml` tyhle věci odstřelí sama nízkým skóre. Proto se nefiltruje
-při sběru.
-| Copenhagen Fintech | chybí | PoC ho už používá — přenést. |
-| LinkedIn Events | nebude | Scraping proti ToS, technicky nespolehlivé. |
-
-Přidání zdroje = jeden soubor v `src/recon/sources/` + zápis do `REGISTRY`.
-Zbytek pipeline se nemění.
+**Filtr je scoring, ne zdroj** — rubrika v `icp.yaml` odstřelí kurzy a párty
+nízkým skóre sama, proto se při sběru nefiltruje. Přidání zdroje = jeden soubor
+v `src/recon/sources/` + zápis do `REGISTRY`; zbytek pipeline se nemění.
+LinkedIn Events zůstává mimo (scraping proti ToS).
 
 ---
 
@@ -202,7 +202,9 @@ speakera, partnera nebo organizátora. „Kdo se zaregistroval" je mimo dosah, p
 organizátor sám nezveřejní.
 
 **JavaScriptové weby.** Když konference renderuje speakery až JS, `httpx` je nevidí.
-Řešení až to nastane: Playwright jako druhý fetch backend.
+Řešeno: Playwright jako druhý fetch backend (`browser=auto` ho spustí, jen když
+stránka přijde prázdná). Ověřeno na TechBBQ — `/speakers` i `/partners` se načetly
+přes prohlížeč a recon našel 53 kontaktů.
 
 **GDPR.** Zpracováváš jména, pozice a zaměstnavatele na základě oprávněného zájmu.
 Data jsou veřejná, ale evidenci a retention si v Etnetera Flow ověřte dřív, než to
@@ -222,7 +224,7 @@ fixtures/                 ← demo data pro offline běh
 src/recon/sources/        ← adaptéry zdrojů eventů
 src/recon/theme.py        ← design tokeny z PoC (jedno místo)
 demo/                     ← výstup mock režimu (gitignored, smyšlená data)
-tests/                    ← 23 testů
+tests/                    ← 45 testů
 ```
 
 ## Nasazení
